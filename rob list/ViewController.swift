@@ -13,6 +13,17 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+            if error != nil || user == nil {
+                // Show the app's signed-out state.
+            } else {
+                // Show the app's signed-in state.
+                let fullName = user!.profile?.name
+                let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
+                feedPage.fullName = fullName!
+                self.present(feedPage, animated: false, completion: nil)
+            }
+          }
     }
     
     @IBAction func signIn(_ sender: Any) {
