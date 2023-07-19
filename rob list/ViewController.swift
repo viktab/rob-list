@@ -6,17 +6,26 @@
 //
 
 import UIKit
+import GoogleSignIn
 
-class ViewController: UIViewController {
+class SignInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var testLabel: UILabel!
     
     @IBAction func signIn(_ sender: Any) {
-        titleLabel.text = "clicked"
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
+            guard error == nil else { return }
+
+            // If sign in succeeded, display the app's main content View.
+            self.testLabel.text = "signed in?"
+            let feedPage = FeedViewController()
+            self.present(feedPage, animated: true, completion: nil)
+
+          }
     }
     
 }
