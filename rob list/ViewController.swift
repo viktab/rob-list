@@ -42,6 +42,7 @@ class SignInViewController: UIViewController {
             // If sign in succeeded, display the app's main content View.
             let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
             feedPage.fullName = fullName!
+            feedPage.email = emailAddress!
             self.present(feedPage, animated: false, completion: nil)
 
           }

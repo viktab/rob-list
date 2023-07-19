@@ -19,6 +19,7 @@
 		3CB77CD62A6666310065C8BC /* rob_listUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB77CD52A6666310065C8BC /* rob_listUITestsLaunchTests.swift */; };
 		3CB77CE42A6757810065C8BC /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB77CE32A6757810065C8BC /* FeedViewController.swift */; };
 		3CB77CE82A6783B10065C8BC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB77CE72A6783B10065C8BC /* SearchViewController.swift */; };
+		3CB77CEA2A67AEA70065C8BC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB77CE92A67AEA70065C8BC /* ProfileViewController.swift */; };
 		4D4DBF74AAB24F64B1B1DAD0 /* Pods_rob_listTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60BC9D354DF241D032B7A69C /* Pods_rob_listTests.framework */; };
 		B9FAF6DF08353B15F9920C6D /* Pods_rob_list.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F6370D6C7D37371C9CD5AEE /* Pods_rob_list.framework */; };
 		D7318BBE2F714E6308AF009A /* Pods_rob_list_rob_listUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39F2660502A97C868A4B4D0 /* Pods_rob_list_rob_listUITests.framework */; };
@@ -60,6 +61,7 @@
 		3CB77CD52A6666310065C8BC /* rob_listUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rob_listUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3CB77CE32A6757810065C8BC /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		3CB77CE72A6783B10065C8BC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		3CB77CE92A67AEA70065C8BC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		60BC9D354DF241D032B7A69C /* Pods_rob_listTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rob_listTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61FAE491E75C3D51DA8E795D /* Pods-rob list.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rob list.debug.xcconfig"; path = "Target Support Files/Pods-rob list/Pods-rob list.debug.xcconfig"; sourceTree = "<group>"; };
 		8ADE6C362EC8EF981F3C9548 /* Pods-rob listTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rob listTests.release.xcconfig"; path = "Target Support Files/Pods-rob listTests/Pods-rob listTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				3CB77CB12A66662F0065C8BC /* SceneDelegate.swift */,
 				3CB77CB32A66662F0065C8BC /* ViewController.swift */,
 				3CB77CB52A66662F0065C8BC /* Main.storyboard */,
+				3CB77CE92A67AEA70065C8BC /* ProfileViewController.swift */,
 				3CB77CE72A6783B10065C8BC /* SearchViewController.swift */,
 				3CB77CE32A6757810065C8BC /* FeedViewController.swift */,
 				3CB77CBB2A6666300065C8BC /* Assets.xcassets */,
@@ -419,6 +422,7 @@
 				3CB77CB42A66662F0065C8BC /* ViewController.swift in Sources */,
 				3CB77CB02A66662F0065C8BC /* AppDelegate.swift in Sources */,
 				3CB77CE42A6757810065C8BC /* FeedViewController.swift in Sources */,
+				3CB77CEA2A67AEA70065C8BC /* ProfileViewController.swift in Sources */,
 				3CB77CB22A66662F0065C8BC /* SceneDelegate.swift in Sources */,
 				3CB77CBA2A66662F0065C8BC /* rob_list.xcdatamodeld in Sources */,
 			);

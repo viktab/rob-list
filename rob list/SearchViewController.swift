@@ -56,6 +56,11 @@ class SearchViewController: UIViewController {
         let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
         self.present(feedPage, animated: false, completion: nil)
     }
+    
+    @IBAction func profileClick(_ sender: Any) {
+        let profilePage = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        self.present(profilePage, animated: false, completion: nil)
+    }
     /*
     // MARK: - Navigation
 

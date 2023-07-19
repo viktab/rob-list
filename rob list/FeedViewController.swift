@@ -17,6 +17,7 @@ class FeedViewController: UIViewController {
         nameLabel.text = "Your name is " + fullName
     }
     var fullName : String = ""
+    var email : String = ""
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!
@@ -25,6 +26,10 @@ class FeedViewController: UIViewController {
     @IBAction func searchClick(_ sender: Any) {
         let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
         self.present(searchPage, animated: false, completion: nil)
+    }
+    @IBAction func profileClick(_ sender: Any) {
+        let profilePage = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        self.present(profilePage, animated: false, completion: nil)
     }
     
     /*
