@@ -25,10 +25,20 @@ class SearchViewController: UIViewController {
         verticalView.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 32.0).isActive = true
         verticalView.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -32.0).isActive = true
                 
-        artistTextBox.topAnchor.constraint(equalTo: artistLabel.bottomAnchor, constant: 8.0).isActive = true
-        artistTextBox.layer.borderWidth = 2
-        artistTextBox.layer.borderColor = CGColor(gray: 0.25, alpha: 0.25)
-        artistTextBox.layer.cornerRadius = 5
+        let textBoxes = [artistTextBox, memberTextBox, eraTextBox]
+        let labels = [artistLabel, memberLabel, eraLabel]
+        var prevTextBox: UITextField?
+        
+        for (textBox, label) in zip(textBoxes, labels) {
+            if let prev = prevTextBox {
+                label!.topAnchor.constraint(equalTo: prev.bottomAnchor, constant: 16.0).isActive = true
+            }
+            textBox!.topAnchor.constraint(equalTo: label!.bottomAnchor, constant: 8.0).isActive = true
+            textBox!.layer.borderWidth = 2
+            textBox!.layer.borderColor = CGColor(gray: 0.25, alpha: 0.25)
+            textBox!.layer.cornerRadius = 5
+            prevTextBox = textBox!
+        }
     }
     
     @IBOutlet var mainView: UIView!
@@ -36,7 +46,11 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var verticalView: UIStackView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
+    @IBOutlet weak var memberLabel: UILabel!
+    @IBOutlet weak var eraLabel: UILabel!
     @IBOutlet weak var artistTextBox: UITextField!
+    @IBOutlet weak var memberTextBox: UITextField!
+    @IBOutlet weak var eraTextBox: UITextField!
     
     @IBAction func homeClick(_ sender: Any) {
         let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController

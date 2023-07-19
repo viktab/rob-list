@@ -14,9 +14,13 @@ class FeedViewController: UIViewController {
         // Do any additional setup after loading the view.
         menuView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: 8.0).isActive = true
         menuView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 1.0).isActive = true
+        nameLabel.text = "Your name is " + fullName
     }
+    var fullName : String = ""
+    
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!
+    @IBOutlet weak var nameLabel: UILabel!
     
     @IBAction func searchClick(_ sender: Any) {
         let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
