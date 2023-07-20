@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ProfileViewController: UIViewController {
 
@@ -14,9 +15,19 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
         menuView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: 8.0).isActive = true
         menuView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 1.0).isActive = true
+        if let app_id = Bundle.main.infoDictionary?["APP_ID"] as? String {
+            let app = App(id: app_id)
+            fullName = app.currentUser?.profile.name
+            nameLabel.text = fullName
+        }
     }
+    var fullName : String? = ""
+    var profilePicUrl : String? = " "
+    
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!
+    @IBOutlet weak var nameLabel: UILabel!
+    
     @IBAction func searchClick(_ sender: Any) {
         let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
         self.present(searchPage, animated: false, completion: nil)

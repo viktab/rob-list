@@ -16,12 +16,52 @@ class FeedViewController: UIViewController {
         menuView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: 8.0).isActive = true
         menuView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 1.0).isActive = true
         if let app_id = Bundle.main.infoDictionary?["APP_ID"] as? String {
-            let app = App(id: app_id)
-            fullName = app.currentUser?.profile.name
+            app = App(id: app_id)
+            fullName = app!.currentUser?.profile.name
+            print(fullName!)
+            Task {
+                let realm = try await openFlexibleSyncRealm(user: app!.currentUser!)
+                print("getting idols")
+                let idols = realm.objects(Idol.self)
+                print(idols)
+                print("getting groups")
+                let groups = realm.objects(Group.self)
+                print(groups)
+            }
         }
         nameLabel.text = "Your name is " + fullName!
     }
+
+    @MainActor
+    func openFlexibleSyncRealm(user: User) async throws -> Realm {
+        print("in openSyncedRealm")
+        var config = user.flexibleSyncConfiguration()
+        // Pass object types to the Flexible Sync configuration
+        // as a temporary workaround for not being able to add a
+        // complete schema for a Flexible Sync app.
+        config.objectTypes = [Group.self, Idol.self]
+        let realm = try await Realm(configuration: config, downloadBeforeOpen: .always)
+        print("Successfully opened realm: \(realm)")
+        let subscriptions = realm.subscriptions
+        // You must add at least one subscription to read and write from a Flexible Sync realm
+        // (TODO) I have no idea if I'm doing this right but it works for now lol
+        try await subscriptions.update {
+            subscriptions.append(
+                QuerySubscription<Group> {
+                    $0.name != "fake name"
+                })
+        }
+        try await subscriptions.update {
+            subscriptions.append(
+                QuerySubscription<Idol> {
+                    $0.name != "fake name"
+                })
+        }
+        return realm
+    }
+    
     var fullName : String? = ""
+    var app : App?
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!

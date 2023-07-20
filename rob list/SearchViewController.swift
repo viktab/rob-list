@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SearchViewController: UIViewController {
 
@@ -39,6 +40,36 @@ class SearchViewController: UIViewController {
             textBox!.layer.cornerRadius = 5
             prevTextBox = textBox!
         }
+        
+        let realm = try! Realm()
+    }
+    
+    @MainActor
+    func openFlexibleSyncRealm(user: User) async throws -> Realm {
+        print("in openSyncedRealm")
+        var config = user.flexibleSyncConfiguration()
+        // Pass object types to the Flexible Sync configuration
+        // as a temporary workaround for not being able to add a
+        // complete schema for a Flexible Sync app.
+        config.objectTypes = [Group.self, Idol.self]
+        let realm = try await Realm(configuration: config, downloadBeforeOpen: .always)
+        print("Successfully opened realm: \(realm)")
+        let subscriptions = realm.subscriptions
+        // You must add at least one subscription to read and write from a Flexible Sync realm
+        // (TODO) I have no idea if I'm doing this right but it works for now lol
+        try await subscriptions.update {
+            subscriptions.append(
+                QuerySubscription<Group> {
+                    $0.name != "fake name"
+                })
+        }
+        try await subscriptions.update {
+            subscriptions.append(
+                QuerySubscription<Idol> {
+                    $0.name != "fake name"
+                })
+        }
+        return realm
     }
     
     @IBOutlet var mainView: UIView!

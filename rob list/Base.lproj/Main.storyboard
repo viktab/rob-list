@@ -298,6 +298,13 @@
                                 </subviews>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iD3-N1-NeS">
+                                <rect key="frame" x="16" y="59" width="140" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Czk-0d-OZr"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -306,11 +313,12 @@
                     <connections>
                         <outlet property="mainView" destination="qbO-QW-qEm" id="feR-7P-bhE"/>
                         <outlet property="menuView" destination="kkt-ub-rU5" id="ZG2-nS-m2b"/>
+                        <outlet property="nameLabel" destination="iD3-N1-NeS" id="OiH-J7-M14"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWx-15-N5w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2466" y="4"/>
+            <point key="canvasLocation" x="2464.8854961832062" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>
