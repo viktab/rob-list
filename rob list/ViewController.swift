@@ -35,7 +35,6 @@ class SignInViewController: UIViewController {
             
             let user = signInResult.user
 
-            let emailAddress = user.profile?.email
             let fullName = user.profile?.name
             
             let idToken = user.idToken?.tokenString
@@ -48,22 +47,18 @@ class SignInViewController: UIViewController {
                             switch result {
                             case .failure(let error):
                                 print("Failed to log in to MongoDB Realm: \(error)")
-                            case .success(let user):
+                            case .success(_):
                                 print("Successfully logged in to MongoDB Realm using Google OAuth.")
-                                print(user)
                                 // Now logged in, do something with user
                                 // Remember to dispatch to main if you are doing anything on the UI thread
+                                // If sign in succeeded, display the app's main content View.
+                                let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
+                                feedPage.fullName = fullName!
+                                self.present(feedPage, animated: false, completion: nil)
                             }
                         }
                     }
             }
-            
-            // If sign in succeeded, display the app's main content View.
-            let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
-            feedPage.fullName = fullName!
-            feedPage.email = emailAddress!
-            self.present(feedPage, animated: false, completion: nil)
-
           }
     }
     

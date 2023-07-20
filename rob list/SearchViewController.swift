@@ -61,6 +61,15 @@ class SearchViewController: UIViewController {
         let profilePage = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         self.present(profilePage, animated: false, completion: nil)
     }
+    @IBAction func groupTextBoxReturn(_ sender: Any) {
+        view.endEditing(true)
+    }
+    @IBAction func memberTextBoxReturn(_ sender: Any) {
+        view.endEditing(true)
+    }
+    @IBAction func eraTextBoxReturn(_ sender: Any) {
+        view.endEditing(true)
+    }
     /*
     // MARK: - Navigation
 

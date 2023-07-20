@@ -17,7 +17,6 @@ class FeedViewController: UIViewController {
         nameLabel.text = "Your name is " + fullName
     }
     var fullName : String = ""
-    var email : String = ""
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!
