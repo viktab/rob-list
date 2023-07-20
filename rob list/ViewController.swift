@@ -34,8 +34,6 @@ class SignInViewController: UIViewController {
             guard let signInResult = signInResult else { return }
             
             let user = signInResult.user
-
-            let fullName = user.profile?.name
             
             let idToken = user.idToken?.tokenString
             let credentials = Credentials.googleId(token: idToken!)
@@ -53,7 +51,6 @@ class SignInViewController: UIViewController {
                                 // Remember to dispatch to main if you are doing anything on the UI thread
                                 // If sign in succeeded, display the app's main content View.
                                 let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
-                                feedPage.fullName = fullName!
                                 self.present(feedPage, animated: false, completion: nil)
                             }
                         }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FeedViewController: UIViewController {
 
@@ -14,9 +15,13 @@ class FeedViewController: UIViewController {
         // Do any additional setup after loading the view.
         menuView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: 8.0).isActive = true
         menuView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 1.0).isActive = true
-        nameLabel.text = "Your name is " + fullName
+        if let app_id = Bundle.main.infoDictionary?["APP_ID"] as? String {
+            let app = App(id: app_id)
+            fullName = app.currentUser?.profile.name
+        }
+        nameLabel.text = "Your name is " + fullName!
     }
-    var fullName : String = ""
+    var fullName : String? = ""
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!
