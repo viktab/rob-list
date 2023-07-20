@@ -38,5 +38,7 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>APP_ID</key>
+	<string>$(APP_ID)</string>
 </dict>
 </plist>
