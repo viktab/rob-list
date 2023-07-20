@@ -7,7 +7,7 @@
 
 import UIKit
 import GoogleSignIn
-import MongoSwift
+import RealmSwift
 
 
 class SignInViewController: UIViewController {
@@ -36,10 +36,26 @@ class SignInViewController: UIViewController {
             let user = signInResult.user
 
             let emailAddress = user.profile?.email
-
             let fullName = user.profile?.name
-            let givenName = user.profile?.givenName
-            let familyName = user.profile?.familyName
+            
+            let idToken = user.idToken?.tokenString
+            let credentials = Credentials.googleId(token: idToken!)
+            
+            let app = App(id: "<app id>")
+            app.login(credentials: credentials) { result in
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .failure(let error):
+                            print("Failed to log in to MongoDB Realm: \(error)")
+                        case .success(let user):
+                            print("Successfully logged in to MongoDB Realm using Google OAuth.")
+                            print(user)
+                            // Now logged in, do something with user
+                            // Remember to dispatch to main if you are doing anything on the UI thread
+                        }
+                    }
+                }
+
 
             // If sign in succeeded, display the app's main content View.
             let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController

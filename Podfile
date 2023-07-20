@@ -7,7 +7,7 @@ target 'rob list' do
 
   # Pods for rob list
   pod 'GoogleSignIn'
-  pod 'MongoSwift'
+  pod 'RealmSwift', '~>10'
 
   target 'rob listTests' do
     inherit! :search_paths
