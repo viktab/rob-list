@@ -61,6 +61,7 @@
 		3CB77CE32A6757810065C8BC /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		3CB77CE72A6783B10065C8BC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		3CB77CE92A67AEA70065C8BC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		3CC420D42A68F55300CB1B4E /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		4E15765B410A1CE3742C47A8 /* Pods_rob_listTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rob_listTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70F01E270066F1777FF462EF /* Pods_rob_list.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rob_list.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844B7061F50B8F2E42418C74 /* Pods_rob_list_rob_listUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rob_list_rob_listUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +138,7 @@
 				3CB77CAF2A66662F0065C8BC /* AppDelegate.swift */,
 				3CB77CB12A66662F0065C8BC /* SceneDelegate.swift */,
 				3CB77CB32A66662F0065C8BC /* ViewController.swift */,
+				3CC420D42A68F55300CB1B4E /* Config.xcconfig */,
 				3CB77CB52A66662F0065C8BC /* Main.storyboard */,
 				3CB77CE92A67AEA70065C8BC /* ProfileViewController.swift */,
 				3CB77CE72A6783B10065C8BC /* SearchViewController.swift */,

@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  rob list
+//
+//  Created by Viktoriya Tabunshchyk on 7/19/23.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+APP_ID = "rob-list-kqiri"
