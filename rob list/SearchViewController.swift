@@ -8,7 +8,20 @@
 import UIKit
 import RealmSwift
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +53,11 @@ class SearchViewController: UIViewController {
             textBox!.layer.cornerRadius = 5
             prevTextBox = textBox!
         }
+        
+        artistPickerView.delegate = self
+        artistPickerView.dataSource = self
+        pickerData = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"]
+        artistPickerView.isHidden = true
                 
         let realm = try! Realm()
     }
@@ -72,6 +90,8 @@ class SearchViewController: UIViewController {
         return realm
     }
     
+    var pickerData: [String] = [String]()
+    
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!
     @IBOutlet weak var verticalView: UIStackView!
@@ -94,6 +114,7 @@ class SearchViewController: UIViewController {
             eraTextBox.delegate = self
         }
     }
+    @IBOutlet weak var artistPickerView: UIPickerView!
     
     @IBAction func homeClick(_ sender: Any) {
         let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
@@ -105,6 +126,7 @@ class SearchViewController: UIViewController {
         self.present(profilePage, animated: false, completion: nil)
     }
     @IBAction func groupTextBoxReturn(_ sender: Any) {
+        artistPickerView.isHidden = true
         view.endEditing(true)
     }
     @IBAction func memberTextBoxReturn(_ sender: Any) {
@@ -135,6 +157,7 @@ extension SearchViewController: UITextFieldDelegate {
             print("changed text")
             print(oldText)
             print(newText)
+            artistPickerView.isHidden = false
             default:
                 print("wrong text field")
                 break
