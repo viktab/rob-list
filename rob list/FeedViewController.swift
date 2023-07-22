@@ -21,12 +21,12 @@ class FeedViewController: UIViewController {
             print(fullName!)
             Task {
                 let realm = try await openFlexibleSyncRealm(user: app!.currentUser!)
-                print("getting idols")
-                let idols = realm.objects(Idol.self)
-                print(idols)
-                print("getting groups")
-                let groups = realm.objects(Group.self)
-                print(groups)
+//                print("getting idols")
+//                let idols = realm.objects(Idol.self)
+//                print(idols)
+//                print("getting groups")
+//                let groups = realm.objects(Group.self)
+//                print(groups)
             }
         }
         nameLabel.text = "Your name is " + fullName!

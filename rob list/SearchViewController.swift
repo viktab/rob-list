@@ -40,7 +40,7 @@ class SearchViewController: UIViewController {
             textBox!.layer.cornerRadius = 5
             prevTextBox = textBox!
         }
-        
+                
         let realm = try! Realm()
     }
     
@@ -79,9 +79,21 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var memberLabel: UILabel!
     @IBOutlet weak var eraLabel: UILabel!
-    @IBOutlet weak var artistTextBox: UITextField!
-    @IBOutlet weak var memberTextBox: UITextField!
-    @IBOutlet weak var eraTextBox: UITextField!
+    @IBOutlet weak var artistTextBox: UITextField! {
+        didSet {
+            artistTextBox.delegate = self
+        }
+    }
+    @IBOutlet weak var memberTextBox: UITextField! {
+        didSet {
+            memberTextBox.delegate = self
+        }
+    }
+    @IBOutlet weak var eraTextBox: UITextField! {
+        didSet {
+            eraTextBox.delegate = self
+        }
+    }
     
     @IBAction func homeClick(_ sender: Any) {
         let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
@@ -111,4 +123,22 @@ class SearchViewController: UIViewController {
     }
     */
 
+}
+
+extension SearchViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
+        replacementString string: String) -> Bool {
+        switch textField {
+            case artistTextBox:
+            let oldText = textField.text!
+            let newText = oldText.prefix(range.lowerBound) + string.dropFirst(0) + oldText.dropFirst(range.upperBound)
+            print("changed text")
+            print(oldText)
+            print(newText)
+            default:
+                print("wrong text field")
+                break
+            }
+        return true
+    }
 }
