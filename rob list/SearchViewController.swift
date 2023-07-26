@@ -54,11 +54,14 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             prevTextBox = textBox!
         }
         
-        artistPickerView.delegate = self
-        artistPickerView.dataSource = self
+        artistPickerView.delegate = self as UIPickerViewDelegate
+        artistPickerView.dataSource = self as UIPickerViewDataSource
+        self.view.addSubview(artistPickerView)
         pickerData = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"]
+        
+        artistPickerView.setValue(UIColor.black, forKeyPath: "textColor")
         artistPickerView.isHidden = true
-                
+                        
         let realm = try! Realm()
     }
     
@@ -114,7 +117,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             eraTextBox.delegate = self
         }
     }
-    @IBOutlet weak var artistPickerView: UIPickerView!
+    var artistPickerView: UIPickerView = UIPickerView()
     
     @IBAction func homeClick(_ sender: Any) {
         let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
@@ -126,7 +129,8 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         self.present(profilePage, animated: false, completion: nil)
     }
     @IBAction func groupTextBoxReturn(_ sender: Any) {
-        artistPickerView.isHidden = true
+        artistPickerView.removeFromSuperview()
+        memberLabel.topAnchor.constraint(equalTo: artistTextBox.bottomAnchor, constant: 16.0).isActive = true
         view.endEditing(true)
     }
     @IBAction func memberTextBoxReturn(_ sender: Any) {
@@ -157,7 +161,12 @@ extension SearchViewController: UITextFieldDelegate {
             print("changed text")
             print(oldText)
             print(newText)
+            
+            verticalView.insertArrangedSubview(artistPickerView, at: 2)
             artistPickerView.isHidden = false
+            artistPickerView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.2).isActive = true
+            artistPickerView.topAnchor.constraint(equalTo: artistTextBox.bottomAnchor, constant: 8.0).isActive = true
+            memberLabel.topAnchor.constraint(equalTo: artistPickerView.bottomAnchor, constant: 16.0).isActive = true
             default:
                 print("wrong text field")
                 break
