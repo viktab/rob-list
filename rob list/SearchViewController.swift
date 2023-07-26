@@ -123,6 +123,11 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var memberPickerData: [String] = [String]()
     var eraPickerData: [String] = [String]()
     
+    let artists = ["ATEEZ", "TEMPEST", "ITZY", "Yena", "Xdinary Heroes", "TWICE"]
+    let members = ["Hongjoong", "Seonghwa", "Yunho", "San", "Yeosang", "Mingi", "Wooyoung", "Jongho",
+                   "LEW", "Hanbin", "Hyeongseop", "Hyuk", "Eunchan", "Hwarang", "Taerae",
+                   "Yeji", "Ryujin", "Chaeryeong", "Lia", "Yuna", "Yena"]
+    
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!
     @IBOutlet weak var verticalView: UIStackView!
@@ -200,12 +205,16 @@ extension SearchViewController: UITextFieldDelegate {
             artistPickerView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.2).isActive = true
             artistPickerView.topAnchor.constraint(equalTo: artistTextBox.bottomAnchor, constant: 8.0).isActive = true
             memberLabel.topAnchor.constraint(equalTo: artistPickerView.bottomAnchor, constant: 16.0).isActive = true
+            artistpickerData = getSuggestions(String(newText), artists)
+            artistPickerView.reloadAllComponents()
         case memberTextBox:
             verticalView.insertArrangedSubview(memberPickerView, at: 4)
             memberPickerView.isHidden = false
             memberPickerView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.2).isActive = true
             memberPickerView.topAnchor.constraint(equalTo: memberTextBox.bottomAnchor, constant: 8.0).isActive = true
             eraLabel.topAnchor.constraint(equalTo: memberPickerView.bottomAnchor, constant: 16.0).isActive = true
+            memberPickerData = getSuggestions(String(newText), members)
+            memberPickerView.reloadAllComponents()
         case eraTextBox:
             verticalView.insertArrangedSubview(eraPickerView, at: 6)
             eraPickerView.isHidden = false
@@ -216,5 +225,15 @@ extension SearchViewController: UITextFieldDelegate {
                 break
             }
         return true
+    }
+    
+    func getSuggestions(_ input: String, _ options: [String]) -> [String] {
+        var suggestions: [String] = [String]()
+        for option in options {
+            if option.lowercased().hasPrefix(input.lowercased()) {
+                suggestions.append(option)
+            }
+        }
+        return suggestions
     }
 }
