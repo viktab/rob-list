@@ -15,11 +15,31 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
+        // todo cleanup with mapping pickerview -> pickerdata
+        switch pickerView {
+        case artistPickerView:
+            return artistpickerData.count
+        case memberPickerView:
+            return memberPickerData.count
+        case eraPickerView:
+            return eraPickerData.count
+        default:
+            return 0
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
+        // todo cleanup with mapping pickerview -> pickerdata
+        switch pickerView {
+        case artistPickerView:
+            return artistpickerData[row]
+        case memberPickerView:
+            return memberPickerData[row]
+        case eraPickerView:
+            return eraPickerData[row]
+        default:
+            return ""
+        }
     }
     
 
@@ -54,13 +74,19 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             prevTextBox = textBox!
         }
         
-        artistPickerView.delegate = self as UIPickerViewDelegate
-        artistPickerView.dataSource = self as UIPickerViewDataSource
-        self.view.addSubview(artistPickerView)
-        pickerData = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"]
+        let pickerViews = [artistPickerView, memberPickerView, eraPickerView] as [UIPickerView]
         
-        artistPickerView.setValue(UIColor.black, forKeyPath: "textColor")
-        artistPickerView.isHidden = true
+        for pickerView in pickerViews {
+            pickerView.delegate = self as UIPickerViewDelegate
+            pickerView.dataSource = self as UIPickerViewDataSource
+            self.view.addSubview(pickerView)
+            pickerView.setValue(UIColor.black, forKeyPath: "textColor")
+            pickerView.isHidden = true
+        }
+        
+        artistpickerData = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"]
+        memberPickerData = ["Item A", "Item B", "Item C", "Item D", "Item E", "Item F"]
+        eraPickerData = ["100", "200", "300", "400"]
                         
         let realm = try! Realm()
     }
@@ -93,7 +119,9 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         return realm
     }
     
-    var pickerData: [String] = [String]()
+    var artistpickerData: [String] = [String]()
+    var memberPickerData: [String] = [String]()
+    var eraPickerData: [String] = [String]()
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!
@@ -118,6 +146,8 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         }
     }
     var artistPickerView: UIPickerView = UIPickerView()
+    var memberPickerView: UIPickerView = UIPickerView()
+    var eraPickerView: UIPickerView = UIPickerView()
     
     @IBAction func homeClick(_ sender: Any) {
         let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
@@ -134,9 +164,12 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         view.endEditing(true)
     }
     @IBAction func memberTextBoxReturn(_ sender: Any) {
+        memberPickerView.removeFromSuperview()
+        eraLabel.topAnchor.constraint(equalTo: memberTextBox.bottomAnchor, constant: 16.0).isActive = true
         view.endEditing(true)
     }
     @IBAction func eraTextBoxReturn(_ sender: Any) {
+        eraPickerView.removeFromSuperview()
         view.endEditing(true)
     }
     /*
@@ -154,20 +187,31 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 extension SearchViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
         replacementString string: String) -> Bool {
+        let oldText = textField.text!
+        let newText = oldText.prefix(range.lowerBound) + string.dropFirst(0) + oldText.dropFirst(range.upperBound)
+        print("changed text")
+        print(oldText)
+        print(newText)
+        
         switch textField {
-            case artistTextBox:
-            let oldText = textField.text!
-            let newText = oldText.prefix(range.lowerBound) + string.dropFirst(0) + oldText.dropFirst(range.upperBound)
-            print("changed text")
-            print(oldText)
-            print(newText)
-            
+        case artistTextBox:
             verticalView.insertArrangedSubview(artistPickerView, at: 2)
             artistPickerView.isHidden = false
             artistPickerView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.2).isActive = true
             artistPickerView.topAnchor.constraint(equalTo: artistTextBox.bottomAnchor, constant: 8.0).isActive = true
             memberLabel.topAnchor.constraint(equalTo: artistPickerView.bottomAnchor, constant: 16.0).isActive = true
-            default:
+        case memberTextBox:
+            verticalView.insertArrangedSubview(memberPickerView, at: 4)
+            memberPickerView.isHidden = false
+            memberPickerView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.2).isActive = true
+            memberPickerView.topAnchor.constraint(equalTo: memberTextBox.bottomAnchor, constant: 8.0).isActive = true
+            eraLabel.topAnchor.constraint(equalTo: memberPickerView.bottomAnchor, constant: 16.0).isActive = true
+        case eraTextBox:
+            verticalView.insertArrangedSubview(eraPickerView, at: 6)
+            eraPickerView.isHidden = false
+            eraPickerView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.2).isActive = true
+            eraPickerView.topAnchor.constraint(equalTo: eraTextBox.bottomAnchor, constant: 8.0).isActive = true
+        default:
                 print("wrong text field")
                 break
             }
