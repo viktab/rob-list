@@ -88,7 +88,16 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         memberPickerData = ["Item A", "Item B", "Item C", "Item D", "Item E", "Item F"]
         eraPickerData = ["100", "200", "300", "400"]
                         
-        let realm = try! Realm()
+        if let app_id = Bundle.main.infoDictionary?["APP_ID"] as? String {
+            app = App(id: app_id)
+            Task {
+                let realm = try await openFlexibleSyncRealm(user: app!.currentUser!)
+                let groupObjects = realm.objects(Group.self)
+                artists = groupObjects.map {
+                    $0.name
+                }
+            }
+        }
     }
     
     @MainActor
@@ -119,11 +128,13 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         return realm
     }
     
+    var app : App?
+    
     var artistpickerData: [String] = [String]()
     var memberPickerData: [String] = [String]()
     var eraPickerData: [String] = [String]()
     
-    let artists = ["ATEEZ", "TEMPEST", "ITZY", "Yena", "Xdinary Heroes", "TWICE"]
+    var artists: [String] = ["ATEEZ", "TEMPEST", "ITZY", "Yena", "Xdinary Heroes", "TWICE"]
     let members = ["Hongjoong", "Seonghwa", "Yunho", "San", "Yeosang", "Mingi", "Wooyoung", "Jongho",
                    "LEW", "Hanbin", "Hyeongseop", "Hyuk", "Eunchan", "Hwarang", "Taerae",
                    "Yeji", "Ryujin", "Chaeryeong", "Lia", "Yuna", "Yena"]
@@ -194,9 +205,6 @@ extension SearchViewController: UITextFieldDelegate {
         replacementString string: String) -> Bool {
         let oldText = textField.text!
         let newText = oldText.prefix(range.lowerBound) + string.dropFirst(0) + oldText.dropFirst(range.upperBound)
-        print("changed text")
-        print(oldText)
-        print(newText)
         
         switch textField {
         case artistTextBox:
@@ -221,9 +229,9 @@ extension SearchViewController: UITextFieldDelegate {
             eraPickerView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.2).isActive = true
             eraPickerView.topAnchor.constraint(equalTo: eraTextBox.bottomAnchor, constant: 8.0).isActive = true
         default:
-                print("wrong text field")
-                break
-            }
+            print("wrong text field")
+            break
+        }
         return true
     }
     
