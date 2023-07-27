@@ -92,68 +92,9 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             app = App(id: app_id)
             Task {
                 let realm = try await openFlexibleSyncRealm(user: app!.currentUser!)
-                let groupObjects = realm.objects(Group.self)
-                let idolObjects = realm.objects(Idol.self)
-                for group in groupObjects {
-                    print(group.name)
-                    for idol in group.idols {
-                        print(idol)
-                        let idolObject = idolObjects.where {
-                            $0._id == idol
-                        }
-                        print(idolObject[0].name)
-                    }
-                }
-//                let idolObjects = realm.objects(Idol.self)
-//                for idol in idolObjects {
-//                    print(idol.name)
-//                    print(idol.group)
-//                }
-//                let groupObjects = realm.objects(Group.self)
-//                let artistsDict = groupObjects.map {
-//                    [$0.name, $0._id] as [Any]
-//                }
-//
-//                for group in groupObjects {
-//                    var memberIds: List<ObjectId> = List()
-//                    let groupId = group._id
-//                    for idol in idolObjects {
-//                        if idol.group == groupId {
-//                            memberIds.append(idol._id)
-//                        }
-//                    }
-//                    try! realm.write {
-//                        group.idols = memberIds
-//                    }
-//                }
-
-//                var ateezId: ObjectId = ObjectId()
-//                for array in artistsDict {
-//                    if array[0] as! String == "Yena" {
-//                        print("updating tempestId")
-//                        ateezId = array[1] as! ObjectId
-//                    }
-//                }
-//
-//                let ateezMembers = ["Yena"]
-//                for name in ateezMembers {
-//                    let member = Idol(name: name, group: ateezId)
-//                    try! realm.write {
-//                        realm.add(member)
-//                    }
-//                    print("added")
-//                    print(name)
-//                }
-                
-//                groupObjects.forEach { groupObj in
-//                    let memberIds = groupObj.idols.map { id in
-//                        ObjectId.init(string: id)
-//                    }
-//                    let memberObjects = realm.objects(Idol.self)
-//                    let groupMemberObjects = memberObjects.where {
-//                        $0._id.in(memberIds)
-//                    }
-//                }
+                groups = Array(realm.objects(Group.self))
+                idolsCollection = realm.objects(Idol.self)
+                idols = Array(idolsCollection!)
             }
         }
     }
@@ -192,8 +133,9 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var memberPickerData: [String] = [String]()
     var eraPickerData: [String] = [String]()
     
-    var artists: [String] = ["ATEEZ", "TEMPEST", "ITZY", "Yena", "Xdinary Heroes", "TWICE"]
-    var members: [String: [String]] = ["ATEEZ": ["Hongjoong", "Seonghwa", "Yunho", "San", "Yeosang", "Mingi", "Wooyoung", "Jongho"], "TEMPEST": ["LEW", "Hanbin", "Hyeongseop", "Hyuk", "Eunchan", "Hwarang", "Taerae"], "ITZY": ["Yeji", "Ryujin", "Chaeryeong", "Lia", "Yuna"], "Yena": ["Yena"]]
+    var groups: [Group] = []
+    var idols: [Idol] = []
+    var idolsCollection: Results<Idol>?
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!
@@ -231,11 +173,13 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         self.present(profilePage, animated: false, completion: nil)
     }
     @IBAction func groupTextBoxReturn(_ sender: Any) {
+        artistTextBox.text = artistpickerData[artistPickerView.selectedRow(inComponent: 0)]
         artistPickerView.removeFromSuperview()
         memberLabel.topAnchor.constraint(equalTo: artistTextBox.bottomAnchor, constant: 16.0).isActive = true
         view.endEditing(true)
     }
     @IBAction func memberTextBoxReturn(_ sender: Any) {
+        memberTextBox.text = memberPickerData[memberPickerView.selectedRow(inComponent: 0)]
         memberPickerView.removeFromSuperview()
         eraLabel.topAnchor.constraint(equalTo: memberTextBox.bottomAnchor, constant: 16.0).isActive = true
         view.endEditing(true)
@@ -258,10 +202,12 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
 extension SearchViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
-        replacementString string: String) -> Bool {
+                   replacementString string: String) -> Bool {
         let oldText = textField.text!
         let newText = oldText.prefix(range.lowerBound) + string.dropFirst(0) + oldText.dropFirst(range.upperBound)
-        
+        if oldText + "\n" == newText {
+            return true
+        }
         switch textField {
         case artistTextBox:
             verticalView.insertArrangedSubview(artistPickerView, at: 2)
@@ -269,7 +215,12 @@ extension SearchViewController: UITextFieldDelegate {
             artistPickerView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.2).isActive = true
             artistPickerView.topAnchor.constraint(equalTo: artistTextBox.bottomAnchor, constant: 8.0).isActive = true
             memberLabel.topAnchor.constraint(equalTo: artistPickerView.bottomAnchor, constant: 16.0).isActive = true
-            artistpickerData = getSuggestions(String(newText), artists)
+            
+            var groupNames: [String] = []
+            for group in groups {
+                groupNames.append(group.name)
+            }
+            artistpickerData = getSuggestions(String(newText), groupNames)
             artistPickerView.reloadAllComponents()
         case memberTextBox:
             verticalView.insertArrangedSubview(memberPickerView, at: 4)
@@ -277,7 +228,9 @@ extension SearchViewController: UITextFieldDelegate {
             memberPickerView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.2).isActive = true
             memberPickerView.topAnchor.constraint(equalTo: memberTextBox.bottomAnchor, constant: 8.0).isActive = true
             eraLabel.topAnchor.constraint(equalTo: memberPickerView.bottomAnchor, constant: 16.0).isActive = true
-            memberPickerData = getSuggestions(String(newText), members["ATEEZ"]!)
+            
+            let memberNames = getMembers()
+            memberPickerData = getSuggestions(String(newText),  memberNames)
             memberPickerView.reloadAllComponents()
         case eraTextBox:
             verticalView.insertArrangedSubview(eraPickerView, at: 6)
@@ -299,5 +252,15 @@ extension SearchViewController: UITextFieldDelegate {
             }
         }
         return suggestions
+    }
+    
+    func getMembers() -> [String] {
+        let groupName = artistTextBox.text
+        let groupObj = groups.first(where: {$0.name == groupName})
+        let memberIds = groupObj!.idols
+        let memberNames = idolsCollection!.where{
+            $0._id.in(memberIds)
+        }.map({$0.name})
+        return Array(memberNames)
     }
 }
