@@ -93,9 +93,58 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             Task {
                 let realm = try await openFlexibleSyncRealm(user: app!.currentUser!)
                 let groupObjects = realm.objects(Group.self)
-                artists = groupObjects.map {
-                    $0.name
+                let idolObjects = realm.objects(Idol.self)
+                for group in groupObjects {
+                    print(group.name)
+                    for idol in group.idols {
+                        print(idol)
+                        let idolObject = idolObjects.where {
+                            $0._id == idol
+                        }
+                        print(idolObject[0].name)
+                    }
                 }
+//                let idolObjects = realm.objects(Idol.self)
+//                for idol in idolObjects {
+//                    print(idol.name)
+//                    print(idol.group)
+//                }
+//                let groupObjects = realm.objects(Group.self)
+//                let artistsDict = groupObjects.map {
+//                    [$0.name, $0._id] as [Any]
+//                }
+//
+//                for group in groupObjects {
+//                    var memberIds: List<ObjectId> = List()
+//                    let groupId = group._id
+//                    for idol in idolObjects {
+//                        if idol.group == groupId {
+//                            memberIds.append(idol._id)
+//                        }
+//                    }
+//                    try! realm.write {
+//                        group.idols = memberIds
+//                    }
+//                }
+
+//                var ateezId: ObjectId = ObjectId()
+//                for array in artistsDict {
+//                    if array[0] as! String == "Yena" {
+//                        print("updating tempestId")
+//                        ateezId = array[1] as! ObjectId
+//                    }
+//                }
+//
+//                let ateezMembers = ["Yena"]
+//                for name in ateezMembers {
+//                    let member = Idol(name: name, group: ateezId)
+//                    try! realm.write {
+//                        realm.add(member)
+//                    }
+//                    print("added")
+//                    print(name)
+//                }
+                
 //                groupObjects.forEach { groupObj in
 //                    let memberIds = groupObj.idols.map { id in
 //                        ObjectId.init(string: id)
