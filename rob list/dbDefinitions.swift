@@ -12,9 +12,9 @@ import RealmSwift
 class Group: Object {
    @Persisted(primaryKey: true) var _id: ObjectId
    @Persisted var name: String = ""
-   @Persisted var idols: List<String>
-   @Persisted var eras: List<String>
-   @Persisted var posts: List<String>
+   @Persisted var idols: List<ObjectId>
+   @Persisted var eras: List<ObjectId>
+   @Persisted var posts: List<ObjectId>
    convenience init(name: String) {
        self.init()
        self.name = name
@@ -27,10 +27,10 @@ class Group: Object {
 class Idol: Object {
    @Persisted(primaryKey: true) var _id: ObjectId
    @Persisted var name: String = ""
-   @Persisted var group: String = ""
-   @Persisted var eras: List<String>
-   @Persisted var posts: List<String>
-   convenience init(name: String, group: String) {
+   @Persisted var group: ObjectId
+   @Persisted var eras: List<ObjectId>
+   @Persisted var posts: List<ObjectId>
+   convenience init(name: String, group: ObjectId) {
        self.init()
        self.name = name
        self.group = group

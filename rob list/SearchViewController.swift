@@ -96,6 +96,15 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 artists = groupObjects.map {
                     $0.name
                 }
+//                groupObjects.forEach { groupObj in
+//                    let memberIds = groupObj.idols.map { id in
+//                        ObjectId.init(string: id)
+//                    }
+//                    let memberObjects = realm.objects(Idol.self)
+//                    let groupMemberObjects = memberObjects.where {
+//                        $0._id.in(memberIds)
+//                    }
+//                }
             }
         }
     }
@@ -135,9 +144,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var eraPickerData: [String] = [String]()
     
     var artists: [String] = ["ATEEZ", "TEMPEST", "ITZY", "Yena", "Xdinary Heroes", "TWICE"]
-    let members = ["Hongjoong", "Seonghwa", "Yunho", "San", "Yeosang", "Mingi", "Wooyoung", "Jongho",
-                   "LEW", "Hanbin", "Hyeongseop", "Hyuk", "Eunchan", "Hwarang", "Taerae",
-                   "Yeji", "Ryujin", "Chaeryeong", "Lia", "Yuna", "Yena"]
+    var members: [String: [String]] = ["ATEEZ": ["Hongjoong", "Seonghwa", "Yunho", "San", "Yeosang", "Mingi", "Wooyoung", "Jongho"], "TEMPEST": ["LEW", "Hanbin", "Hyeongseop", "Hyuk", "Eunchan", "Hwarang", "Taerae"], "ITZY": ["Yeji", "Ryujin", "Chaeryeong", "Lia", "Yuna"], "Yena": ["Yena"]]
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!
@@ -221,7 +228,7 @@ extension SearchViewController: UITextFieldDelegate {
             memberPickerView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.2).isActive = true
             memberPickerView.topAnchor.constraint(equalTo: memberTextBox.bottomAnchor, constant: 8.0).isActive = true
             eraLabel.topAnchor.constraint(equalTo: memberPickerView.bottomAnchor, constant: 16.0).isActive = true
-            memberPickerData = getSuggestions(String(newText), members)
+            memberPickerData = getSuggestions(String(newText), members["ATEEZ"]!)
             memberPickerView.reloadAllComponents()
         case eraTextBox:
             verticalView.insertArrangedSubview(eraPickerView, at: 6)
