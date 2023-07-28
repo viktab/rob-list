@@ -173,7 +173,12 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         self.present(profilePage, animated: false, completion: nil)
     }
     @IBAction func groupTextBoxReturn(_ sender: Any) {
-        artistTextBox.text = artistpickerData[artistPickerView.selectedRow(inComponent: 0)]
+        let oldGroup = artistTextBox.text
+        let newGroup = artistpickerData[artistPickerView.selectedRow(inComponent: 0)]
+        if oldGroup != newGroup {
+            memberTextBox.text = ""
+        }
+        artistTextBox.text = newGroup
         artistPickerView.removeFromSuperview()
         memberLabel.topAnchor.constraint(equalTo: artistTextBox.bottomAnchor, constant: 16.0).isActive = true
         view.endEditing(true)
@@ -245,7 +250,7 @@ extension SearchViewController: UITextFieldDelegate {
     }
     
     func getSuggestions(_ input: String, _ options: [String]) -> [String] {
-        var suggestions: [String] = [String]()
+        var suggestions: [String] = [""]
         for option in options {
             if option.lowercased().hasPrefix(input.lowercased()) {
                 suggestions.append(option)
