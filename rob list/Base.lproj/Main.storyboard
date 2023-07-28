@@ -111,7 +111,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="CpR-P7-iLw">
-                                <rect key="frame" x="15.999999999999972" y="59" width="120" height="164"/>
+                                <rect key="frame" x="15.999999999999972" y="59" width="120" height="163.66666666666666"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group/Soloist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeS-V3-0XQ">
                                         <rect key="frame" x="0.0" y="0.0" width="120" height="20.333333333333332"/>
@@ -138,20 +138,23 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system">
                                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="addGroup:" destination="ErN-At-upq" eventType="touchUpInside" id="SUV-pA-jiB"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxY-3s-HCz">
-                                        <rect key="frame" x="0.0" y="54.666666666666657" width="120" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="54.666666666666664" width="120" height="20.333333333333336"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sxP-Ay-Gvn">
-                                        <rect key="frame" x="0.0" y="75" width="120" height="34.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="75" width="120" height="34"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ATEEZ" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FC8-oF-kWa">
-                                                <rect key="frame" x="0.0" y="0.0" width="73" height="34.333333333333336"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="34"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -160,23 +163,16 @@
                                                     <action selector="memberTextBoxReturn:" destination="ErN-At-upq" eventType="primaryActionTriggered" id="RWF-QV-Waz"/>
                                                 </connections>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5FF-2N-dH9">
-                                                <rect key="frame" x="73" y="0.0" width="47" height="34.333333333333336"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system">
-                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
-                                            </button>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Era" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIu-7G-VUR">
-                                        <rect key="frame" x="0.0" y="109.33333333333331" width="120" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="109" width="120" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ru0-9c-OMr">
-                                        <rect key="frame" x="0.0" y="129.66666666666666" width="120" height="34.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="129.33333333333334" width="120" height="34.333333333333343"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Outlaw" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3f2-QJ-hhj">
                                                 <rect key="frame" x="0.0" y="0.0" width="73" height="34.333333333333336"/>
@@ -194,6 +190,9 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system">
                                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="addEra:" destination="ErN-At-upq" eventType="touchUpInside" id="BBL-UR-x8h"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -257,6 +256,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B0c-Li-QqK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1641.9847328244275" y="3.5211267605633805"/>
+        </scene>
+        <!--Search Add View Controller-->
+        <scene sceneID="uJR-HT-FIx">
+            <objects>
+                <viewController storyboardIdentifier="SearchAddViewController" modalPresentationStyle="fullScreen" id="ctb-nW-7qR" customClass="SearchAddViewController" customModule="rob_list" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gwD-HG-TyL">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="EpY-gd-KxX">
+                                <rect key="frame" x="104" y="731" width="184" height="121"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxk-Cg-tsm">
+                                        <rect key="frame" x="8" y="67" width="56" height="46"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="searchiconSelected"/>
+                                        <connections>
+                                            <action selector="searchClick:" destination="ctb-nW-7qR" eventType="touchUpInside" id="Myz-62-YfM"/>
+                                            <action selector="searchClick:" destination="Gou-Ay-Jcv" eventType="touchUpInside" id="vbZ-DB-9lw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jp-QD-AgZ">
+                                        <rect key="frame" x="64" y="67" width="56" height="46"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="homeicon"/>
+                                        <connections>
+                                            <action selector="homeClick:" destination="ErN-At-upq" eventType="touchUpInside" id="AKp-bH-Zgb"/>
+                                            <action selector="homeClick:" destination="ctb-nW-7qR" eventType="touchUpInside" id="TRu-Vy-tgb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdX-hB-knp">
+                                        <rect key="frame" x="120" y="67" width="56" height="46"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="profileicon"/>
+                                        <connections>
+                                            <action selector="profileClick:" destination="ctb-nW-7qR" eventType="touchUpInside" id="CsK-go-oFa"/>
+                                            <action selector="profileClick:" destination="ErN-At-upq" eventType="touchUpInside" id="KNT-DQ-cJX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1AA-Gb-TuF"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <size key="freeformSize" width="393" height="852"/>
+                    <connections>
+                        <outlet property="mainView" destination="gwD-HG-TyL" id="aCN-hK-BaI"/>
+                        <outlet property="menuView" destination="EpY-gd-KxX" id="inv-a2-dEe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ed4-U5-83s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1640" y="686"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="aku-i7-MnX">

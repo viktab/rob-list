@@ -193,6 +193,15 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         eraPickerView.removeFromSuperview()
         view.endEditing(true)
     }
+    @IBAction func addGroup(_ sender: Any) {
+        let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchAddViewController") as! SearchAddViewController
+        self.present(feedPage, animated: true, completion: nil)
+    }
+    @IBAction func addEra(_ sender: Any) {
+        let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchAddViewController") as! SearchAddViewController
+        self.present(feedPage, animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
