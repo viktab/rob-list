@@ -305,6 +305,13 @@
                                 </subviews>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LeS-fA-AvS">
+                                <rect key="frame" x="29" y="281" width="335" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1AA-Gb-TuF"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -313,11 +320,12 @@
                     <connections>
                         <outlet property="mainView" destination="gwD-HG-TyL" id="aCN-hK-BaI"/>
                         <outlet property="menuView" destination="EpY-gd-KxX" id="inv-a2-dEe"/>
+                        <outlet property="titleLabel" destination="LeS-fA-AvS" id="8Ux-gG-SHH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ed4-U5-83s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1640" y="686"/>
+            <point key="canvasLocation" x="1638.9312977099237" y="685.91549295774655"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="aku-i7-MnX">

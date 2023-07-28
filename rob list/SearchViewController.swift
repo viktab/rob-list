@@ -194,12 +194,20 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         view.endEditing(true)
     }
     @IBAction func addGroup(_ sender: Any) {
-        let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchAddViewController") as! SearchAddViewController
-        self.present(feedPage, animated: true, completion: nil)
+        let addPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchAddViewController") as! SearchAddViewController
+        addPage.addType = "Group"
+        self.present(addPage, animated: true, completion: nil)
     }
     @IBAction func addEra(_ sender: Any) {
-        let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchAddViewController") as! SearchAddViewController
-        self.present(feedPage, animated: true, completion: nil)
+        let group = artistTextBox.text
+        if group == "" {
+            // TODO: tell user that valid group must be selected
+            return
+        }
+        let addPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchAddViewController") as! SearchAddViewController
+        addPage.addType = "Era"
+        addPage.group = group!
+        self.present(addPage, animated: true, completion: nil)
     }
     
     /*

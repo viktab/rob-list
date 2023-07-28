@@ -15,10 +15,16 @@ class SearchAddViewController: UIViewController {
         // Do any additional setup after loading the view.
         menuView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: 8.0).isActive = true
         menuView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 1.0).isActive = true
+        
+        titleLabel.text = addType == "Group" ? "Create a new group" : "Create a new era for " + group
     }
+    
+    var addType: String = ""
+    var group: String = ""
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     @IBAction func searchClick(_ sender: Any) {
         let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
