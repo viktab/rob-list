@@ -227,6 +227,7 @@ extension SearchViewController: UITextFieldDelegate {
             }
             artistpickerData = getSuggestions(String(newText), groupNames)
             artistPickerView.reloadAllComponents()
+            artistPickerView.selectRow(1, inComponent: 0, animated: false)
         case memberTextBox:
             verticalView.insertArrangedSubview(memberPickerView, at: 4)
             memberPickerView.isHidden = false
@@ -237,6 +238,7 @@ extension SearchViewController: UITextFieldDelegate {
             let memberNames = getMembers()
             memberPickerData = getSuggestions(String(newText),  memberNames)
             memberPickerView.reloadAllComponents()
+            memberPickerView.selectRow(1, inComponent: 0, animated: false)
         case eraTextBox:
             verticalView.insertArrangedSubview(eraPickerView, at: 6)
             eraPickerView.isHidden = false
