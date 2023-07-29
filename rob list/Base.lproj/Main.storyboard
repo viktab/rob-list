@@ -54,7 +54,7 @@
                                 <lineBreakStrategy key="lineBreakStrategy"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="X7C-pU-bLC">
-                                <rect key="frame" x="104" y="731" width="184" height="121"/>
+                                <rect key="frame" x="104" y="731" width="240" height="121"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luc-yW-tED">
                                         <rect key="frame" x="8" y="67" width="56" height="46"/>
@@ -69,8 +69,16 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="homeiconSelected"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNo-R5-i2b">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJY-P5-x8H">
                                         <rect key="frame" x="120" y="67" width="56" height="46"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="plusicon"/>
+                                        <connections>
+                                            <action selector="createPostClick:" destination="Gou-Ay-Jcv" eventType="touchUpInside" id="Cjr-jA-cyg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNo-R5-i2b">
+                                        <rect key="frame" x="176" y="67" width="56" height="46"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="profileicon"/>
                                         <connections>
@@ -206,7 +214,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="R0g-Pa-n4S">
-                                <rect key="frame" x="104" y="731" width="184" height="121"/>
+                                <rect key="frame" x="104" y="731" width="240" height="121"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXl-eF-2fD">
                                         <rect key="frame" x="8" y="67" width="56" height="46"/>
@@ -224,8 +232,16 @@
                                             <action selector="homeClick:" destination="ErN-At-upq" eventType="touchUpInside" id="ddU-94-pWS"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTX-Q8-3eU">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O10-FI-xnP">
                                         <rect key="frame" x="120" y="67" width="56" height="46"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="plusicon"/>
+                                        <connections>
+                                            <action selector="createPostClick:" destination="ErN-At-upq" eventType="touchUpInside" id="qXc-7y-hT9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTX-Q8-3eU">
+                                        <rect key="frame" x="176" y="67" width="56" height="46"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="profileicon"/>
                                         <connections>
@@ -264,6 +280,68 @@
             </objects>
             <point key="canvasLocation" x="1641.9847328244275" y="3.5211267605633805"/>
         </scene>
+        <!--Create Post View Controller-->
+        <scene sceneID="iL4-WB-MBt">
+            <objects>
+                <viewController storyboardIdentifier="CreatePostViewController" modalPresentationStyle="fullScreen" id="95h-Cm-Tzq" customClass="CreatePostViewController" customModule="rob_list" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o1w-F4-3Lp">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="P6B-97-JAz">
+                                <rect key="frame" x="76" y="731" width="240" height="121"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRv-sC-Fm9">
+                                        <rect key="frame" x="8" y="67" width="56" height="46"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="searchicon"/>
+                                        <connections>
+                                            <action selector="searchClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="Crz-Jq-uCX"/>
+                                            <action selector="searchClick:" destination="Gou-Ay-Jcv" eventType="touchUpInside" id="F4F-c8-4LA"/>
+                                            <action selector="searchClick:" destination="id3-Qk-tKA" eventType="touchUpInside" id="h64-Fn-V1G"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ma9-Z6-dFS">
+                                        <rect key="frame" x="64" y="67" width="56" height="46"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="homeicon"/>
+                                        <connections>
+                                            <action selector="homeClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="PYy-Je-RYJ"/>
+                                            <action selector="homeClick:" destination="id3-Qk-tKA" eventType="touchUpInside" id="VfD-yP-9yx"/>
+                                            <action selector="homeClick:" destination="ErN-At-upq" eventType="touchUpInside" id="cda-RJ-bd1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMh-bc-Y5c">
+                                        <rect key="frame" x="120" y="67" width="56" height="46"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="plusiconSelected"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDk-o7-CHr">
+                                        <rect key="frame" x="176" y="67" width="56" height="46"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="profileicon"/>
+                                        <connections>
+                                            <action selector="profileClick:" destination="ErN-At-upq" eventType="touchUpInside" id="E4X-C5-1sw"/>
+                                            <action selector="profileClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="Wgg-DA-uAS"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="aV5-7j-oWC"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <size key="freeformSize" width="393" height="852"/>
+                    <connections>
+                        <outlet property="mainView" destination="o1w-F4-3Lp" id="Sj6-wM-e7O"/>
+                        <outlet property="menuView" destination="P6B-97-JAz" id="Vhe-mT-mDm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oeV-bC-QeE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2466" y="4"/>
+        </scene>
         <!--Search Add View Controller-->
         <scene sceneID="uJR-HT-FIx">
             <objects>
@@ -273,7 +351,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="EpY-gd-KxX">
-                                <rect key="frame" x="104" y="731" width="184" height="121"/>
+                                <rect key="frame" x="104" y="731" width="240" height="121"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxk-Cg-tsm">
                                         <rect key="frame" x="8" y="67" width="56" height="46"/>
@@ -293,8 +371,16 @@
                                             <action selector="homeClick:" destination="ctb-nW-7qR" eventType="touchUpInside" id="TRu-Vy-tgb"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdX-hB-knp">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SN5-wQ-Rfg">
                                         <rect key="frame" x="120" y="67" width="56" height="46"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="plusicon"/>
+                                        <connections>
+                                            <action selector="createPostClick:" destination="ctb-nW-7qR" eventType="touchUpInside" id="wfK-kI-VOd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdX-hB-knp">
+                                        <rect key="frame" x="176" y="67" width="56" height="46"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="profileicon"/>
                                         <connections>
@@ -380,7 +466,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="kkt-ub-rU5">
-                                <rect key="frame" x="104" y="731" width="184" height="121"/>
+                                <rect key="frame" x="104" y="731" width="240" height="121"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNx-KV-JwD">
                                         <rect key="frame" x="8" y="67" width="56" height="46"/>
@@ -400,8 +486,16 @@
                                             <action selector="homeClick:" destination="ErN-At-upq" eventType="touchUpInside" id="c7w-KH-ahN"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4k2-Kw-t4G">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRg-bA-Df0">
                                         <rect key="frame" x="120" y="67" width="56" height="46"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="plusicon"/>
+                                        <connections>
+                                            <action selector="createPostClick:" destination="id3-Qk-tKA" eventType="touchUpInside" id="LE9-jn-RwG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4k2-Kw-t4G">
+                                        <rect key="frame" x="176" y="67" width="56" height="46"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="profileiconSelected"/>
                                         <connections>
@@ -431,7 +525,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWx-15-N5w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2464.8854961832062" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="3279" y="4"/>
         </scene>
     </scenes>
     <resources>
@@ -439,6 +533,8 @@
         <image name="homeiconSelected" width="32" height="32"/>
         <image name="logo" width="859" height="290"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="plusicon" width="32" height="32"/>
+        <image name="plusiconSelected" width="32" height="32"/>
         <image name="profileicon" width="32" height="32"/>
         <image name="profileiconSelected" width="32" height="32"/>
         <image name="searchicon" width="32" height="32"/>

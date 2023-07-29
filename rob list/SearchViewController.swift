@@ -87,9 +87,9 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             pickerView.isHidden = true
         }
         
-        artistpickerData = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"]
-        memberPickerData = ["Item A", "Item B", "Item C", "Item D", "Item E", "Item F"]
-        eraPickerData = ["100", "200", "300", "400"]
+        artistpickerData = [""]
+        memberPickerData = [""]
+        eraPickerData = [""]
                         
         if let app_id = Bundle.main.infoDictionary?["APP_ID"] as? String {
             app = App(id: app_id)
@@ -176,6 +176,10 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBAction func homeClick(_ sender: Any) {
         let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
         self.present(feedPage, animated: false, completion: nil)
+    }
+    @IBAction func createPostClick(_ sender: Any) {
+        let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "CreatePostViewController") as! CreatePostViewController
+        self.present(searchPage, animated: false, completion: nil)
     }
     
     @IBAction func profileClick(_ sender: Any) {
