@@ -328,6 +328,57 @@
                                 </subviews>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LVk-U8-s45">
+                                <rect key="frame" x="79" y="136" width="234" height="127"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What would you like to do?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnc-av-PC4">
+                                        <rect key="frame" x="0.0" y="0.0" width="234" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VEh-wn-ASJ">
+                                        <rect key="frame" x="0.0" y="24.000000000000004" width="234" height="34.333333333333343"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9D8-VO-kkb">
+                                                <rect key="frame" x="0.0" y="0.0" width="234" height="34.333333333333336"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Buy"/>
+                                                <connections>
+                                                    <action selector="popUpBuyClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="BxA-ck-OXj"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9V-ga-Z7m">
+                                        <rect key="frame" x="0.0" y="58.333333333333329" width="234" height="34.333333333333329"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kjg-ku-CmB">
+                                                <rect key="frame" x="0.0" y="0.0" width="234" height="34.333333333333336"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Sell"/>
+                                                <connections>
+                                                    <action selector="popUpSellClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="gLH-hG-6od"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hc8-Dr-qsv">
+                                        <rect key="frame" x="0.0" y="92.666666666666671" width="234" height="34.333333333333329"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o92-8s-SDi">
+                                                <rect key="frame" x="0.0" y="0.0" width="234" height="34.333333333333336"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Trade"/>
+                                                <connections>
+                                                    <action selector="popUpTradeClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="yfn-dk-DEu"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aV5-7j-oWC"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -336,6 +387,11 @@
                     <connections>
                         <outlet property="mainView" destination="o1w-F4-3Lp" id="Sj6-wM-e7O"/>
                         <outlet property="menuView" destination="P6B-97-JAz" id="Vhe-mT-mDm"/>
+                        <outlet property="popUpBuyBtn" destination="9D8-VO-kkb" id="Zed-nR-c6Y"/>
+                        <outlet property="popUpSellBtn" destination="Kjg-ku-CmB" id="TVp-dV-Un6"/>
+                        <outlet property="popUpTitle" destination="dnc-av-PC4" id="w65-dL-mqa"/>
+                        <outlet property="popUpTradeBtn" destination="o92-8s-SDi" id="cRv-tE-LuV"/>
+                        <outlet property="popUpView" destination="LVk-U8-s45" id="SUm-UE-UEU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeV-bC-QeE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
