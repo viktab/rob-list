@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SearchAddViewController: UIViewController {
 
@@ -41,6 +42,8 @@ class SearchAddViewController: UIViewController {
         
         titleLabel.text = addType == "Group" ? "Add a new group!" : "Add a new era for " + group
     }
+    
+    var realm : Realm?
     
     var addType: String = ""
     var group: String = ""
@@ -82,7 +85,32 @@ class SearchAddViewController: UIViewController {
     
     @IBAction func submitClick(_ sender: Any) {
         let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        if (addType == "Group") {
+            let name = textBox.text!.replacingOccurrences(of: "^\\s*", with: "", options: .regularExpression, range: nil)
+            makeGroupRequest(name)
+        }
         self.present(searchPage, animated: false, completion: nil)
+    }
+    
+    func makeGroupRequest(_ name: String) {
+        // check if requests for this group have been made
+        var request: RequestedGroup
+        let requestedGroups = realm!.objects(RequestedGroup.self)
+        let existingGroup = requestedGroups.where {
+            $0.name == name
+        }
+        if (existingGroup.count > 0) {
+            request = existingGroup.first!
+            try! realm!.write {
+                request.numRequests += 1
+            }
+        } else {
+            request = RequestedGroup(name: name)
+            request.numRequests = 1
+            try! realm!.write {
+                realm!.add(request)
+            }
+        }
     }
     /*
     // MARK: - Navigation

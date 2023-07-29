@@ -91,9 +91,9 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         if let app_id = Bundle.main.infoDictionary?["APP_ID"] as? String {
             app = App(id: app_id)
             Task {
-                let realm = try await openFlexibleSyncRealm(user: app!.currentUser!)
-                groups = Array(realm.objects(Group.self))
-                idolsCollection = realm.objects(Idol.self)
+                realm = try await openFlexibleSyncRealm(user: app!.currentUser!)
+                groups = Array(realm!.objects(Group.self))
+                idolsCollection = realm!.objects(Idol.self)
                 idols = Array(idolsCollection!)
             }
         }
@@ -106,10 +106,10 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         // Pass object types to the Flexible Sync configuration
         // as a temporary workaround for not being able to add a
         // complete schema for a Flexible Sync app.
-        config.objectTypes = [Group.self, Idol.self]
-        let realm = try await Realm(configuration: config, downloadBeforeOpen: .always)
-        print("Successfully opened realm: \(realm)")
-        let subscriptions = realm.subscriptions
+        config.objectTypes = [Group.self, Idol.self, RequestedGroup.self]
+        let openRealm = try await Realm(configuration: config, downloadBeforeOpen: .always)
+        print("Successfully opened realm: \(openRealm)")
+        let subscriptions = openRealm.subscriptions
         // You must add at least one subscription to read and write from a Flexible Sync realm
         // (TODO) I have no idea if I'm doing this right but it works for now lol
         try await subscriptions.update {
@@ -124,10 +124,17 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                     $0.name != "fake name"
                 })
         }
-        return realm
+        try await subscriptions.update {
+            subscriptions.append(
+                QuerySubscription<RequestedGroup> {
+                    $0.name != "fake name"
+                })
+        }
+        return openRealm
     }
     
     var app : App?
+    var realm : Realm?
     
     var artistpickerData: [String] = [String]()
     var memberPickerData: [String] = [String]()
@@ -196,6 +203,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBAction func addGroup(_ sender: Any) {
         let addPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchAddViewController") as! SearchAddViewController
         addPage.addType = "Group"
+        addPage.realm = realm!
         self.present(addPage, animated: true, completion: nil)
     }
     @IBAction func addEra(_ sender: Any) {

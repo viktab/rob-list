@@ -38,3 +38,16 @@ class Idol: Object {
        self.posts = List()
    }
 }
+
+class RequestedGroup: Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var name: String = ""
+    @Persisted var numRequests: Int
+    @Persisted var requestedByUsers: List<ObjectId>
+    convenience init(name: String) {
+        self.init()
+        self.name = name
+        self.numRequests = 0
+        self.requestedByUsers = List()
+    }
+}

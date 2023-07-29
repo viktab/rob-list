@@ -21,6 +21,13 @@ class FeedViewController: UIViewController {
             print(fullName!)
             Task {
                 let realm = try await openFlexibleSyncRealm(user: app!.currentUser!)
+//                print("making request")
+//                var request = RequestedGroup(name: "MCND")
+//                request.numRequests = 1
+//                print(request)
+//                try! realm.write {
+//                    realm.add(request)
+//                }
 //                print("getting idols")
 //                let idols = realm.objects(Idol.self)
 //                print(idols)
@@ -39,7 +46,7 @@ class FeedViewController: UIViewController {
         // Pass object types to the Flexible Sync configuration
         // as a temporary workaround for not being able to add a
         // complete schema for a Flexible Sync app.
-        config.objectTypes = [Group.self, Idol.self]
+        config.objectTypes = [Group.self, Idol.self, RequestedGroup.self]
         let realm = try await Realm(configuration: config, downloadBeforeOpen: .always)
         print("Successfully opened realm: \(realm)")
         let subscriptions = realm.subscriptions
@@ -54,6 +61,12 @@ class FeedViewController: UIViewController {
         try await subscriptions.update {
             subscriptions.append(
                 QuerySubscription<Idol> {
+                    $0.name != "fake name"
+                })
+        }
+        try await subscriptions.update {
+            subscriptions.append(
+                QuerySubscription<RequestedGroup> {
                     $0.name != "fake name"
                 })
         }
