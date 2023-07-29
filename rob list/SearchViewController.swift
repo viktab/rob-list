@@ -71,6 +71,9 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             textBox!.layer.borderWidth = 2
             textBox!.layer.borderColor = CGColor(gray: 0.25, alpha: 0.25)
             textBox!.layer.cornerRadius = 5
+            textBox!.autocapitalizationType = .none
+            textBox!.autocorrectionType = .no
+            textBox!.spellCheckingType = .no
             prevTextBox = textBox!
         }
         
