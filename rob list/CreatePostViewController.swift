@@ -30,9 +30,18 @@ class CreatePostViewController: UIViewController {
         popUpTitle.textAlignment = .center
         
         popUpBuyBtn.topAnchor.constraint(equalTo: popUpTitle.bottomAnchor, constant: 24.0).isActive = true
-        popUpSellBtn.topAnchor.constraint(equalTo: popUpBuyBtn.bottomAnchor, constant: 8.0).isActive = true
-        popUpTradeBtn.topAnchor.constraint(equalTo: popUpSellBtn.bottomAnchor, constant: 8.0).isActive = true
-        popUpTradeBtn.bottomAnchor.constraint(equalTo: popUpView.bottomAnchor, constant: -24.0).isActive = true
+        popUpSellBtn.topAnchor.constraint(equalTo: popUpBuyBtn.bottomAnchor, constant: 16.0).isActive = true
+        popUpTradeBtn.topAnchor.constraint(equalTo: popUpSellBtn.bottomAnchor, constant: 16.0).isActive = true
+        popUpTradeBtn.bottomAnchor.constraint(equalTo: popUpView.bottomAnchor, constant: -32.0).isActive = true
+        
+        let buttons = [popUpBuyBtn, popUpSellBtn, popUpTradeBtn]
+        
+        for button in buttons {
+            button?.leftAnchor.constraint(equalTo: popUpView.leftAnchor, constant: 50.0).isActive = true
+            button?.rightAnchor.constraint(equalTo: popUpView.rightAnchor, constant: -50.0).isActive = true
+            button?.heightAnchor.constraint(equalTo: popUpTitle.heightAnchor, multiplier: 1.75).isActive = true
+        }
+        
     }
     
     @IBOutlet var mainView: UIView!

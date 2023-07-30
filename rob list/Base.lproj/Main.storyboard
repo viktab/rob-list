@@ -343,7 +343,12 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9D8-VO-kkb">
                                                 <rect key="frame" x="0.0" y="0.0" width="234" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Buy"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Buy">
+                                                    <backgroundConfiguration key="background">
+                                                        <color key="backgroundColor" red="0.90289974212646484" green="0.68784895706693305" blue="0.85831800310859185" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </backgroundConfiguration>
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
                                                 <connections>
                                                     <action selector="popUpBuyClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="BxA-ck-OXj"/>
                                                 </connections>
@@ -356,7 +361,12 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kjg-ku-CmB">
                                                 <rect key="frame" x="0.0" y="0.0" width="234" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Sell"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Sell">
+                                                    <backgroundConfiguration key="background">
+                                                        <color key="backgroundColor" red="0.58667230609999999" green="0.67090654370000002" blue="0.81962722539999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </backgroundConfiguration>
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
                                                 <connections>
                                                     <action selector="popUpSellClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="gLH-hG-6od"/>
                                                 </connections>
@@ -369,7 +379,12 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o92-8s-SDi">
                                                 <rect key="frame" x="0.0" y="0.0" width="234" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Trade"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Trade">
+                                                    <backgroundConfiguration key="background">
+                                                        <color key="backgroundColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </backgroundConfiguration>
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
                                                 <connections>
                                                     <action selector="popUpTradeClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="yfn-dk-DEu"/>
                                                 </connections>
