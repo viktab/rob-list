@@ -17,6 +17,7 @@ class CreatePostViewController: UIViewController {
         menuView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 1.0).isActive = true
         mainView.backgroundColor = UIColor(white: 0.85, alpha: 1.0)
                 
+        // handle popup view
         popUpView.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 200.0).isActive = true
         popUpView.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 50.0).isActive = true
         popUpView.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -50.0).isActive = true
@@ -42,7 +43,44 @@ class CreatePostViewController: UIViewController {
             button?.heightAnchor.constraint(equalTo: popUpTitle.heightAnchor, multiplier: 1.75).isActive = true
         }
         
+        // handle main view
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 60).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 32.0).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -32.0).isActive = true
+        titleLabel.textAlignment = .center
+        
+        verticalView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16.0).isActive = true
+        verticalView.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 8.0).isActive = true
+        verticalView.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -8.0).isActive = true
+        verticalView.isHidden = true
+        
+        imageView.widthAnchor.constraint(equalTo: verticalView.widthAnchor, multiplier: 0.4).isActive = true
+        imageView.heightAnchor.constraint(equalTo: verticalView.widthAnchor, multiplier: 0.4).isActive = true
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = CGColor(gray: 0.75, alpha: 1.0)
+        imageView.layer.cornerRadius = 5
+        
+        uploadButton.leftAnchor.constraint(equalTo: imageView.leftAnchor, constant: 20.0).isActive = true
+        uploadButton.rightAnchor.constraint(equalTo: imageView.rightAnchor, constant: -20.0).isActive = true
+        
+        captionTextBox.widthAnchor.constraint(equalTo: verticalView.widthAnchor, multiplier: 0.6).isActive = true
+        captionTextBox.heightAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 0.66).isActive = true
+        captionTextBox.backgroundColor = UIColor(named: "white")
+        captionTextBox.layer.borderWidth = 1
+        captionTextBox.layer.borderColor = CGColor(gray: 0.75, alpha: 1.0)
+        captionTextBox.layer.cornerRadius = 5
+        
+        priceLabel.topAnchor.constraint(equalTo: uploadButton.bottomAnchor, constant: 16.0).isActive = true
+        priceLabel.leftAnchor.constraint(equalTo: verticalView.leftAnchor, constant: 16.0).isActive = true
+        priceTextBox.leftAnchor.constraint(equalTo: priceLabel.rightAnchor, constant: 16.0).isActive = true
+        priceTextBox.rightAnchor.constraint(equalTo: verticalView.rightAnchor, constant: -16.0).isActive = true
+        priceTextBox.layer.borderWidth = 1
+        priceTextBox.layer.borderColor = CGColor(gray: 0.75, alpha: 1.0)
+        priceTextBox.layer.cornerRadius = 5
     }
+    
+    var postType: String = ""
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!
@@ -51,6 +89,16 @@ class CreatePostViewController: UIViewController {
     @IBOutlet weak var popUpBuyBtn: UIButton!
     @IBOutlet weak var popUpSellBtn: UIButton!
     @IBOutlet weak var popUpTradeBtn: UIButton!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var verticalView: UIStackView!
+    @IBOutlet weak var horizontalImageCaptionView: UIStackView!
+    @IBOutlet weak var verticalImageView: UIStackView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var uploadButton: UIButton!
+    @IBOutlet weak var captionTextBox: UITextView!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var priceTextBox: UITextField!
     
     @IBAction func searchClick(_ sender: Any) {
         let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
@@ -66,16 +114,23 @@ class CreatePostViewController: UIViewController {
     }
     
     @IBAction func popUpBuyClick(_ sender: Any) {
-        mainView.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
-        popUpView.isHidden = true
+        postType = "buy"
+        hidePopUp()
     }
     @IBAction func popUpSellClick(_ sender: Any) {
-        mainView.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
-        popUpView.isHidden = true
+        postType = "sell"
+        hidePopUp()
     }
     @IBAction func popUpTradeClick(_ sender: Any) {
+        postType = "trade"
+        hidePopUp()
+    }
+    
+    func hidePopUp() {
         mainView.backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         popUpView.isHidden = true
+        titleLabel.text = "Post to " + postType
+        verticalView.isHidden = false
     }
     
     /*
