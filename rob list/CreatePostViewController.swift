@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CreatePostViewController: UIViewController {
+class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,13 +71,25 @@ class CreatePostViewController: UIViewController {
         captionTextBox.layer.borderColor = CGColor(gray: 0.75, alpha: 1.0)
         captionTextBox.layer.cornerRadius = 5
         
+        captionTextBox.textColor = UIColor.lightGray
+        captionTextBox.text = "Caption"
+        
+        captionButton.topAnchor.constraint(equalTo: captionTextBox.bottomAnchor).isActive = true
+        captionButton.rightAnchor.constraint(equalTo: verticalView.rightAnchor).isActive = true
+        captionButton.widthAnchor.constraint(equalTo: captionTextBox.widthAnchor, multiplier: 0.25).isActive = true
+        captionButton.heightAnchor.constraint(equalTo: uploadButton.heightAnchor).isActive = true
+        captionButton.alpha = 0.0
+        captionButton.isEnabled = false
+        
         priceLabel.topAnchor.constraint(equalTo: uploadButton.bottomAnchor, constant: 16.0).isActive = true
         priceLabel.leftAnchor.constraint(equalTo: verticalView.leftAnchor, constant: 16.0).isActive = true
         priceTextBox.leftAnchor.constraint(equalTo: priceLabel.rightAnchor, constant: 16.0).isActive = true
-        priceTextBox.rightAnchor.constraint(equalTo: verticalView.rightAnchor, constant: -16.0).isActive = true
+        priceTextBox.rightAnchor.constraint(equalTo: priceButton.leftAnchor, constant: -8.0).isActive = true
         priceTextBox.layer.borderWidth = 1
         priceTextBox.layer.borderColor = CGColor(gray: 0.75, alpha: 1.0)
         priceTextBox.layer.cornerRadius = 5
+        priceButton.alpha = 0.0
+        priceButton.isEnabled = false
     }
     
     var postType: String = ""
@@ -96,9 +108,20 @@ class CreatePostViewController: UIViewController {
     @IBOutlet weak var verticalImageView: UIStackView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var uploadButton: UIButton!
-    @IBOutlet weak var captionTextBox: UITextView!
+    @IBOutlet weak var captionTextBox: UITextView! {
+        didSet {
+            captionTextBox.delegate = self
+        }
+    }
+    @IBOutlet weak var captionButton: UIButton!
+    @IBOutlet weak var fakeCaptionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var priceTextBox: UITextField!
+    @IBOutlet weak var priceTextBox: UITextField! {
+        didSet {
+            priceTextBox.delegate = self
+        }
+    }
+    @IBOutlet weak var priceButton: UIButton!
     
     @IBAction func searchClick(_ sender: Any) {
         let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
@@ -131,6 +154,41 @@ class CreatePostViewController: UIViewController {
         popUpView.isHidden = true
         titleLabel.text = "Post to " + postType
         verticalView.isHidden = false
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView == captionTextBox {
+            if textView.textColor == UIColor.lightGray {
+                captionTextBox.textColor = UIColor.black
+                captionTextBox.text = ""
+            }
+            captionButton.alpha = 1.0
+            captionButton.isEnabled = true
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("began editing price")
+        if textField == priceTextBox {
+            print("hello")
+            priceButton.alpha = 1.0
+            priceButton.isEnabled = true
+        }
+    }
+    
+    @IBAction func captionOkClick(_ sender: Any) {
+        view.endEditing(true)
+        captionButton.alpha = 0.0
+        captionButton.isEnabled = false
+        if captionTextBox.text == "" {
+            captionTextBox.textColor = UIColor.lightGray
+            captionTextBox.text = "Caption"
+        }
+    }
+    @IBAction func priceOkClick(_ sender: Any) {
+        priceButton.alpha = 0.0
+        priceButton.isEnabled = false
+        view.endEditing(true)
     }
     
     /*
