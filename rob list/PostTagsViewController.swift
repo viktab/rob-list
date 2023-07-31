@@ -49,7 +49,9 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         pickerView.isHidden = true
         
         pickerData = ["1", "2", "3"]
+        titleLabel.text = titleText
     }
+    var titleText: String = ""
     var pickerData: [String] = [String]()
     
     @IBOutlet var mainView: UIView!

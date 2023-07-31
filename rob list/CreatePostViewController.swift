@@ -224,16 +224,19 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         view.endEditing(true)
     }
     @IBAction func groupButtonClick(_ sender: Any) {
-        let profilePage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
-        self.present(profilePage, animated: true, completion: nil)
+        let tagsPage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
+        tagsPage.titleText = "Tag group/soloist(s)"
+        self.present(tagsPage, animated: true, completion: nil)
     }
     @IBAction func memberButtonClick(_ sender: Any) {
-        let profilePage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
-        self.present(profilePage, animated: true, completion: nil)
+        let tagsPage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
+        tagsPage.titleText = "Tag member(s)"
+        self.present(tagsPage, animated: true, completion: nil)
     }
     @IBAction func eraButtonClick(_ sender: Any) {
-        let profilePage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
-        self.present(profilePage, animated: true, completion: nil)
+        let tagsPage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
+        tagsPage.titleText = "Tag era(s)"
+        self.present(tagsPage, animated: true, completion: nil)
     }
     
     /*
