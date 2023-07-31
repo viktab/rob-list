@@ -190,15 +190,18 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @IBAction func homeClick(_ sender: Any) {
         let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
+        feedPage.realm = realm!
         self.present(feedPage, animated: false, completion: nil)
     }
     @IBAction func createPostClick(_ sender: Any) {
-        let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "CreatePostViewController") as! CreatePostViewController
-        self.present(searchPage, animated: false, completion: nil)
+        let createPostPage = self.storyboard?.instantiateViewController(withIdentifier: "CreatePostViewController") as! CreatePostViewController
+        createPostPage.realm = realm!
+        self.present(createPostPage, animated: false, completion: nil)
     }
     
     @IBAction func profileClick(_ sender: Any) {
         let profilePage = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        profilePage.realm = realm!
         self.present(profilePage, animated: false, completion: nil)
     }
     @IBAction func groupTextBoxReturn(_ sender: Any) {
@@ -243,6 +246,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let addPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchAddViewController") as! SearchAddViewController
         addPage.addType = "Era"
         addPage.group = group!
+        addPage.realm = realm!
         self.present(addPage, animated: true, completion: nil)
     }
     

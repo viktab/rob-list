@@ -20,7 +20,7 @@ class FeedViewController: UIViewController {
             fullName = app!.currentUser?.profile.name
             print(fullName!)
             Task {
-                let realm = try await openFlexibleSyncRealm(user: app!.currentUser!)
+                realm = try await openFlexibleSyncRealm(user: app!.currentUser!)
 //                print("making request")
 //                var request = RequestedGroup(name: "MCND")
 //                request.numRequests = 1
@@ -75,6 +75,7 @@ class FeedViewController: UIViewController {
     
     var fullName : String? = ""
     var app : App?
+    var realm : Realm?
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!
@@ -82,14 +83,17 @@ class FeedViewController: UIViewController {
     
     @IBAction func searchClick(_ sender: Any) {
         let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        searchPage.realm = realm!
         self.present(searchPage, animated: false, completion: nil)
     }
     @IBAction func createPostClick(_ sender: Any) {
-        let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "CreatePostViewController") as! CreatePostViewController
-        self.present(searchPage, animated: false, completion: nil)
+        let createPostPage = self.storyboard?.instantiateViewController(withIdentifier: "CreatePostViewController") as! CreatePostViewController
+        createPostPage.realm = realm!
+        self.present(createPostPage, animated: false, completion: nil)
     }
     @IBAction func profileClick(_ sender: Any) {
         let profilePage = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        profilePage.realm = realm!
         self.present(profilePage, animated: false, completion: nil)
     }
     

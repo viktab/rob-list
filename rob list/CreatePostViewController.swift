@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 
@@ -112,6 +113,7 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         memberButton.topAnchor.constraint(equalTo: groupButton.bottomAnchor, constant: 8.0).isActive = true
         eraButton.topAnchor.constraint(equalTo: memberButton.bottomAnchor, constant: 8.0).isActive = true
     }
+    var realm : Realm?
     
     var postType: String = ""
     
@@ -154,14 +156,17 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
     
     @IBAction func searchClick(_ sender: Any) {
         let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        searchPage.realm = realm!
         self.present(searchPage, animated: false, completion: nil)
     }
     @IBAction func homeClick(_ sender: Any) {
         let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
+        feedPage.realm = realm!
         self.present(feedPage, animated: false, completion: nil)
     }
     @IBAction func profileClick(_ sender: Any) {
         let profilePage = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        profilePage.realm = realm!
         self.present(profilePage, animated: false, completion: nil)
     }
     
@@ -226,16 +231,19 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
     @IBAction func groupButtonClick(_ sender: Any) {
         let tagsPage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
         tagsPage.titleText = "Tag group/soloist(s)"
+        tagsPage.realm = realm!
         self.present(tagsPage, animated: true, completion: nil)
     }
     @IBAction func memberButtonClick(_ sender: Any) {
         let tagsPage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
         tagsPage.titleText = "Tag member(s)"
+        tagsPage.realm = realm!
         self.present(tagsPage, animated: true, completion: nil)
     }
     @IBAction func eraButtonClick(_ sender: Any) {
         let tagsPage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
         tagsPage.titleText = "Tag era(s)"
+        tagsPage.realm = realm!
         self.present(tagsPage, animated: true, completion: nil)
     }
     

@@ -152,13 +152,13 @@
 				3CB77CE72A6783B10065C8BC /* SearchViewController.swift */,
 				3CC420D82A737D6400CB1B4E /* SearchAddViewController.swift */,
 				3CC420DA2A75AAA500CB1B4E /* CreatePostViewController.swift */,
+				3CC420DE2A7794F000CB1B4E /* PostTagsViewController.swift */,
 				3CC420D52A69F3C100CB1B4E /* dbDefinitions.swift */,
 				3CB77CE32A6757810065C8BC /* FeedViewController.swift */,
 				3CB77CBB2A6666300065C8BC /* Assets.xcassets */,
 				3CB77CBD2A6666300065C8BC /* LaunchScreen.storyboard */,
 				3CB77CC02A6666300065C8BC /* Info.plist */,
 				3CB77CB82A66662F0065C8BC /* rob_list.xcdatamodeld */,
-				3CC420DE2A7794F000CB1B4E /* PostTagsViewController.swift */,
 			);
 			path = "rob list";
 			sourceTree = "<group>";

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
@@ -51,6 +52,8 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         pickerData = ["1", "2", "3"]
         titleLabel.text = titleText
     }
+    var realm : Realm?
+    
     var titleText: String = ""
     var pickerData: [String] = [String]()
     

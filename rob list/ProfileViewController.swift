@@ -21,6 +21,8 @@ class ProfileViewController: UIViewController {
             nameLabel.text = fullName
         }
     }
+    var realm : Realm?
+    
     var fullName : String? = ""
     var profilePicUrl : String? = " "
     
@@ -30,15 +32,18 @@ class ProfileViewController: UIViewController {
     
     @IBAction func searchClick(_ sender: Any) {
         let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        searchPage.realm = realm!
         self.present(searchPage, animated: false, completion: nil)
     }
     @IBAction func homeClick(_ sender: Any) {
         let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
+        feedPage.realm = realm!
         self.present(feedPage, animated: false, completion: nil)
     }
     @IBAction func createPostClick(_ sender: Any) {
-        let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "CreatePostViewController") as! CreatePostViewController
-        self.present(searchPage, animated: false, completion: nil)
+        let createPosePage = self.storyboard?.instantiateViewController(withIdentifier: "CreatePostViewController") as! CreatePostViewController
+        createPosePage.realm = realm!
+        self.present(createPosePage, animated: false, completion: nil)
     }
     
     /*
