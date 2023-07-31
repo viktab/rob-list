@@ -92,7 +92,6 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         priceButton.isEnabled = false
         horizontalPriceView.isHidden = true
         
-        tagsLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 20.0).isActive = true
         tagsLabel.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 16.0).isActive = true
         tagsLabel.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -16.0).isActive = true
         tagsLabel.textAlignment = .center
@@ -170,15 +169,18 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         postType = "buy"
         horizontalPriceView.isHidden = false
         priceLabel.text = "Max price:"
+        tagsLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 20.0).isActive = true
         hidePopUp()
     }
     @IBAction func popUpSellClick(_ sender: Any) {
         postType = "sell"
         horizontalPriceView.isHidden = false
+        tagsLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 20.0).isActive = true
         hidePopUp()
     }
     @IBAction func popUpTradeClick(_ sender: Any) {
         postType = "trade"
+        tagsLabel.topAnchor.constraint(equalTo: uploadButton.bottomAnchor, constant: 20.0).isActive = true
         hidePopUp()
     }
     
@@ -220,6 +222,18 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         priceButton.alpha = 0.0
         priceButton.isEnabled = false
         view.endEditing(true)
+    }
+    @IBAction func groupButtonClick(_ sender: Any) {
+        let profilePage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
+        self.present(profilePage, animated: true, completion: nil)
+    }
+    @IBAction func memberButtonClick(_ sender: Any) {
+        let profilePage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
+        self.present(profilePage, animated: true, completion: nil)
+    }
+    @IBAction func eraButtonClick(_ sender: Any) {
+        let profilePage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
+        self.present(profilePage, animated: true, completion: nil)
     }
     
     /*

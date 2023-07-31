@@ -510,6 +510,9 @@
                                                                 <color key="backgroundColor" red="0.94726217319999995" green="0.9460482429" blue="0.96725258140000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </backgroundConfiguration>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="groupButtonClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="nkm-aM-jGX"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkQ-A8-Gdb">
                                                         <rect key="frame" x="1701.3333333333333" y="0.0" width="41.333333333333258" height="34.333333333333336"/>
@@ -531,6 +534,9 @@
                                                                 <color key="backgroundColor" red="0.94726217319999995" green="0.9460482429" blue="0.96725258140000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </backgroundConfiguration>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="memberButtonClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="Gft-cb-Mbw"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvW-LZ-eco">
                                                         <rect key="frame" x="1701.3333333333333" y="0.0" width="41.333333333333258" height="34.333333333333336"/>
@@ -552,6 +558,9 @@
                                                                 <color key="backgroundColor" red="0.94726217323427531" green="0.94604824294341561" blue="0.96725258140852954" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </backgroundConfiguration>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="eraButtonClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="VeS-lm-dto"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Zk-sz-k08">
                                                         <rect key="frame" x="1701.3333333333333" y="0.0" width="41.333333333333258" height="34.333333333333336"/>
@@ -718,6 +727,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ed4-U5-83s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1638.9312977099237" y="685.91549295774655"/>
+        </scene>
+        <!--Post Tags View Controller-->
+        <scene sceneID="a8P-ZI-eUG">
+            <objects>
+                <viewController storyboardIdentifier="PostTagsViewController" id="JTU-LE-4B7" customClass="PostTagsViewController" customModule="rob_list" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Eg-rV-bNT">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="2Jg-WT-8Vj"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <size key="freeformSize" width="393" height="852"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nRa-eZ-m5n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2463" y="687"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="aku-i7-MnX">

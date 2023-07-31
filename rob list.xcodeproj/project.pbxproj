@@ -25,6 +25,7 @@
 		3CC420D62A69F3C100CB1B4E /* dbDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC420D52A69F3C100CB1B4E /* dbDefinitions.swift */; };
 		3CC420D92A737D6400CB1B4E /* SearchAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC420D82A737D6400CB1B4E /* SearchAddViewController.swift */; };
 		3CC420DB2A75AAA500CB1B4E /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC420DA2A75AAA500CB1B4E /* CreatePostViewController.swift */; };
+		3CC420DF2A7794F000CB1B4E /* PostTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC420DE2A7794F000CB1B4E /* PostTagsViewController.swift */; };
 		59E290B0DF099BC7E9595C27 /* Pods_rob_list_rob_listUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844B7061F50B8F2E42418C74 /* Pods_rob_list_rob_listUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		3CC420D52A69F3C100CB1B4E /* dbDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbDefinitions.swift; sourceTree = "<group>"; };
 		3CC420D82A737D6400CB1B4E /* SearchAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAddViewController.swift; sourceTree = "<group>"; };
 		3CC420DA2A75AAA500CB1B4E /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
+		3CC420DE2A7794F000CB1B4E /* PostTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTagsViewController.swift; sourceTree = "<group>"; };
 		4E15765B410A1CE3742C47A8 /* Pods_rob_listTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rob_listTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70F01E270066F1777FF462EF /* Pods_rob_list.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rob_list.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844B7061F50B8F2E42418C74 /* Pods_rob_list_rob_listUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rob_list_rob_listUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +158,7 @@
 				3CB77CBD2A6666300065C8BC /* LaunchScreen.storyboard */,
 				3CB77CC02A6666300065C8BC /* Info.plist */,
 				3CB77CB82A66662F0065C8BC /* rob_list.xcdatamodeld */,
+				3CC420DE2A7794F000CB1B4E /* PostTagsViewController.swift */,
 			);
 			path = "rob list";
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CC420DF2A7794F000CB1B4E /* PostTagsViewController.swift in Sources */,
 				3CC420DB2A75AAA500CB1B4E /* CreatePostViewController.swift in Sources */,
 				3CC420D62A69F3C100CB1B4E /* dbDefinitions.swift in Sources */,
 				3CB77CE82A6783B10065C8BC /* SearchViewController.swift in Sources */,
