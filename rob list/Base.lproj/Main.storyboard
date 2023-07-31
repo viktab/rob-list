@@ -467,7 +467,7 @@
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Outlaw" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bta-dR-NDN">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bta-dR-NDN">
                                                 <rect key="frame" x="43.333333333333371" y="0.0" width="1651.6666666666665" height="34.333333333333336"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -501,6 +501,7 @@
                         <outlet property="captionTextBox" destination="2F6-9a-ehw" id="0NV-uX-stU"/>
                         <outlet property="fakeCaptionLabel" destination="eHu-Y7-Cg6" id="Ro6-R1-rDk"/>
                         <outlet property="horizontalImageCaptionView" destination="5wj-2n-ikZ" id="q2w-aP-K4R"/>
+                        <outlet property="horizontalPriceView" destination="dar-hu-Gif" id="NKX-5n-FI1"/>
                         <outlet property="imageView" destination="KYA-QX-jI9" id="jbP-Ce-I2e"/>
                         <outlet property="mainView" destination="o1w-F4-3Lp" id="Sj6-wM-e7O"/>
                         <outlet property="menuView" destination="P6B-97-JAz" id="Vhe-mT-mDm"/>

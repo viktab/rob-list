@@ -81,7 +81,7 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         captionButton.alpha = 0.0
         captionButton.isEnabled = false
         
-        priceLabel.topAnchor.constraint(equalTo: uploadButton.bottomAnchor, constant: 16.0).isActive = true
+        priceLabel.topAnchor.constraint(equalTo: uploadButton.bottomAnchor, constant: 32.0).isActive = true
         priceLabel.leftAnchor.constraint(equalTo: verticalView.leftAnchor, constant: 16.0).isActive = true
         priceTextBox.leftAnchor.constraint(equalTo: priceLabel.rightAnchor, constant: 16.0).isActive = true
         priceTextBox.rightAnchor.constraint(equalTo: priceButton.leftAnchor, constant: -8.0).isActive = true
@@ -90,6 +90,7 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         priceTextBox.layer.cornerRadius = 5
         priceButton.alpha = 0.0
         priceButton.isEnabled = false
+        horizontalPriceView.isHidden = true
     }
     
     var postType: String = ""
@@ -115,6 +116,7 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
     }
     @IBOutlet weak var captionButton: UIButton!
     @IBOutlet weak var fakeCaptionLabel: UILabel!
+    @IBOutlet weak var horizontalPriceView: UIStackView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var priceTextBox: UITextField! {
         didSet {
@@ -138,10 +140,13 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
     
     @IBAction func popUpBuyClick(_ sender: Any) {
         postType = "buy"
+        horizontalPriceView.isHidden = false
+        priceLabel.text = "Max price:"
         hidePopUp()
     }
     @IBAction func popUpSellClick(_ sender: Any) {
         postType = "sell"
+        horizontalPriceView.isHidden = false
         hidePopUp()
     }
     @IBAction func popUpTradeClick(_ sender: Any) {
