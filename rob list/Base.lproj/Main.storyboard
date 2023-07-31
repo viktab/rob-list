@@ -403,7 +403,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8I5-fL-Mn6">
-                                <rect key="frame" x="34" y="299" width="1742.6666666666667" height="246.66666666666663"/>
+                                <rect key="frame" x="34" y="299" width="1742.6666666666667" height="372.66666666666674"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5wj-2n-ikZ">
                                         <rect key="frame" x="0.0" y="0.0" width="1742.6666666666667" height="212.33333333333334"/>
@@ -489,6 +489,80 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OKj-jQ-TMy">
+                                        <rect key="frame" x="0.0" y="246.66666666666663" width="1742.6666666666667" height="126"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUG-jO-imh">
+                                                <rect key="frame" x="0.0" y="0.0" width="1742.6666666666667" height="23"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="myX-lh-sRi">
+                                                <rect key="frame" x="0.0" y="23.000000000000032" width="1742.6666666666667" height="34.333333333333343"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ape-K2-XUL">
+                                                        <rect key="frame" x="0.0" y="0.0" width="1701.3333333333333" height="34.333333333333336"/>
+                                                        <color key="tintColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Add group/soloist(s)">
+                                                            <backgroundConfiguration key="background">
+                                                                <color key="backgroundColor" red="0.94726217319999995" green="0.9460482429" blue="0.96725258140000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </backgroundConfiguration>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkQ-A8-Gdb">
+                                                        <rect key="frame" x="1701.3333333333333" y="0.0" width="41.333333333333258" height="34.333333333333336"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PBW-9b-pWj">
+                                                <rect key="frame" x="0.0" y="57.333333333333343" width="1742.6666666666667" height="34.333333333333343"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oJx-QZ-AeP">
+                                                        <rect key="frame" x="0.0" y="0.0" width="1701.3333333333333" height="34.333333333333336"/>
+                                                        <color key="tintColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Add member(s)">
+                                                            <backgroundConfiguration key="background">
+                                                                <color key="backgroundColor" red="0.94726217319999995" green="0.9460482429" blue="0.96725258140000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </backgroundConfiguration>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvW-LZ-eco">
+                                                        <rect key="frame" x="1701.3333333333333" y="0.0" width="41.333333333333258" height="34.333333333333336"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jyk-Bg-92d">
+                                                <rect key="frame" x="0.0" y="91.666666666666657" width="1742.6666666666667" height="34.333333333333343"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWi-RP-zMK">
+                                                        <rect key="frame" x="0.0" y="0.0" width="1701.3333333333333" height="34.333333333333336"/>
+                                                        <color key="tintColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Add era(s)">
+                                                            <backgroundConfiguration key="background">
+                                                                <color key="backgroundColor" red="0.94726217323427531" green="0.94604824294341561" blue="0.96725258140852954" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </backgroundConfiguration>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Zk-sz-k08">
+                                                        <rect key="frame" x="1701.3333333333333" y="0.0" width="41.333333333333258" height="34.333333333333336"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -499,11 +573,17 @@
                     <connections>
                         <outlet property="captionButton" destination="8rH-i9-OHA" id="APD-Hj-YfJ"/>
                         <outlet property="captionTextBox" destination="2F6-9a-ehw" id="0NV-uX-stU"/>
+                        <outlet property="eraButton" destination="hWi-RP-zMK" id="3af-Bn-lzl"/>
+                        <outlet property="eraLabel" destination="8Zk-sz-k08" id="CoS-S3-PiH"/>
                         <outlet property="fakeCaptionLabel" destination="eHu-Y7-Cg6" id="Ro6-R1-rDk"/>
+                        <outlet property="groupButton" destination="ape-K2-XUL" id="GJF-6u-kkA"/>
+                        <outlet property="groupLabel" destination="YkQ-A8-Gdb" id="vKJ-Ii-moD"/>
                         <outlet property="horizontalImageCaptionView" destination="5wj-2n-ikZ" id="q2w-aP-K4R"/>
                         <outlet property="horizontalPriceView" destination="dar-hu-Gif" id="NKX-5n-FI1"/>
                         <outlet property="imageView" destination="KYA-QX-jI9" id="jbP-Ce-I2e"/>
                         <outlet property="mainView" destination="o1w-F4-3Lp" id="Sj6-wM-e7O"/>
+                        <outlet property="memberButton" destination="oJx-QZ-AeP" id="VEB-c5-cnb"/>
+                        <outlet property="memberLabel" destination="qvW-LZ-eco" id="VqG-wW-zvx"/>
                         <outlet property="menuView" destination="P6B-97-JAz" id="Vhe-mT-mDm"/>
                         <outlet property="popUpBuyBtn" destination="9D8-VO-kkb" id="Zed-nR-c6Y"/>
                         <outlet property="popUpSellBtn" destination="Kjg-ku-CmB" id="TVp-dV-Un6"/>
@@ -513,6 +593,7 @@
                         <outlet property="priceButton" destination="TRc-6f-C1c" id="qad-Zc-hJn"/>
                         <outlet property="priceLabel" destination="o9m-LJ-qyf" id="oAJ-jT-t6F"/>
                         <outlet property="priceTextBox" destination="Bta-dR-NDN" id="9F2-wi-S2k"/>
+                        <outlet property="tagsLabel" destination="MUG-jO-imh" id="D4g-Po-OPy"/>
                         <outlet property="titleLabel" destination="JBK-pW-yb6" id="mVF-9E-suc"/>
                         <outlet property="uploadButton" destination="1xH-eX-i2n" id="cDh-XA-aq3"/>
                         <outlet property="verticalImageView" destination="lg2-kg-xJt" id="XVL-7F-0Rw"/>

@@ -90,6 +90,21 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         artistpickerData = [""]
         memberPickerData = [""]
         eraPickerData = [""]
+        
+        let groupText = UserDefaults.standard.string(forKey: "SearchView_artist")
+        if groupText != nil {
+            artistTextBox.text = groupText
+        }
+        
+        let memberText = UserDefaults.standard.string(forKey: "SearchView_member")
+        if memberText != nil {
+            memberTextBox.text = memberText
+        }
+        
+        let eraText = UserDefaults.standard.string(forKey: "SearchView_era")
+        if eraText != nil {
+            eraTextBox.text = eraText
+        }
                         
         if let app_id = Bundle.main.infoDictionary?["APP_ID"] as? String {
             app = App(id: app_id)
@@ -196,16 +211,22 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         artistPickerView.removeFromSuperview()
         memberLabel.topAnchor.constraint(equalTo: artistTextBox.bottomAnchor, constant: 16.0).isActive = true
         view.endEditing(true)
+        UserDefaults.standard.set(newGroup, forKey: "SearchView_artist")
+        UserDefaults.standard.synchronize()
     }
     @IBAction func memberTextBoxReturn(_ sender: Any) {
         memberTextBox.text = memberPickerData[memberPickerView.selectedRow(inComponent: 0)]
         memberPickerView.removeFromSuperview()
         eraLabel.topAnchor.constraint(equalTo: memberTextBox.bottomAnchor, constant: 16.0).isActive = true
         view.endEditing(true)
+        UserDefaults.standard.set(memberTextBox.text, forKey: "SearchView_member")
+        UserDefaults.standard.synchronize()
     }
     @IBAction func eraTextBoxReturn(_ sender: Any) {
         eraPickerView.removeFromSuperview()
         view.endEditing(true)
+        UserDefaults.standard.set(eraTextBox.text, forKey: "SearchView_era")
+        UserDefaults.standard.synchronize()
     }
     @IBAction func addGroup(_ sender: Any) {
         let addPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchAddViewController") as! SearchAddViewController

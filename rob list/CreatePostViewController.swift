@@ -91,6 +91,27 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         priceButton.alpha = 0.0
         priceButton.isEnabled = false
         horizontalPriceView.isHidden = true
+        
+        tagsLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 20.0).isActive = true
+        tagsLabel.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 16.0).isActive = true
+        tagsLabel.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -16.0).isActive = true
+        tagsLabel.textAlignment = .center
+        
+        let tagButtons = [groupButton, memberButton, eraButton]
+        for tagButton in tagButtons {
+            tagButton!.layer.borderWidth = 2
+            tagButton!.layer.borderColor = CGColor(gray: 0.75, alpha: 1.0)
+            tagButton!.layer.cornerRadius = 5
+            tagButton!.widthAnchor.constraint(equalTo: verticalView.widthAnchor, multiplier: 0.7).isActive = true
+        }
+        let tagLabels = [groupLabel, memberLabel, eraLabel]
+        for label in tagLabels {
+            label!.rightAnchor.constraint(equalTo: verticalView.rightAnchor, constant: -8.0).isActive = true
+            label!.textAlignment = .right
+        }
+        groupButton.topAnchor.constraint(equalTo: tagsLabel.bottomAnchor, constant: 16.0).isActive = true
+        memberButton.topAnchor.constraint(equalTo: groupButton.bottomAnchor, constant: 8.0).isActive = true
+        eraButton.topAnchor.constraint(equalTo: memberButton.bottomAnchor, constant: 8.0).isActive = true
     }
     
     var postType: String = ""
@@ -124,6 +145,13 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         }
     }
     @IBOutlet weak var priceButton: UIButton!
+    @IBOutlet weak var tagsLabel: UILabel!
+    @IBOutlet weak var groupButton: UIButton!
+    @IBOutlet weak var groupLabel: UILabel!
+    @IBOutlet weak var memberButton: UIButton!
+    @IBOutlet weak var memberLabel: UILabel!
+    @IBOutlet weak var eraButton: UIButton!
+    @IBOutlet weak var eraLabel: UILabel!
     
     @IBAction func searchClick(_ sender: Any) {
         let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
@@ -173,9 +201,7 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("began editing price")
         if textField == priceTextBox {
-            print("hello")
             priceButton.alpha = 1.0
             priceButton.isEnabled = true
         }
