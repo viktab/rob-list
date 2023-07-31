@@ -735,10 +735,41 @@
                     <view key="view" contentMode="scaleToFill" id="6Eg-rV-bNT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dj7-1i-B2q">
+                                <rect key="frame" x="175" y="59" width="41" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Wj7-vK-8Cx">
+                                <rect key="frame" x="129" y="137" width="70.666666666666686" height="34"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ATEEZ" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zmo-H8-QI7">
+                                        <rect key="frame" x="0.0" y="0.0" width="70.666666666666671" height="34"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textBoxReturn:" destination="JTU-LE-4B7" eventType="primaryActionTriggered" id="RRU-NF-4Jz"/>
+                                            <action selector="textFinished:" destination="ctb-nW-7qR" eventType="primaryActionTriggered" id="Cgj-Pk-Ga5"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="2Jg-WT-8Vj"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <size key="freeformSize" width="393" height="852"/>
+                    <connections>
+                        <outlet property="mainVerticalView" destination="Wj7-vK-8Cx" id="83P-bq-yYL"/>
+                        <outlet property="mainView" destination="6Eg-rV-bNT" id="eW3-Dk-4qv"/>
+                        <outlet property="textBox" destination="zmo-H8-QI7" id="2TV-P6-Tru"/>
+                        <outlet property="titleLabel" destination="dj7-1i-B2q" id="jHr-Kc-pt7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nRa-eZ-m5n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
