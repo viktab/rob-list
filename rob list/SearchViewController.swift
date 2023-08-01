@@ -282,7 +282,7 @@ extension SearchViewController: UITextFieldDelegate {
             for group in groups {
                 groupNames.append(group.name)
             }
-            artistpickerData = getSuggestions(String(newText), groupNames)
+            artistpickerData = getSuggestions(String(newText), groupNames, [])
             artistPickerView.reloadAllComponents()
             artistPickerView.selectRow(1, inComponent: 0, animated: false)
         case memberTextBox:
@@ -293,7 +293,7 @@ extension SearchViewController: UITextFieldDelegate {
             eraLabel.topAnchor.constraint(equalTo: memberPickerView.bottomAnchor, constant: 16.0).isActive = true
             
             let memberNames = getMembers()
-            memberPickerData = getSuggestions(String(newText),  memberNames)
+            memberPickerData = getSuggestions(String(newText),  memberNames, [])
             memberPickerView.reloadAllComponents()
             memberPickerView.selectRow(1, inComponent: 0, animated: false)
         case eraTextBox:

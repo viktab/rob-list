@@ -155,7 +155,7 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         pickerView.topAnchor.constraint(equalTo: textBox.bottomAnchor, constant: 8.0).isActive = true
         invisibleLabel.topAnchor.constraint(equalTo: pickerView.bottomAnchor, constant: 16.0).isActive = true
         
-        pickerData = getSuggestions(String(newText), pickerDataAll)
+        pickerData = getSuggestions(String(newText), pickerDataAll, selectedNames)
         pickerView.reloadAllComponents()
         pickerView.selectRow(1, inComponent: 0, animated: false)
         return true
