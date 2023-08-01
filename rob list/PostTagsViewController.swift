@@ -93,23 +93,40 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         let newItemView: UIStackView = UIStackView()
         newItemView.axis = .horizontal
+        // newItemView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
         
         let itemLabel: UILabel = UILabel()
         itemLabel.text = textBox.text
         itemLabel.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00)
+        itemLabel.font = UIFont.systemFont(ofSize: 19.0)
+        
+        var config = UIButton.Configuration.plain()
+        config.image = UIImage(systemName: "xmark")
         
         let itemButton: UIButton = UIButton()
-        itemButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-        itemButton.setImage(UIImage(systemName: "xmark"), for: .highlighted)
-        itemButton.setImage(UIImage(systemName: "xmark"), for: .selected)
-        
+        itemButton.configuration = config
+        itemButton.addTarget(self, action: #selector(deleteClick), for: .touchUpInside)
+
         newItemView.addArrangedSubview(itemLabel)
         newItemView.addArrangedSubview(itemButton)
         
+        let hasItems = verticalListView.arrangedSubviews.count > 0
         verticalListView.addArrangedSubview(newItemView)
+        if !hasItems {
+            itemLabel.topAnchor.constraint(equalTo: textBox.bottomAnchor, constant: 16.0).isActive = true
+        }
+        itemLabel.widthAnchor.constraint(equalTo: newItemView.widthAnchor, multiplier: 0.9).isActive = true
+        itemButton.widthAnchor.constraint(equalTo: newItemView.widthAnchor, multiplier: 0.1).isActive = true
+        itemButton.heightAnchor.constraint(equalTo: newItemView.widthAnchor, multiplier: 0.1).isActive = true
+        itemButton.imageView?.layer.transform = CATransform3DMakeScale(1.33, 1.33, 1.33)
         
         textBox.text = ""
     }
+    
+    @objc func deleteClick(sender:UIButton) {
+        print("clicked x")
+    }
+    
     @IBAction func textBoxReturn(_ sender: Any) {
         textBox.text = pickerData[pickerView.selectedRow(inComponent: 0)]
         pickerView.removeFromSuperview()
