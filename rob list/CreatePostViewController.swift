@@ -232,18 +232,21 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         let tagsPage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
         tagsPage.titleText = "Tag group/soloist(s)"
         tagsPage.realm = realm!
+        tagsPage.tagType = "group"
         self.present(tagsPage, animated: true, completion: nil)
     }
     @IBAction func memberButtonClick(_ sender: Any) {
         let tagsPage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
         tagsPage.titleText = "Tag member(s)"
         tagsPage.realm = realm!
+        tagsPage.tagType = "member"
         self.present(tagsPage, animated: true, completion: nil)
     }
     @IBAction func eraButtonClick(_ sender: Any) {
         let tagsPage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
         tagsPage.titleText = "Tag era(s)"
         tagsPage.realm = realm!
+        tagsPage.tagType = "era"
         self.present(tagsPage, animated: true, completion: nil)
     }
     

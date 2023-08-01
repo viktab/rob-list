@@ -42,6 +42,9 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         textBox.autocapitalizationType = .none
         textBox.autocorrectionType = .no
         textBox.spellCheckingType = .no
+        
+        addButton.alpha = 0.0
+        addButton.isEnabled = false
                 
         pickerView.delegate = self as UIPickerViewDelegate
         pickerView.dataSource = self as UIPickerViewDataSource
@@ -49,12 +52,26 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         pickerView.setValue(UIColor.black, forKeyPath: "textColor")
         pickerView.isHidden = true
         
-        pickerData = ["1", "2", "3"]
         titleLabel.text = titleText
+        
+        // get picker data
+        if tagType == "group" {
+            let groups = Array(realm!.objects(Group.self))
+            pickerDataAll = []
+            for group in groups {
+                pickerDataAll.append(group.name)
+            }
+            pickerData = pickerDataAll.map{$0}
+        } else {
+            pickerData = ["1", "2", "3"]
+        }
     }
     var realm : Realm?
     
     var titleText: String = ""
+    var tagType: String = ""
+    var groupIds: [ObjectId] = [ObjectId]()
+    var pickerDataAll: [String] = [String]()
     var pickerData: [String] = [String]()
     
     @IBOutlet var mainView: UIView!
@@ -65,19 +82,59 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             textBox.delegate = self
         }
     }
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var verticalListView: UIStackView!
     
     var pickerView: UIPickerView = UIPickerView()
     
+    @IBAction func addClick(_ sender: Any) {
+        addButton.alpha = 0.0
+        addButton.isEnabled = false
+        
+        let newItemView: UIStackView = UIStackView()
+        newItemView.axis = .horizontal
+        
+        let itemLabel: UILabel = UILabel()
+        itemLabel.text = textBox.text
+        itemLabel.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00)
+        
+        let itemButton: UIButton = UIButton()
+        itemButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        itemButton.setImage(UIImage(systemName: "xmark"), for: .highlighted)
+        itemButton.setImage(UIImage(systemName: "xmark"), for: .selected)
+        
+        newItemView.addArrangedSubview(itemLabel)
+        newItemView.addArrangedSubview(itemButton)
+        
+        verticalListView.addArrangedSubview(newItemView)
+        
+        textBox.text = ""
+    }
     @IBAction func textBoxReturn(_ sender: Any) {
+        textBox.text = pickerData[pickerView.selectedRow(inComponent: 0)]
         pickerView.removeFromSuperview()
         view.endEditing(true)
+        if (textBox.text != nil && textBox.text != "") {
+            addButton.alpha = 1.0
+            addButton.isEnabled = true
+        }
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let oldText = textField.text!
+        let newText = oldText.prefix(range.lowerBound) + string.dropFirst(0) + oldText.dropFirst(range.upperBound)
+        if oldText + "\n" == newText {
+            return true
+        }
         mainVerticalView.insertArrangedSubview(pickerView, at: 1)
         pickerView.isHidden = false
         pickerView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.2).isActive = true
         pickerView.topAnchor.constraint(equalTo: textBox.bottomAnchor, constant: 8.0).isActive = true
+        
+        pickerData = getSuggestions(String(newText), pickerDataAll)
+        pickerView.reloadAllComponents()
+        pickerView.selectRow(1, inComponent: 0, animated: false)
+        return true
     }
     
     /*

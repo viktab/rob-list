@@ -308,16 +308,6 @@ extension SearchViewController: UITextFieldDelegate {
         return true
     }
     
-    func getSuggestions(_ input: String, _ options: [String]) -> [String] {
-        var suggestions: [String] = [""]
-        for option in options {
-            if option.lowercased().hasPrefix(input.lowercased()) {
-                suggestions.append(option)
-            }
-        }
-        return suggestions
-    }
-    
     func getMembers() -> [String] {
         let groupName = artistTextBox.text
         let groupObj = groups.first(where: {$0.name == groupName})
