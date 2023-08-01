@@ -744,7 +744,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Wj7-vK-8Cx">
-                                <rect key="frame" x="129" y="137" width="117.66666666666669" height="284.33333333333331"/>
+                                <rect key="frame" x="129" y="137" width="117.66666666666669" height="284.33333333333337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0k-n2-uSg">
                                         <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="34.333333333333336"/>
@@ -783,6 +783,18 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QV-LW-1Vp">
+                                <rect key="frame" x="312" y="731" width="65" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneClick:" destination="JTU-LE-4B7" eventType="touchUpInside" id="2zc-Yp-3yn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2Jg-WT-8Vj"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -790,6 +802,7 @@
                     <size key="freeformSize" width="393" height="852"/>
                     <connections>
                         <outlet property="addButton" destination="9ko-AQ-8oT" id="aCa-aV-n2P"/>
+                        <outlet property="doneButton" destination="1QV-LW-1Vp" id="y70-nh-9Jn"/>
                         <outlet property="invisibleLabel" destination="oeV-Zb-vEH" id="6GW-Ng-vGy"/>
                         <outlet property="mainVerticalView" destination="Wj7-vK-8Cx" id="83P-bq-yYL"/>
                         <outlet property="mainView" destination="6Eg-rV-bNT" id="eW3-Dk-4qv"/>

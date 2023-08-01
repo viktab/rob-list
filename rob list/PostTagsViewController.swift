@@ -45,6 +45,10 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         addButton.alpha = 0.0
         addButton.isEnabled = false
+        
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        doneButton.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -32.0).isActive = true
+        doneButton.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -24.0).isActive = true
                 
         pickerView.delegate = self as UIPickerViewDelegate
         pickerView.dataSource = self as UIPickerViewDataSource
@@ -56,12 +60,14 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         // get picker data
         if tagType == "group" {
-            let groups = Array(realm!.objects(Group.self))
+            allGroups = Array(realm!.objects(Group.self))
             pickerDataAll = []
-            for group in groups {
+            for group in allGroups {
                 pickerDataAll.append(group.name)
             }
             pickerData = pickerDataAll.map{$0}
+        } else if tagType == "member" {
+            pickerData = ["A", "B", "C"]
         } else {
             pickerData = ["1", "2", "3"]
         }
@@ -70,6 +76,10 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     var titleText: String = ""
     var tagType: String = ""
+    
+    var allGroups: [Group] = [Group]()
+    var allIdols: [Idol] = [Idol]()
+    
     var groupIds: [ObjectId] = [ObjectId]()
     var pickerDataAll: [String] = [String]()
     var pickerData: [String] = [String]()
@@ -87,6 +97,7 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var invisibleLabel: UILabel!
     @IBOutlet weak var verticalListView: UIStackView!
+    @IBOutlet weak var doneButton: UIButton!
     
     var pickerView: UIPickerView = UIPickerView()
     
@@ -141,6 +152,17 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             addButton.alpha = 1.0
             addButton.isEnabled = true
         }
+    }
+    @IBAction func doneClick(_ sender: Any) {
+        let createPostPage = self.storyboard?.instantiateViewController(withIdentifier: "CreatePostViewController") as! CreatePostViewController
+        if (tagType == "group") {
+            let selectedGroupIds = selectedNames.map {(groupName: String) -> ObjectId in
+                return allGroups.first(where: {$0.name == groupName})!._id
+            }
+            createPostPage.realm = realm!
+            createPostPage.groupTagIds = selectedGroupIds
+        }
+        self.present(createPostPage, animated: false, completion: nil)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

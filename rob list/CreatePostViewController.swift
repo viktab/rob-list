@@ -14,9 +14,18 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let isEditing = UserDefaults.standard.bool(forKey: "CreatePostView_isEditing")
+        if isEditing {
+            postType = UserDefaults.standard.string(forKey: "CreatePostView_postType")!
+            titleLabel.text = "Post to " + postType
+        }
+        
         menuView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: 8.0).isActive = true
         menuView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 1.0).isActive = true
-        mainView.backgroundColor = UIColor(white: 0.85, alpha: 1.0)
+        
+        if !isEditing {
+            mainView.backgroundColor = UIColor(white: 0.85, alpha: 1.0)
+        }
                 
         // handle popup view
         popUpView.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 200.0).isActive = true
@@ -44,6 +53,10 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
             button?.heightAnchor.constraint(equalTo: popUpTitle.heightAnchor, multiplier: 1.75).isActive = true
         }
         
+        if isEditing {
+            popUpView.isHidden = true
+        }
+        
         // handle main view
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 60).isActive = true
@@ -54,7 +67,9 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         verticalView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16.0).isActive = true
         verticalView.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 8.0).isActive = true
         verticalView.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -8.0).isActive = true
-        verticalView.isHidden = true
+        if !isEditing {
+            verticalView.isHidden = true
+        }
         
         imageView.widthAnchor.constraint(equalTo: verticalView.widthAnchor, multiplier: 0.4).isActive = true
         imageView.heightAnchor.constraint(equalTo: verticalView.widthAnchor, multiplier: 0.4).isActive = true
@@ -91,7 +106,16 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         priceTextBox.layer.cornerRadius = 5
         priceButton.alpha = 0.0
         priceButton.isEnabled = false
-        horizontalPriceView.isHidden = true
+        
+        if (!isEditing || postType == "trade") {
+            horizontalPriceView.isHidden = true
+        } else {
+            if postType == "buy" {
+                priceLabel.text = "Max price:"
+            } else {
+                priceLabel.text = "Price:"
+            }
+        }
         
         tagsLabel.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 16.0).isActive = true
         tagsLabel.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -16.0).isActive = true
@@ -116,6 +140,10 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
     var realm : Realm?
     
     var postType: String = ""
+    
+    var groupTagIds: [ObjectId] = [ObjectId]()
+    var memberTagIds: [ObjectId] = [ObjectId]()
+    var eraTagIds: [ObjectId] = [ObjectId]()
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!
@@ -155,16 +183,22 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
     @IBOutlet weak var eraLabel: UILabel!
     
     @IBAction func searchClick(_ sender: Any) {
+        UserDefaults.standard.set(false, forKey: "CreatePostView_isEditing")
+        UserDefaults.standard.synchronize()
         let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
         searchPage.realm = realm!
         self.present(searchPage, animated: false, completion: nil)
     }
     @IBAction func homeClick(_ sender: Any) {
+        UserDefaults.standard.set(false, forKey: "CreatePostView_isEditing")
+        UserDefaults.standard.synchronize()
         let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
         feedPage.realm = realm!
         self.present(feedPage, animated: false, completion: nil)
     }
     @IBAction func profileClick(_ sender: Any) {
+        UserDefaults.standard.set(false, forKey: "CreatePostView_isEditing")
+        UserDefaults.standard.synchronize()
         let profilePage = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         profilePage.realm = realm!
         self.present(profilePage, animated: false, completion: nil)
@@ -229,6 +263,9 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         view.endEditing(true)
     }
     @IBAction func groupButtonClick(_ sender: Any) {
+        UserDefaults.standard.set(true, forKey: "CreatePostView_isEditing")
+        UserDefaults.standard.set(postType, forKey: "CreatePostView_postType")
+        UserDefaults.standard.synchronize()
         let tagsPage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
         tagsPage.titleText = "Tag group/soloist(s)"
         tagsPage.realm = realm!
@@ -236,13 +273,20 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         self.present(tagsPage, animated: true, completion: nil)
     }
     @IBAction func memberButtonClick(_ sender: Any) {
+        UserDefaults.standard.set(true, forKey: "CreatePostView_isEditing")
+        UserDefaults.standard.set(postType, forKey: "CreatePostView_postType")
+        UserDefaults.standard.synchronize()
         let tagsPage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
         tagsPage.titleText = "Tag member(s)"
         tagsPage.realm = realm!
         tagsPage.tagType = "member"
+        tagsPage.groupIds = groupTagIds
         self.present(tagsPage, animated: true, completion: nil)
     }
     @IBAction func eraButtonClick(_ sender: Any) {
+        UserDefaults.standard.set(true, forKey: "CreatePostView_isEditing")
+        UserDefaults.standard.set(postType, forKey: "CreatePostView_postType")
+        UserDefaults.standard.synchronize()
         let tagsPage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
         tagsPage.titleText = "Tag era(s)"
         tagsPage.realm = realm!

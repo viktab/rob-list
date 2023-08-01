@@ -37,6 +37,10 @@ class FeedViewController: UIViewController {
             }
         }
         nameLabel.text = "Your name is " + fullName!
+        
+        // TODO: make this more logical
+        UserDefaults.standard.set(false, forKey: "CreatePostView_isEditing")
+        UserDefaults.standard.synchronize()
     }
 
     @MainActor
