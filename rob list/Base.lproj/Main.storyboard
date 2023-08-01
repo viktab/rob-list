@@ -744,7 +744,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Wj7-vK-8Cx">
-                                <rect key="frame" x="129" y="137" width="117.66666666666669" height="234.33333333333337"/>
+                                <rect key="frame" x="129" y="137" width="117.66666666666669" height="284.33333333333331"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0k-n2-uSg">
                                         <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="34.333333333333336"/>
@@ -772,8 +772,14 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeV-Zb-vEH">
+                                        <rect key="frame" x="0.0" y="34.333333333333336" width="117.66666666666667" height="50.000000000000007"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="poi-sh-ZDz">
-                                        <rect key="frame" x="0.0" y="34.333333333333343" width="117.66666666666667" height="200"/>
+                                        <rect key="frame" x="0.0" y="84.333333333333314" width="117.66666666666667" height="200"/>
                                     </stackView>
                                 </subviews>
                             </stackView>
@@ -784,6 +790,7 @@
                     <size key="freeformSize" width="393" height="852"/>
                     <connections>
                         <outlet property="addButton" destination="9ko-AQ-8oT" id="aCa-aV-n2P"/>
+                        <outlet property="invisibleLabel" destination="oeV-Zb-vEH" id="6GW-Ng-vGy"/>
                         <outlet property="mainVerticalView" destination="Wj7-vK-8Cx" id="83P-bq-yYL"/>
                         <outlet property="mainView" destination="6Eg-rV-bNT" id="eW3-Dk-4qv"/>
                         <outlet property="textBox" destination="zmo-H8-QI7" id="2TV-P6-Tru"/>

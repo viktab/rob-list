@@ -74,6 +74,8 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var pickerDataAll: [String] = [String]()
     var pickerData: [String] = [String]()
     
+    var selectedNames: [String] = [String]()
+    
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var mainVerticalView: UIStackView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -83,6 +85,7 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var invisibleLabel: UILabel!
     @IBOutlet weak var verticalListView: UIStackView!
     
     var pickerView: UIPickerView = UIPickerView()
@@ -96,7 +99,8 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         // newItemView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
         
         let itemLabel: UILabel = UILabel()
-        itemLabel.text = textBox.text
+        let newItem = textBox.text
+        itemLabel.text = newItem
         itemLabel.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00)
         itemLabel.font = UIFont.systemFont(ofSize: 19.0)
         
@@ -110,26 +114,28 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         newItemView.addArrangedSubview(itemLabel)
         newItemView.addArrangedSubview(itemButton)
         
-        let hasItems = verticalListView.arrangedSubviews.count > 0
         verticalListView.addArrangedSubview(newItemView)
-        if !hasItems {
-            itemLabel.topAnchor.constraint(equalTo: textBox.bottomAnchor, constant: 16.0).isActive = true
-        }
         itemLabel.widthAnchor.constraint(equalTo: newItemView.widthAnchor, multiplier: 0.9).isActive = true
         itemButton.widthAnchor.constraint(equalTo: newItemView.widthAnchor, multiplier: 0.1).isActive = true
         itemButton.heightAnchor.constraint(equalTo: newItemView.widthAnchor, multiplier: 0.1).isActive = true
         itemButton.imageView?.layer.transform = CATransform3DMakeScale(1.33, 1.33, 1.33)
         
+        selectedNames.append(newItem!)
         textBox.text = ""
     }
     
     @objc func deleteClick(sender:UIButton) {
-        print("clicked x")
+        let view = sender.superview as! UIStackView
+        let idx = verticalListView.subviews.firstIndex(of: view)
+        selectedNames.remove(at: idx!)
+        view.removeFromSuperview()
     }
     
     @IBAction func textBoxReturn(_ sender: Any) {
         textBox.text = pickerData[pickerView.selectedRow(inComponent: 0)]
         pickerView.removeFromSuperview()
+        // invisible label kinda jank way to get around constraint issues but it works I guess
+        invisibleLabel.topAnchor.constraint(equalTo: textBox.bottomAnchor, constant: 16.0).isActive = true
         view.endEditing(true)
         if (textBox.text != nil && textBox.text != "") {
             addButton.alpha = 1.0
@@ -147,6 +153,7 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         pickerView.isHidden = false
         pickerView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.2).isActive = true
         pickerView.topAnchor.constraint(equalTo: textBox.bottomAnchor, constant: 8.0).isActive = true
+        invisibleLabel.topAnchor.constraint(equalTo: pickerView.bottomAnchor, constant: 16.0).isActive = true
         
         pickerData = getSuggestions(String(newText), pickerDataAll)
         pickerView.reloadAllComponents()
