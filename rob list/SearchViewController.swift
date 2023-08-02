@@ -124,7 +124,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         // Pass object types to the Flexible Sync configuration
         // as a temporary workaround for not being able to add a
         // complete schema for a Flexible Sync app.
-        config.objectTypes = [Group.self, Idol.self, RequestedGroup.self]
+        config.objectTypes = [Group.self, Idol.self, RequestedGroup.self, UserProfile.self]
         let openRealm = try await Realm(configuration: config, downloadBeforeOpen: .always)
         print("Successfully opened realm: \(openRealm)")
         let subscriptions = openRealm.subscriptions
@@ -145,6 +145,12 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         try await subscriptions.update {
             subscriptions.append(
                 QuerySubscription<RequestedGroup> {
+                    $0.name != "fake name"
+                })
+        }
+        try await subscriptions.update {
+            subscriptions.append(
+                QuerySubscription<UserProfile> {
                     $0.name != "fake name"
                 })
         }

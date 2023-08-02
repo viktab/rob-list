@@ -48,6 +48,7 @@ class SignInViewController: UIViewController {
                             case .success(_):
                                 print("Successfully logged in to MongoDB Realm using Google OAuth.")
                                 // Now logged in, do something with user
+                                self.createUser(user, app)
                                 // Remember to dispatch to main if you are doing anything on the UI thread
                                 // If sign in succeeded, display the app's main content View.
                                 let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
@@ -57,6 +58,43 @@ class SignInViewController: UIViewController {
                     }
             }
           }
+    }
+    
+    @MainActor
+    func openFlexibleSyncRealm(user: User) async throws -> Realm {
+        print("in openSyncedRealm")
+        var config = user.flexibleSyncConfiguration()
+        // Pass object types to the Flexible Sync configuration
+        // as a temporary workaround for not being able to add a
+        // complete schema for a Flexible Sync app.
+        config.objectTypes = [UserProfile.self]
+        let realm = try await Realm(configuration: config, downloadBeforeOpen: .always)
+        print("Successfully opened realm: \(realm)")
+        let subscriptions = realm.subscriptions
+        // You must add at least one subscription to read and write from a Flexible Sync realm
+        // (TODO) I have no idea if I'm doing this right but it works for now lol
+        try await subscriptions.update {
+            subscriptions.append(
+                QuerySubscription<UserProfile> {
+                    $0.name != "fake name"
+                })
+        }
+        return realm
+    }
+    
+    func createUser(_ user: GIDGoogleUser, _ app: App) {
+        let realmId = app.currentUser?.id as! String
+        let name = app.currentUser?.profile.name as! String
+        // TODO: add mechanism to create default usernames
+        let username = name.filter {!$0.isWhitespace}
+        let email = user.profile?.email as! String
+        let newUser = UserProfile(realmId: realmId, name: name, email: email, username: username)
+        Task {
+            let realm = try await openFlexibleSyncRealm(user: app.currentUser!)
+            try! realm.write {
+                realm.add(newUser)
+            }
+        }
     }
     
 }

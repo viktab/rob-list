@@ -9,6 +9,32 @@ import Foundation
 
 import RealmSwift
 
+class UserProfile: Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var realmId: String = ""
+    @Persisted var email: String = ""
+    @Persisted var name: String = ""
+    @Persisted var username: String = ""
+    @Persisted var bio: String = ""
+    @Persisted var posts: List<ObjectId>
+    @Persisted var followingUsers: List<ObjectId>
+    @Persisted var followingGroups: List<ObjectId>
+    @Persisted var followingIdols: List<ObjectId>
+    @Persisted var followingEras: List<ObjectId>
+    convenience init(realmId: String, name: String, email: String, username: String) {
+        self.init()
+        self.realmId = realmId
+        self.name = name
+        self.email = email
+        self.username = username
+        self.posts = List()
+        self.followingUsers = List()
+        self.followingGroups = List()
+        self.followingIdols = List()
+        self.followingEras = List()
+    }
+}
+
 class Group: Object {
    @Persisted(primaryKey: true) var _id: ObjectId
    @Persisted var name: String = ""
@@ -37,6 +63,21 @@ class Idol: Object {
        self.eras = List()
        self.posts = List()
    }
+}
+
+class Post: Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var timestamp: Date = Date()
+    @Persisted var userId: ObjectId = ObjectId()
+    @Persisted var type: String = ""
+    @Persisted var caption: String = ""
+    @Persisted var price: Float = 0.0
+    @Persisted var haveGroups: List<ObjectId> = List()
+    @Persisted var haveMembers: List<ObjectId> = List()
+    @Persisted var haveEras: List<ObjectId> = List()
+    @Persisted var wantGroups: List<ObjectId> = List()
+    @Persisted var wantMembers: List<ObjectId> = List()
+    @Persisted var wantEras: List<ObjectId> = List()
 }
 
 class RequestedGroup: Object {
