@@ -240,6 +240,7 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         itemButton.widthAnchor.constraint(equalTo: newItemView.widthAnchor, multiplier: 0.1).isActive = true
         itemButton.heightAnchor.constraint(equalTo: newItemView.widthAnchor, multiplier: 0.1).isActive = true
         itemButton.imageView?.layer.transform = CATransform3DMakeScale(1.33, 1.33, 1.33)
+        invisibleLabel.topAnchor.constraint(equalTo: textBox.bottomAnchor, constant: 16.0).isActive = true
         
         selectedNames.append(name)
     }
