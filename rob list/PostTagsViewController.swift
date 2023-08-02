@@ -97,6 +97,21 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                     addItem(group!.name)
                 }
             }
+        } else if tagType == "member" {
+            let prevSelectedMemberIdsAsStr = UserDefaults.standard.array(forKey: "PostTagesView_selectedMemberIds")
+            if prevSelectedMemberIdsAsStr != nil && prevSelectedMemberIdsAsStr!.count > 0 {
+                let prevSelectedMemberIdsAsStr2 = UserDefaults.standard.array(forKey: "PostTagesView_selectedMemberIds") as! [String]
+                var prevSelectedMemberTagIds = [ObjectId]()
+                for prev in prevSelectedMemberIdsAsStr2 {
+                    try! prevSelectedMemberTagIds.append(ObjectId(string: prev))
+                }
+                for prevSelectedMemberId in prevSelectedMemberTagIds {
+                    let member = allIdols.first(where: {
+                        $0._id == prevSelectedMemberId
+                    })
+                    addItem(member!.name)
+                }
+            }
         }
     }
     var realm : Realm?
@@ -163,6 +178,7 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             createPostPage.groupTagIds = selectedGroupIds
             let groupIdsAsStr = selectedGroupIds.map({$0.stringValue})
             UserDefaults.standard.set(groupIdsAsStr, forKey: "PostTagesView_selectedGroupIds")
+            updateSelectedIdols()
         } else if (tagType == "member") {
             let selectedmemberIds = selectedNames.map {(memberName: String) -> ObjectId in
                 return allIdols.first(where: {$0.name == memberName})!._id
@@ -232,6 +248,10 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             allMemberIds += memberIds
         }
         return allMemberIds
+    }
+    
+    func updateSelectedIdols() {
+        print("todo")
     }
     
     /*
