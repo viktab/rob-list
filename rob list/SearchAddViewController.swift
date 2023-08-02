@@ -93,7 +93,10 @@ class SearchAddViewController: UIViewController {
             let name = textBox.text!.replacingOccurrences(of: "^\\s*", with: "", options: .regularExpression, range: nil)
             makeGroupRequest(name)
         }
-        self.present(searchPage, animated: false, completion: nil)
+        weak var pvc = self.presentingViewController
+        self.dismiss(animated: true, completion: {
+            pvc?.present(searchPage, animated: false, completion: nil)
+        })
     }
     
     func makeGroupRequest(_ name: String) {
