@@ -22,6 +22,12 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
             groupTagIds = groupIdsAsStr.map({
                 try! ObjectId(string: $0)
             })
+            let memberIdsAsStr = UserDefaults.standard.array(forKey: "PostTagesView_selectedMemberIds") as? [String]
+            if (memberIdsAsStr != nil) {
+                memberTagIds = memberIdsAsStr!.map({
+                    try! ObjectId(string: $0)
+                })
+            }
         }
         
         menuView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: 8.0).isActive = true

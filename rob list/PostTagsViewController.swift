@@ -169,10 +169,16 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             let selectedGroupIds = selectedNames.map {(groupName: String) -> ObjectId in
                 return allGroups.first(where: {$0.name == groupName})!._id
             }
-            createPostPage.realm = realm!
             createPostPage.groupTagIds = selectedGroupIds
             let groupIdsAsStr = selectedGroupIds.map({$0.stringValue})
             UserDefaults.standard.set(groupIdsAsStr, forKey: "PostTagesView_selectedGroupIds")
+        } else if (tagType == "member") {
+            let selectedmemberIds = selectedNames.map {(memberName: String) -> ObjectId in
+                return allIdols.first(where: {$0.name == memberName})!._id
+            }
+            createPostPage.memberTagIds = selectedmemberIds
+            let memberIdsAsStr = selectedmemberIds.map({$0.stringValue})
+            UserDefaults.standard.set(memberIdsAsStr, forKey: "PostTagesView_selectedMemberIds")
         }
         UserDefaults.standard.synchronize()
         self.present(createPostPage, animated: false, completion: nil)
