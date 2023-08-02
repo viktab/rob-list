@@ -18,6 +18,16 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         if isEditing {
             postType = UserDefaults.standard.string(forKey: "CreatePostView_postType")!
             titleLabel.text = "Post to " + postType
+            if (!caption.isEmpty) {
+                captionTextBox.text = caption
+            }
+            if (!price.isEmpty) {
+                priceTextBox.text = price
+            }
+            if (image != nil) {
+                imageView.image = image
+                imageView.contentMode = .scaleAspectFit
+            }
             menuView.isHidden = false
             let groupIdsAsStr = UserDefaults.standard.array(forKey: "PostTagesView_selectedGroupIds") as? [String]
             if (groupIdsAsStr != nil) {
@@ -114,8 +124,10 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         captionTextBox.layer.borderColor = CGColor(gray: 0.75, alpha: 1.0)
         captionTextBox.layer.cornerRadius = 5
         
-        captionTextBox.textColor = UIColor.lightGray
-        captionTextBox.text = "Caption"
+        if (caption.isEmpty) {
+            captionTextBox.textColor = UIColor.lightGray
+            captionTextBox.text = "Caption"
+        }
         
         captionButton.topAnchor.constraint(equalTo: captionTextBox.bottomAnchor).isActive = true
         captionButton.rightAnchor.constraint(equalTo: verticalView.rightAnchor).isActive = true
@@ -206,6 +218,10 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
     var groupTagIdsWant: [ObjectId] = [ObjectId]()
     var memberTagIdsWant: [ObjectId] = [ObjectId]()
     var eraTagIdsWant: [ObjectId] = [ObjectId]()
+    
+    var caption: String = ""
+    var price: String = ""
+    var image: UIImage?
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!
@@ -307,6 +323,7 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         view.endEditing(true)
         captionButton.alpha = 0.0
         captionButton.isEnabled = false
+        caption = captionTextBox.text
         if captionTextBox.text == "" {
             captionTextBox.textColor = UIColor.lightGray
             captionTextBox.text = "Caption"
@@ -318,6 +335,7 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
     @IBAction func priceOkClick(_ sender: Any) {
         priceButton.alpha = 0.0
         priceButton.isEnabled = false
+        price = priceTextBox.text!
         view.endEditing(true)
     }
     @IBAction func groupButtonClick(_ sender: Any) {
@@ -328,6 +346,9 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         tagsPage.titleText = "Tag group/soloist(s)"
         tagsPage.realm = realm!
         tagsPage.tagType = "group"
+        tagsPage.caption = caption
+        tagsPage.price = price
+        tagsPage.image = image
         self.present(tagsPage, animated: true, completion: nil)
     }
     @IBAction func memberButtonClick(_ sender: Any) {
@@ -339,6 +360,9 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         tagsPage.realm = realm!
         tagsPage.tagType = "member"
         tagsPage.groupIds = groupTagIds
+        tagsPage.caption = caption
+        tagsPage.price = price
+        tagsPage.image = image
         self.present(tagsPage, animated: true, completion: nil)
     }
     @IBAction func eraButtonClick(_ sender: Any) {
@@ -350,6 +374,9 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         tagsPage.realm = realm!
         tagsPage.tagType = "era"
         tagsPage.groupIds = groupTagIds
+        tagsPage.caption = caption
+        tagsPage.price = price
+        tagsPage.image = image
         self.present(tagsPage, animated: true, completion: nil)
     }
     
@@ -362,6 +389,9 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         tagsPage.realm = realm!
         tagsPage.tagType = "group"
         tagsPage.isWantTags = true
+        tagsPage.caption = caption
+        tagsPage.price = price
+        tagsPage.image = image
         self.present(tagsPage, animated: true, completion: nil)
     }
     @IBAction func memberButtonWantClick(_ sender: Any) {
@@ -374,6 +404,9 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         tagsPage.tagType = "member"
         tagsPage.groupIdsWant = groupTagIdsWant
         tagsPage.isWantTags = true
+        tagsPage.caption = caption
+        tagsPage.price = price
+        tagsPage.image = image
         self.present(tagsPage, animated: true, completion: nil)
     }
     @IBAction func eraButtonWantClick(_ sender: Any) {
@@ -386,6 +419,9 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         tagsPage.tagType = "era"
         tagsPage.groupIdsWant = groupTagIdsWant
         tagsPage.isWantTags = true
+        tagsPage.caption = caption
+        tagsPage.price = price
+        tagsPage.image = image
         self.present(tagsPage, animated: true, completion: nil)
     }
     @IBAction func cancelClick(_ sender: Any) {
@@ -415,10 +451,11 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[.editedImage] as? UIImage else { return }
+        guard let uploadedImage = info[.editedImage] as? UIImage else { return }
         dismiss(animated: true)
-        imageView.image = image
+        imageView.image = uploadedImage
         imageView.contentMode = .scaleAspectFit
+        image = uploadedImage
     }
     
     /*

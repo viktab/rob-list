@@ -132,6 +132,10 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     var selectedNames: [String] = [String]()
     
+    var image: UIImage?
+    var caption: String = ""
+    var price: String = ""
+    
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var mainVerticalView: UIStackView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -175,6 +179,9 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBAction func doneClick(_ sender: Any) {
         let createPostPage = self.storyboard?.instantiateViewController(withIdentifier: "CreatePostViewController") as! CreatePostViewController
         createPostPage.realm = realm!
+        createPostPage.caption = caption
+        createPostPage.price = price
+        createPostPage.image = image
         if (tagType == "group") {
             let selectedGroupIds = selectedNames.map {(groupName: String) -> ObjectId in
                 return allGroups.first(where: {$0.name == groupName})!._id
