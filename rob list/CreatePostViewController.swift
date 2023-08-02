@@ -119,8 +119,12 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         
         if (!isEditing || postType == "trade") {
             horizontalPriceView.isHidden = true
+            if (isEditing) {
+                tagsLabel.topAnchor.constraint(equalTo: uploadButton.bottomAnchor, constant: 20.0).isActive = true
+            }
         } else {
             tagsLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 20.0).isActive = true
+            verticalWantTagsView.isHidden = true
             if postType == "buy" {
                 priceLabel.text = "Max price:"
             } else {
@@ -131,15 +135,23 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         tagsLabel.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 16.0).isActive = true
         tagsLabel.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -16.0).isActive = true
         tagsLabel.textAlignment = .center
+        if (postType == "trade") {
+            tagsLabel.text = "Tags (Have)"
+        }
         
-        let tagButtons = [groupButton, memberButton, eraButton]
+        tagsLabelWant.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 16.0).isActive = true
+        tagsLabelWant.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -16.0).isActive = true
+        tagsLabelWant.textAlignment = .center
+        tagsLabelWant.topAnchor.constraint(equalTo: eraButton.bottomAnchor, constant: 20.0).isActive = true
+        
+        let tagButtons = [groupButton, memberButton, eraButton, groupButtonWant, memberButtonWant, eraButtonWant]
         for tagButton in tagButtons {
             tagButton!.layer.borderWidth = 2
             tagButton!.layer.borderColor = CGColor(gray: 0.75, alpha: 1.0)
             tagButton!.layer.cornerRadius = 5
             tagButton!.widthAnchor.constraint(equalTo: verticalView.widthAnchor, multiplier: 0.7).isActive = true
         }
-        let tagLabels = [groupLabel, memberLabel, eraLabel]
+        let tagLabels = [groupLabel, memberLabel, eraLabel, groupLabelWant, memberLabelWant, eraLabelWant]
         for label in tagLabels {
             label!.rightAnchor.constraint(equalTo: verticalView.rightAnchor, constant: -8.0).isActive = true
             label!.textAlignment = .right
@@ -148,9 +160,15 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         memberLabel.text = String(memberTagIds.count) + " tagged"
         eraLabel.text = String(eraTagIds.count) + " tagged"
         
+        // TODO: set want labels
+        
         groupButton.topAnchor.constraint(equalTo: tagsLabel.bottomAnchor, constant: 16.0).isActive = true
         memberButton.topAnchor.constraint(equalTo: groupButton.bottomAnchor, constant: 8.0).isActive = true
         eraButton.topAnchor.constraint(equalTo: memberButton.bottomAnchor, constant: 8.0).isActive = true
+        
+        groupButtonWant.topAnchor.constraint(equalTo: tagsLabelWant.bottomAnchor, constant: 16.0).isActive = true
+        memberButtonWant.topAnchor.constraint(equalTo: groupButtonWant.bottomAnchor, constant: 8.0).isActive = true
+        eraButtonWant.topAnchor.constraint(equalTo: memberButtonWant.bottomAnchor, constant: 8.0).isActive = true
     }
     var realm : Realm?
     
@@ -202,6 +220,16 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
     @IBOutlet weak var eraButton: UIButton!
     @IBOutlet weak var eraLabel: UILabel!
     
+    @IBOutlet weak var verticalWantTagsView: UIStackView!
+    @IBOutlet weak var tagsLabelWant: UILabel!
+    @IBOutlet weak var groupButtonWant: UIButton!
+    @IBOutlet weak var groupLabelWant: UILabel!
+    @IBOutlet weak var memberButtonWant: UIButton!
+    @IBOutlet weak var memberLabelWant: UILabel!
+    @IBOutlet weak var eraButtonWant: UIButton!
+    @IBOutlet weak var eraLabelWant: UILabel!
+    
+    
     @IBAction func searchClick(_ sender: Any) {
         UserDefaults.standard.set(false, forKey: "CreatePostView_isEditing")
         UserDefaults.standard.synchronize()
@@ -227,6 +255,7 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
     @IBAction func popUpBuyClick(_ sender: Any) {
         postType = "buy"
         horizontalPriceView.isHidden = false
+        verticalWantTagsView.isHidden = true
         priceLabel.text = "Max price:"
         tagsLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 20.0).isActive = true
         hidePopUp()
@@ -234,11 +263,13 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
     @IBAction func popUpSellClick(_ sender: Any) {
         postType = "sell"
         horizontalPriceView.isHidden = false
+        verticalWantTagsView.isHidden = true
         tagsLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 20.0).isActive = true
         hidePopUp()
     }
     @IBAction func popUpTradeClick(_ sender: Any) {
         postType = "trade"
+        tagsLabel.text = "Tags (Have)"
         tagsLabel.topAnchor.constraint(equalTo: uploadButton.bottomAnchor, constant: 20.0).isActive = true
         hidePopUp()
     }
