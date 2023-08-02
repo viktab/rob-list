@@ -190,7 +190,11 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             UserDefaults.standard.set(memberIdsAsStr, forKey: "PostTagesView_selectedMemberIds")
         }
         UserDefaults.standard.synchronize()
-        self.present(createPostPage, animated: false, completion: nil)
+        
+        weak var pvc = self.presentingViewController
+        self.dismiss(animated: true, completion: {
+            pvc?.present(createPostPage, animated: false, completion: nil)
+        })
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
+class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,6 +120,7 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         if (!isEditing || postType == "trade") {
             horizontalPriceView.isHidden = true
         } else {
+            tagsLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 20.0).isActive = true
             if postType == "buy" {
                 priceLabel.text = "Max price:"
             } else {
@@ -276,6 +277,9 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
             captionTextBox.text = "Caption"
         }
     }
+    @IBAction func uploadClick(_ sender: Any) {
+        importPicture()
+    }
     @IBAction func priceOkClick(_ sender: Any) {
         priceButton.alpha = 0.0
         priceButton.isEnabled = false
@@ -312,6 +316,20 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         tagsPage.tagType = "era"
         tagsPage.groupIds = groupTagIds
         self.present(tagsPage, animated: true, completion: nil)
+    }
+    
+    @objc func importPicture() {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+        dismiss(animated: true)
+        imageView.image = image
+        imageView.contentMode = .scaleAspectFit
     }
     
     /*

@@ -424,6 +424,9 @@
                                                             </backgroundConfiguration>
                                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="uploadClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="CMH-wc-x2E"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -744,7 +747,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Wj7-vK-8Cx">
-                                <rect key="frame" x="129" y="137" width="117.66666666666669" height="284.33333333333337"/>
+                                <rect key="frame" x="129" y="136.99999999999997" width="117.66666666666669" height="284.33333333333326"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0k-n2-uSg">
                                         <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="34.333333333333336"/>
