@@ -178,7 +178,9 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             createPostPage.groupTagIds = selectedGroupIds
             let groupIdsAsStr = selectedGroupIds.map({$0.stringValue})
             UserDefaults.standard.set(groupIdsAsStr, forKey: "PostTagesView_selectedGroupIds")
-            updateSelectedIdols()
+            let newSelectedMemberIds = getUpdatedSelectedIdols(selectedGroupIds)
+            let memberIdsAsStr = newSelectedMemberIds.map({$0.stringValue})
+            UserDefaults.standard.set(memberIdsAsStr, forKey: "PostTagesView_selectedMemberIds")
         } else if (tagType == "member") {
             let selectedmemberIds = selectedNames.map {(memberName: String) -> ObjectId in
                 return allIdols.first(where: {$0.name == memberName})!._id
@@ -250,8 +252,24 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         return allMemberIds
     }
     
-    func updateSelectedIdols() {
-        print("todo")
+    // updates selected members to only contain idols in the newly selected list of groups
+    func getUpdatedSelectedIdols(_ newGroupIds: [ObjectId]) -> [ObjectId] {
+        let prevSelectedMemberIdsAsStr = UserDefaults.standard.array(forKey: "PostTagesView_selectedMemberIds")
+        if prevSelectedMemberIdsAsStr != nil && prevSelectedMemberIdsAsStr!.count > 0 {
+            let prevSelectedMemberIdsAsStr2 = UserDefaults.standard.array(forKey: "PostTagesView_selectedMemberIds") as! [String]
+            var newSelectedMemberTagIds = [ObjectId]()
+            for prev in prevSelectedMemberIdsAsStr2 {
+                let prevSelectedMemberId = try! ObjectId(string: prev)
+                let prevSelectedMemberGroup = allIdols.first(where: {
+                    $0._id == prevSelectedMemberId
+                })!.group
+                if newGroupIds.contains(prevSelectedMemberGroup) {
+                    newSelectedMemberTagIds.append(prevSelectedMemberId)
+                }
+            }
+            return newSelectedMemberTagIds
+        }
+        return [ObjectId]()
     }
     
     /*
