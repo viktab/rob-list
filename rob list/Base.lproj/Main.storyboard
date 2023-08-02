@@ -290,40 +290,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="P6B-97-JAz">
-                                <rect key="frame" x="76" y="731" width="240" height="121"/>
+                                <rect key="frame" x="76" y="731" width="246" height="109.33333333333337"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRv-sC-Fm9">
-                                        <rect key="frame" x="8" y="67" width="56" height="46"/>
+                                        <rect key="frame" x="8" y="67" width="76.666666666666671" height="34.333333333333343"/>
+                                        <color key="tintColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="searchicon"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
                                         <connections>
-                                            <action selector="searchClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="Crz-Jq-uCX"/>
-                                            <action selector="searchClick:" destination="Gou-Ay-Jcv" eventType="touchUpInside" id="F4F-c8-4LA"/>
-                                            <action selector="searchClick:" destination="id3-Qk-tKA" eventType="touchUpInside" id="h64-Fn-V1G"/>
+                                            <action selector="cancelClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="Las-F9-fLZ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ma9-Z6-dFS">
-                                        <rect key="frame" x="64" y="67" width="56" height="46"/>
+                                        <rect key="frame" x="84.666666666666657" y="67" width="76.666666666666657" height="34.333333333333343"/>
+                                        <color key="tintColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="homeicon"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Draft"/>
                                         <connections>
-                                            <action selector="homeClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="PYy-Je-RYJ"/>
-                                            <action selector="homeClick:" destination="id3-Qk-tKA" eventType="touchUpInside" id="VfD-yP-9yx"/>
-                                            <action selector="homeClick:" destination="ErN-At-upq" eventType="touchUpInside" id="cda-RJ-bd1"/>
+                                            <action selector="draftClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="7Zg-hf-6oM"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMh-bc-Y5c">
-                                        <rect key="frame" x="120" y="67" width="56" height="46"/>
+                                        <rect key="frame" x="161.33333333333334" y="67" width="76.666666666666657" height="34.333333333333343"/>
+                                        <color key="tintColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="plusiconSelected"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDk-o7-CHr">
-                                        <rect key="frame" x="176" y="67" width="56" height="46"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="profileicon"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Post"/>
                                         <connections>
-                                            <action selector="profileClick:" destination="ErN-At-upq" eventType="touchUpInside" id="E4X-C5-1sw"/>
-                                            <action selector="profileClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="Wgg-DA-uAS"/>
+                                            <action selector="postClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="eBU-t3-y6c"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -987,7 +980,6 @@
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plusicon" width="32" height="32"/>
-        <image name="plusiconSelected" width="32" height="32"/>
         <image name="profileicon" width="32" height="32"/>
         <image name="profileiconSelected" width="32" height="32"/>
         <image name="searchicon" width="32" height="32"/>

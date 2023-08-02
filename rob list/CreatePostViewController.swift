@@ -18,6 +18,7 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         if isEditing {
             postType = UserDefaults.standard.string(forKey: "CreatePostView_postType")!
             titleLabel.text = "Post to " + postType
+            menuView.isHidden = false
             let groupIdsAsStr = UserDefaults.standard.array(forKey: "PostTagesView_selectedGroupIds") as? [String]
             if (groupIdsAsStr != nil) {
                 groupTagIds = groupIdsAsStr!.map({
@@ -50,6 +51,7 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         
         if !isEditing {
             mainView.backgroundColor = UIColor(white: 0.85, alpha: 1.0)
+            menuView.isHidden = true
         }
                 
         // handle popup view
@@ -251,32 +253,10 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
     @IBOutlet weak var eraButtonWant: UIButton!
     @IBOutlet weak var eraLabelWant: UILabel!
     
-    
-    @IBAction func searchClick(_ sender: Any) {
-        UserDefaults.standard.set(false, forKey: "CreatePostView_isEditing")
-        UserDefaults.standard.synchronize()
-        let searchPage = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        searchPage.realm = realm!
-        self.present(searchPage, animated: false, completion: nil)
-    }
-    @IBAction func homeClick(_ sender: Any) {
-        UserDefaults.standard.set(false, forKey: "CreatePostView_isEditing")
-        UserDefaults.standard.synchronize()
-        let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
-        feedPage.realm = realm!
-        self.present(feedPage, animated: false, completion: nil)
-    }
-    @IBAction func profileClick(_ sender: Any) {
-        UserDefaults.standard.set(false, forKey: "CreatePostView_isEditing")
-        UserDefaults.standard.synchronize()
-        let profilePage = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-        profilePage.realm = realm!
-        self.present(profilePage, animated: false, completion: nil)
-    }
-    
     @IBAction func popUpBuyClick(_ sender: Any) {
         postType = "buy"
         horizontalPriceView.isHidden = false
+        menuView.isHidden = false
         verticalWantTagsView.isHidden = true
         priceLabel.text = "Max price:"
         tagsLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 20.0).isActive = true
@@ -285,12 +265,14 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
     @IBAction func popUpSellClick(_ sender: Any) {
         postType = "sell"
         horizontalPriceView.isHidden = false
+        menuView.isHidden = false
         verticalWantTagsView.isHidden = true
         tagsLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 20.0).isActive = true
         hidePopUp()
     }
     @IBAction func popUpTradeClick(_ sender: Any) {
         postType = "trade"
+        menuView.isHidden = false
         tagsLabel.text = "Tags (Have)"
         tagsLabel.topAnchor.constraint(equalTo: uploadButton.bottomAnchor, constant: 20.0).isActive = true
         hidePopUp()
@@ -405,6 +387,24 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         tagsPage.groupIdsWant = groupTagIdsWant
         tagsPage.isWantTags = true
         self.present(tagsPage, animated: true, completion: nil)
+    }
+    @IBAction func cancelClick(_ sender: Any) {
+        UserDefaults.standard.set(false, forKey: "CreatePostView_isEditing")
+        UserDefaults.standard.set([String](), forKey: "PostTagesView_selectedGroupIds")
+        UserDefaults.standard.set([String](), forKey: "PostTagesView_selectedMemberIds")
+        UserDefaults.standard.set([String](), forKey: "PostTagesView_selectedGroupIdsWant")
+        UserDefaults.standard.set([String](), forKey: "PostTagesView_selectedMemberIdsWant")
+        
+        UserDefaults.standard.synchronize()
+        let feedPage = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
+        feedPage.realm = realm!
+        self.present(feedPage, animated: false, completion: nil)
+    }
+    @IBAction func draftClick(_ sender: Any) {
+        // TODO: implement
+    }
+    @IBAction func postClick(_ sender: Any) {
+        // TODO: implement
     }
     
     @objc func importPicture() {
