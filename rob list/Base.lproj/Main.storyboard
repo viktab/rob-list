@@ -596,6 +596,9 @@
                                                                 <color key="backgroundColor" red="0.94726217319999995" green="0.9460482429" blue="0.96725258140000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </backgroundConfiguration>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="groupButtonWantClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="diA-KR-8a2"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adD-wy-p6m">
                                                         <rect key="frame" x="1701.3333333333333" y="0.0" width="41.333333333333258" height="34.333333333333336"/>
@@ -617,6 +620,9 @@
                                                                 <color key="backgroundColor" red="0.94726217319999995" green="0.9460482429" blue="0.96725258140000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </backgroundConfiguration>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="memberButtonWantClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="scd-vA-e8c"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="An6-yP-F9N">
                                                         <rect key="frame" x="1701.3333333333333" y="0.0" width="41.333333333333258" height="34.333333333333336"/>
@@ -638,6 +644,9 @@
                                                                 <color key="backgroundColor" red="0.94726217319999995" green="0.9460482429" blue="0.96725258140000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </backgroundConfiguration>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="eraButtonWantClick:" destination="95h-Cm-Tzq" eventType="touchUpInside" id="OOf-b6-eiV"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NE-fQ-Ptv">
                                                         <rect key="frame" x="1701.3333333333333" y="0.0" width="41.333333333333258" height="34.333333333333336"/>

@@ -68,7 +68,7 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             }
             pickerData = pickerDataAll.map{$0}
         } else if tagType == "member" {
-            let allowedMemberIds = getMemberIdsForGroups(groupIds)
+            let allowedMemberIds = isWantTags ? getMemberIdsForGroups(groupIdsWant) :  getMemberIdsForGroups(groupIds)
             pickerDataAll = []
             for allowedMemberId in allowedMemberIds {
                 let allowedMember = allIdols.first(where: {
@@ -83,9 +83,10 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         // get existing selections
         if tagType == "group" {
-            let prevSelectedGroupIdsAsStr = UserDefaults.standard.array(forKey: "PostTagesView_selectedGroupIds")
+            let key = isWantTags ? "PostTagesView_selectedGroupIdsWant" : "PostTagesView_selectedGroupIds"
+            let prevSelectedGroupIdsAsStr = UserDefaults.standard.array(forKey: key)
             if prevSelectedGroupIdsAsStr != nil && prevSelectedGroupIdsAsStr!.count > 0 {
-                let prevSelectedGroupIdsAsStr2 = UserDefaults.standard.array(forKey: "PostTagesView_selectedGroupIds") as! [String]
+                let prevSelectedGroupIdsAsStr2 = UserDefaults.standard.array(forKey: key) as! [String]
                 var prevSelectedGroupTagIds = [ObjectId]()
                 for prev in prevSelectedGroupIdsAsStr2 {
                     try! prevSelectedGroupTagIds.append(ObjectId(string: prev))
@@ -98,9 +99,10 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 }
             }
         } else if tagType == "member" {
-            let prevSelectedMemberIdsAsStr = UserDefaults.standard.array(forKey: "PostTagesView_selectedMemberIds")
+            let key = isWantTags ? "PostTagesView_selectedMemberIdsWant" : "PostTagesView_selectedMemberIds"
+            let prevSelectedMemberIdsAsStr = UserDefaults.standard.array(forKey: key)
             if prevSelectedMemberIdsAsStr != nil && prevSelectedMemberIdsAsStr!.count > 0 {
-                let prevSelectedMemberIdsAsStr2 = UserDefaults.standard.array(forKey: "PostTagesView_selectedMemberIds") as! [String]
+                let prevSelectedMemberIdsAsStr2 = UserDefaults.standard.array(forKey: key) as! [String]
                 var prevSelectedMemberTagIds = [ObjectId]()
                 for prev in prevSelectedMemberIdsAsStr2 {
                     try! prevSelectedMemberTagIds.append(ObjectId(string: prev))
@@ -118,11 +120,13 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     var titleText: String = ""
     var tagType: String = ""
+    var isWantTags: Bool = false
     
     var allGroups: [Group] = [Group]()
     var allIdols: [Idol] = [Idol]()
     
     var groupIds: [ObjectId] = [ObjectId]()
+    var groupIdsWant: [ObjectId] = [ObjectId]()
     var pickerDataAll: [String] = [String]()
     var pickerData: [String] = [String]()
     
@@ -175,19 +179,30 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             let selectedGroupIds = selectedNames.map {(groupName: String) -> ObjectId in
                 return allGroups.first(where: {$0.name == groupName})!._id
             }
-            createPostPage.groupTagIds = selectedGroupIds
+            if (isWantTags) {
+                createPostPage.groupTagIdsWant = selectedGroupIds
+            } else {
+                createPostPage.groupTagIds = selectedGroupIds
+            }
             let groupIdsAsStr = selectedGroupIds.map({$0.stringValue})
-            UserDefaults.standard.set(groupIdsAsStr, forKey: "PostTagesView_selectedGroupIds")
+            let key = isWantTags ? "PostTagesView_selectedGroupIdsWant" : "PostTagesView_selectedGroupIds"
+            UserDefaults.standard.set(groupIdsAsStr, forKey: key)
             let newSelectedMemberIds = getUpdatedSelectedIdols(selectedGroupIds)
             let memberIdsAsStr = newSelectedMemberIds.map({$0.stringValue})
-            UserDefaults.standard.set(memberIdsAsStr, forKey: "PostTagesView_selectedMemberIds")
+            let memberKey = isWantTags ? "PostTagesView_selectedMemberIdsWant" : "PostTagesView_selectedMemberIds"
+            UserDefaults.standard.set(memberIdsAsStr, forKey: memberKey)
         } else if (tagType == "member") {
             let selectedmemberIds = selectedNames.map {(memberName: String) -> ObjectId in
                 return allIdols.first(where: {$0.name == memberName})!._id
             }
-            createPostPage.memberTagIds = selectedmemberIds
+            if (isWantTags) {
+                createPostPage.memberTagIdsWant = selectedmemberIds
+            } else {
+                createPostPage.memberTagIds = selectedmemberIds
+            }
             let memberIdsAsStr = selectedmemberIds.map({$0.stringValue})
-            UserDefaults.standard.set(memberIdsAsStr, forKey: "PostTagesView_selectedMemberIds")
+            let key = isWantTags ? "PostTagesView_selectedMemberIdsWant" : "PostTagesView_selectedMemberIds"
+            UserDefaults.standard.set(memberIdsAsStr, forKey: key)
         }
         UserDefaults.standard.synchronize()
         
@@ -259,9 +274,10 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     // updates selected members to only contain idols in the newly selected list of groups
     func getUpdatedSelectedIdols(_ newGroupIds: [ObjectId]) -> [ObjectId] {
-        let prevSelectedMemberIdsAsStr = UserDefaults.standard.array(forKey: "PostTagesView_selectedMemberIds")
+        let key = isWantTags ? "PostTagesView_selectedMemberIdsWant" : "PostTagesView_selectedMemberIds"
+        let prevSelectedMemberIdsAsStr = UserDefaults.standard.array(forKey: key)
         if prevSelectedMemberIdsAsStr != nil && prevSelectedMemberIdsAsStr!.count > 0 {
-            let prevSelectedMemberIdsAsStr2 = UserDefaults.standard.array(forKey: "PostTagesView_selectedMemberIds") as! [String]
+            let prevSelectedMemberIdsAsStr2 = UserDefaults.standard.array(forKey: key) as! [String]
             var newSelectedMemberTagIds = [ObjectId]()
             for prev in prevSelectedMemberIdsAsStr2 {
                 let prevSelectedMemberId = try! ObjectId(string: prev)

@@ -18,13 +18,28 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         if isEditing {
             postType = UserDefaults.standard.string(forKey: "CreatePostView_postType")!
             titleLabel.text = "Post to " + postType
-            let groupIdsAsStr = UserDefaults.standard.array(forKey: "PostTagesView_selectedGroupIds") as! [String]
-            groupTagIds = groupIdsAsStr.map({
-                try! ObjectId(string: $0)
-            })
+            let groupIdsAsStr = UserDefaults.standard.array(forKey: "PostTagesView_selectedGroupIds") as? [String]
+            if (groupIdsAsStr != nil) {
+                groupTagIds = groupIdsAsStr!.map({
+                    try! ObjectId(string: $0)
+                })
+            }
             let memberIdsAsStr = UserDefaults.standard.array(forKey: "PostTagesView_selectedMemberIds") as? [String]
             if (memberIdsAsStr != nil) {
                 memberTagIds = memberIdsAsStr!.map({
+                    try! ObjectId(string: $0)
+                })
+            }
+
+            let groupIdsAsStrWant = UserDefaults.standard.array(forKey: "PostTagesView_selectedGroupIdsWant") as? [String]
+            if (groupIdsAsStrWant != nil) {
+                groupTagIdsWant = groupIdsAsStrWant!.map({
+                    try! ObjectId(string: $0)
+                })
+            }
+            let memberIdsAsStrWant = UserDefaults.standard.array(forKey: "PostTagesView_selectedMemberIdsWant") as? [String]
+            if (memberIdsAsStrWant != nil) {
+                memberTagIdsWant = memberIdsAsStrWant!.map({
                     try! ObjectId(string: $0)
                 })
             }
@@ -160,7 +175,9 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         memberLabel.text = String(memberTagIds.count) + " tagged"
         eraLabel.text = String(eraTagIds.count) + " tagged"
         
-        // TODO: set want labels
+        groupLabelWant.text = String(groupTagIdsWant.count) + " tagged"
+        memberLabelWant.text = String(memberTagIdsWant.count) + " tagged"
+        eraLabelWant.text = String(eraTagIdsWant.count) + " tagged"
         
         groupButton.topAnchor.constraint(equalTo: tagsLabel.bottomAnchor, constant: 16.0).isActive = true
         memberButton.topAnchor.constraint(equalTo: groupButton.bottomAnchor, constant: 8.0).isActive = true
@@ -176,12 +193,17 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
     var allIdols: [Idol]?
     
     var allowedMemberIds: [ObjectId] = [ObjectId]()
+    var allowedMemberIdsWant: [ObjectId] = [ObjectId]()
     
     var postType: String = ""
     
     var groupTagIds: [ObjectId] = [ObjectId]()
     var memberTagIds: [ObjectId] = [ObjectId]()
     var eraTagIds: [ObjectId] = [ObjectId]()
+    
+    var groupTagIdsWant: [ObjectId] = [ObjectId]()
+    var memberTagIdsWant: [ObjectId] = [ObjectId]()
+    var eraTagIdsWant: [ObjectId] = [ObjectId]()
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var menuView: UIStackView!
@@ -346,6 +368,42 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         tagsPage.realm = realm!
         tagsPage.tagType = "era"
         tagsPage.groupIds = groupTagIds
+        self.present(tagsPage, animated: true, completion: nil)
+    }
+    
+    @IBAction func groupButtonWantClick(_ sender: Any) {
+        UserDefaults.standard.set(true, forKey: "CreatePostView_isEditing")
+        UserDefaults.standard.set(postType, forKey: "CreatePostView_postType")
+        UserDefaults.standard.synchronize()
+        let tagsPage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
+        tagsPage.titleText = "Tag group/soloist(s)"
+        tagsPage.realm = realm!
+        tagsPage.tagType = "group"
+        tagsPage.isWantTags = true
+        self.present(tagsPage, animated: true, completion: nil)
+    }
+    @IBAction func memberButtonWantClick(_ sender: Any) {
+        UserDefaults.standard.set(true, forKey: "CreatePostView_isEditing")
+        UserDefaults.standard.set(postType, forKey: "CreatePostView_postType")
+        UserDefaults.standard.synchronize()
+        let tagsPage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
+        tagsPage.titleText = "Tag member(s)"
+        tagsPage.realm = realm!
+        tagsPage.tagType = "member"
+        tagsPage.groupIdsWant = groupTagIdsWant
+        tagsPage.isWantTags = true
+        self.present(tagsPage, animated: true, completion: nil)
+    }
+    @IBAction func eraButtonWantClick(_ sender: Any) {
+        UserDefaults.standard.set(true, forKey: "CreatePostView_isEditing")
+        UserDefaults.standard.set(postType, forKey: "CreatePostView_postType")
+        UserDefaults.standard.synchronize()
+        let tagsPage = self.storyboard?.instantiateViewController(withIdentifier: "PostTagsViewController") as! PostTagsViewController
+        tagsPage.titleText = "Tag era(s)"
+        tagsPage.realm = realm!
+        tagsPage.tagType = "era"
+        tagsPage.groupIdsWant = groupTagIdsWant
+        tagsPage.isWantTags = true
         self.present(tagsPage, animated: true, completion: nil)
     }
     
