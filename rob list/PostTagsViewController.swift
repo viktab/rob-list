@@ -80,6 +80,24 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         } else {
             pickerData = ["1", "2", "3"]
         }
+        
+        // get existing selections
+        if tagType == "group" {
+            let prevSelectedGroupIdsAsStr = UserDefaults.standard.array(forKey: "PostTagesView_selectedGroupIds")
+            if prevSelectedGroupIdsAsStr != nil && prevSelectedGroupIdsAsStr!.count > 0 {
+                let prevSelectedGroupIdsAsStr2 = UserDefaults.standard.array(forKey: "PostTagesView_selectedGroupIds") as! [String]
+                var prevSelectedGroupTagIds = [ObjectId]()
+                for prev in prevSelectedGroupIdsAsStr2 {
+                    try! prevSelectedGroupTagIds.append(ObjectId(string: prev))
+                }
+                for prevSelectedGroupId in prevSelectedGroupTagIds {
+                    let group = allGroups.first(where: {
+                        $0._id == prevSelectedGroupId
+                    })
+                    addItem(group!.name)
+                }
+            }
+        }
     }
     var realm : Realm?
     
@@ -113,34 +131,7 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBAction func addClick(_ sender: Any) {
         addButton.alpha = 0.0
         addButton.isEnabled = false
-        
-        let newItemView: UIStackView = UIStackView()
-        newItemView.axis = .horizontal
-        // newItemView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
-        
-        let itemLabel: UILabel = UILabel()
-        let newItem = textBox.text
-        itemLabel.text = newItem
-        itemLabel.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00)
-        itemLabel.font = UIFont.systemFont(ofSize: 19.0)
-        
-        var config = UIButton.Configuration.plain()
-        config.image = UIImage(systemName: "xmark")
-        
-        let itemButton: UIButton = UIButton()
-        itemButton.configuration = config
-        itemButton.addTarget(self, action: #selector(deleteClick), for: .touchUpInside)
-
-        newItemView.addArrangedSubview(itemLabel)
-        newItemView.addArrangedSubview(itemButton)
-        
-        verticalListView.addArrangedSubview(newItemView)
-        itemLabel.widthAnchor.constraint(equalTo: newItemView.widthAnchor, multiplier: 0.9).isActive = true
-        itemButton.widthAnchor.constraint(equalTo: newItemView.widthAnchor, multiplier: 0.1).isActive = true
-        itemButton.heightAnchor.constraint(equalTo: newItemView.widthAnchor, multiplier: 0.1).isActive = true
-        itemButton.imageView?.layer.transform = CATransform3DMakeScale(1.33, 1.33, 1.33)
-        
-        selectedNames.append(newItem!)
+        addItem(textBox.text!)
         textBox.text = ""
     }
     
@@ -200,6 +191,35 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         pickerView.reloadAllComponents()
         pickerView.selectRow(1, inComponent: 0, animated: false)
         return true
+    }
+    
+    func addItem(_ name: String) {
+        let newItemView: UIStackView = UIStackView()
+        newItemView.axis = .horizontal
+        // newItemView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+        
+        let itemLabel: UILabel = UILabel()
+        itemLabel.text = name
+        itemLabel.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.00)
+        itemLabel.font = UIFont.systemFont(ofSize: 19.0)
+        
+        var config = UIButton.Configuration.plain()
+        config.image = UIImage(systemName: "xmark")
+        
+        let itemButton: UIButton = UIButton()
+        itemButton.configuration = config
+        itemButton.addTarget(self, action: #selector(deleteClick), for: .touchUpInside)
+
+        newItemView.addArrangedSubview(itemLabel)
+        newItemView.addArrangedSubview(itemButton)
+        
+        verticalListView.addArrangedSubview(newItemView)
+        itemLabel.widthAnchor.constraint(equalTo: newItemView.widthAnchor, multiplier: 0.9).isActive = true
+        itemButton.widthAnchor.constraint(equalTo: newItemView.widthAnchor, multiplier: 0.1).isActive = true
+        itemButton.heightAnchor.constraint(equalTo: newItemView.widthAnchor, multiplier: 0.1).isActive = true
+        itemButton.imageView?.layer.transform = CATransform3DMakeScale(1.33, 1.33, 1.33)
+        
+        selectedNames.append(name)
     }
     
     func getMemberIdsForGroups(_ groupIds: [ObjectId]) -> [ObjectId] {
