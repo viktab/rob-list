@@ -59,15 +59,24 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         titleLabel.text = titleText
         
         // get picker data
+        allGroups = Array(realm!.objects(Group.self))
+        allIdols = Array(realm!.objects(Idol.self))
         if tagType == "group" {
-            allGroups = Array(realm!.objects(Group.self))
             pickerDataAll = []
             for group in allGroups {
                 pickerDataAll.append(group.name)
             }
             pickerData = pickerDataAll.map{$0}
         } else if tagType == "member" {
-            pickerData = ["A", "B", "C"]
+            let allowedMemberIds = getMemberIdsForGroups(groupIds)
+            pickerDataAll = []
+            for allowedMemberId in allowedMemberIds {
+                let allowedMember = allIdols.first(where: {
+                    $0._id == allowedMemberId
+                })
+                pickerDataAll.append(allowedMember!.name)
+            }
+            pickerData = pickerDataAll.map{$0}
         } else {
             pickerData = ["1", "2", "3"]
         }
@@ -155,13 +164,17 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     @IBAction func doneClick(_ sender: Any) {
         let createPostPage = self.storyboard?.instantiateViewController(withIdentifier: "CreatePostViewController") as! CreatePostViewController
+        createPostPage.realm = realm!
         if (tagType == "group") {
             let selectedGroupIds = selectedNames.map {(groupName: String) -> ObjectId in
                 return allGroups.first(where: {$0.name == groupName})!._id
             }
             createPostPage.realm = realm!
             createPostPage.groupTagIds = selectedGroupIds
+            let groupIdsAsStr = selectedGroupIds.map({$0.stringValue})
+            UserDefaults.standard.set(groupIdsAsStr, forKey: "PostTagesView_selectedGroupIds")
         }
+        UserDefaults.standard.synchronize()
         self.present(createPostPage, animated: false, completion: nil)
     }
     
@@ -181,6 +194,18 @@ class PostTagsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         pickerView.reloadAllComponents()
         pickerView.selectRow(1, inComponent: 0, animated: false)
         return true
+    }
+    
+    func getMemberIdsForGroups(_ groupIds: [ObjectId]) -> [ObjectId] {
+        var allMemberIds = [ObjectId]()
+        for groupId in groupIds {
+            let group = allGroups.first(where: {
+                $0._id == groupId
+            })
+            let memberIds = group!.idols
+            allMemberIds += memberIds
+        }
+        return allMemberIds
     }
     
     /*

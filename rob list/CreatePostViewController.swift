@@ -18,6 +18,10 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         if isEditing {
             postType = UserDefaults.standard.string(forKey: "CreatePostView_postType")!
             titleLabel.text = "Post to " + postType
+            let groupIdsAsStr = UserDefaults.standard.array(forKey: "PostTagesView_selectedGroupIds") as! [String]
+            groupTagIds = groupIdsAsStr.map({
+                try! ObjectId(string: $0)
+            })
         }
         
         menuView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: 8.0).isActive = true
@@ -133,11 +137,20 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
             label!.rightAnchor.constraint(equalTo: verticalView.rightAnchor, constant: -8.0).isActive = true
             label!.textAlignment = .right
         }
+        groupLabel.text = String(groupTagIds.count) + " tagged"
+        memberLabel.text = String(memberTagIds.count) + " tagged"
+        eraLabel.text = String(eraTagIds.count) + " tagged"
+        
         groupButton.topAnchor.constraint(equalTo: tagsLabel.bottomAnchor, constant: 16.0).isActive = true
         memberButton.topAnchor.constraint(equalTo: groupButton.bottomAnchor, constant: 8.0).isActive = true
         eraButton.topAnchor.constraint(equalTo: memberButton.bottomAnchor, constant: 8.0).isActive = true
     }
     var realm : Realm?
+    
+    var allGroups: [Group]?
+    var allIdols: [Idol]?
+    
+    var allowedMemberIds: [ObjectId] = [ObjectId]()
     
     var postType: String = ""
     
@@ -291,6 +304,7 @@ class CreatePostViewController: UIViewController, UITextViewDelegate, UITextFiel
         tagsPage.titleText = "Tag era(s)"
         tagsPage.realm = realm!
         tagsPage.tagType = "era"
+        tagsPage.groupIds = groupTagIds
         self.present(tagsPage, animated: true, completion: nil)
     }
     

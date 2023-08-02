@@ -308,6 +308,7 @@ extension SearchViewController: UITextFieldDelegate {
         return true
     }
     
+    // TODO: make this generic helper func
     func getMembers() -> [String] {
         let groupName = artistTextBox.text
         let groupObj = groups.first(where: {$0.name == groupName})
