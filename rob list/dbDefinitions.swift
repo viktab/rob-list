@@ -9,6 +9,8 @@ import Foundation
 
 import RealmSwift
 
+let CURRENT_VERSION = 2
+
 class UserProfile: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var realmId: String = ""
@@ -17,6 +19,7 @@ class UserProfile: Object {
     @Persisted var username: String = ""
     @Persisted var bio: String = ""
     @Persisted var posts: List<ObjectId>
+    @Persisted var followers: List<ObjectId>
     @Persisted var followingUsers: List<ObjectId>
     @Persisted var followingGroups: List<ObjectId>
     @Persisted var followingIdols: List<ObjectId>
@@ -28,6 +31,7 @@ class UserProfile: Object {
         self.email = email
         self.username = username
         self.posts = List()
+        self.followers = List()
         self.followingUsers = List()
         self.followingGroups = List()
         self.followingIdols = List()

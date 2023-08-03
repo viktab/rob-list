@@ -121,6 +121,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     func openFlexibleSyncRealm(user: User) async throws -> Realm {
         print("in openSyncedRealm")
         var config = user.flexibleSyncConfiguration()
+        config.schemaVersion = UInt64(CURRENT_VERSION)
         // Pass object types to the Flexible Sync configuration
         // as a temporary workaround for not being able to add a
         // complete schema for a Flexible Sync app.
