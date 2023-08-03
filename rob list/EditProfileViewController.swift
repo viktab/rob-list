@@ -79,6 +79,40 @@ class EditProfileViewController: UIViewController {
             textBox!.layer.borderColor = CGColor(gray: 0.75, alpha: 1.0)
             textBox!.layer.cornerRadius = 5
         }
+        
+        let spaceLabelHeight = tagsSpaceLabel.heightAnchor.constraint(equalToConstant: 32.0)
+        spaceLabelHeight.priority = .defaultHigh
+        spaceLabelHeight.isActive = true
+        let spaceLabelHeight2 = tagsSpaceLabel2.heightAnchor.constraint(equalToConstant: 16.0)
+        spaceLabelHeight2.priority = .defaultHigh
+        spaceLabelHeight2.isActive = true
+        let tagsTitleLeft = tagsTitleLabel.leftAnchor.constraint(equalTo: usernameLabel.leftAnchor, constant: 0.0)
+        tagsTitleLeft.priority = .defaultHigh
+        tagsTitleLeft.isActive = true
+        
+        let tagButtons = [groupButton, memberButton, eraButton]
+        for button in tagButtons {
+            button!.layer.borderWidth = 2
+            button!.layer.borderColor = CGColor(gray: 0.75, alpha: 1.0)
+            button!.layer.cornerRadius = 5
+            button!.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.6).isActive = true
+        }
+        
+        let tagLabels = [groupLabel, memberLabel, eraLabel]
+        for label in tagLabels {
+            label!.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -24.0).isActive = true
+            label!.textAlignment = .right
+        }
+        
+        let tagSpaceLabels = [vTagsLabel1, vTagsLabel2]
+        for label in tagSpaceLabels {
+            let labelHeight = label!.heightAnchor.constraint(equalToConstant: 8.0)
+            labelHeight.priority = .defaultHigh
+            labelHeight.isActive = true
+        }
+        
+        menuView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: 8.0).isActive = true
+        menuView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 1.0).isActive = true
     }
     var realm : Realm?
 
@@ -105,6 +139,19 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var hLabel2: UILabel!
     @IBOutlet weak var hLabel3: UILabel!
     
+    @IBOutlet weak var tagsSpaceLabel: UILabel!
+    @IBOutlet weak var tagsTitleLabel: UILabel!
+    @IBOutlet weak var tagsSpaceLabel2: UILabel!
+    @IBOutlet weak var groupButton: UIButton!
+    @IBOutlet weak var memberButton: UIButton!
+    @IBOutlet weak var eraButton: UIButton!
+    @IBOutlet weak var groupLabel: UILabel!
+    @IBOutlet weak var memberLabel: UILabel!
+    @IBOutlet weak var eraLabel: UILabel!
+    @IBOutlet weak var vTagsLabel1: UILabel!
+    @IBOutlet weak var vTagsLabel2: UILabel!
+    
+    @IBOutlet weak var menuView: UIStackView!
     /*
     // MARK: - Navigation
 
