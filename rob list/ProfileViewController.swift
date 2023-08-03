@@ -36,7 +36,7 @@ class ProfileViewController: UIViewController {
         usernameTop.isActive = true
         usernameLabel.textAlignment = .center
         
-        let pfpTop = profilePicView.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 24.0)
+        let pfpTop = profilePicView.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 16.0)
         pfpTop.priority = .defaultHigh
         pfpTop.isActive = true
         
@@ -118,6 +118,11 @@ class ProfileViewController: UIViewController {
         let createPosePage = self.storyboard?.instantiateViewController(withIdentifier: "CreatePostViewController") as! CreatePostViewController
         createPosePage.realm = realm!
         self.present(createPosePage, animated: false, completion: nil)
+    }
+    @IBAction func settingsButtonClick(_ sender: Any) {
+        let editProfilePage = self.storyboard?.instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController
+        editProfilePage.realm = realm!
+        self.present(editProfilePage, animated: true, completion: nil)
     }
     
     /*

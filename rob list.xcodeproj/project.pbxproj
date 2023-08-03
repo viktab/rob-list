@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00CAB0266B151337A4B5445B /* Pods_rob_listTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E15765B410A1CE3742C47A8 /* Pods_rob_listTests.framework */; };
 		1CA41C9BFE86E9677393D3BE /* Pods_rob_list.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70F01E270066F1777FF462EF /* Pods_rob_list.framework */; };
+		3C8530902A7B7A8200918188 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C85308F2A7B7A8200918188 /* EditProfileViewController.swift */; };
 		3CB77CB02A66662F0065C8BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB77CAF2A66662F0065C8BC /* AppDelegate.swift */; };
 		3CB77CB22A66662F0065C8BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB77CB12A66662F0065C8BC /* SceneDelegate.swift */; };
 		3CB77CB42A66662F0065C8BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB77CB32A66662F0065C8BC /* ViewController.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		348596D4A06B18CED4740993 /* Pods-rob listTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rob listTests.release.xcconfig"; path = "Target Support Files/Pods-rob listTests/Pods-rob listTests.release.xcconfig"; sourceTree = "<group>"; };
+		3C85308F2A7B7A8200918188 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		3CB77CAC2A66662F0065C8BC /* rob list.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rob list.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CB77CAF2A66662F0065C8BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CB77CB12A66662F0065C8BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,17 +149,18 @@
 			children = (
 				3CB77CAF2A66662F0065C8BC /* AppDelegate.swift */,
 				3CB77CB12A66662F0065C8BC /* SceneDelegate.swift */,
-				3CB77CB32A66662F0065C8BC /* ViewController.swift */,
 				3CC420D42A68F55300CB1B4E /* Config.xcconfig */,
 				3CB77CB52A66662F0065C8BC /* Main.storyboard */,
-				3CB77CE92A67AEA70065C8BC /* ProfileViewController.swift */,
+				3CB77CB32A66662F0065C8BC /* ViewController.swift */,
+				3CB77CE32A6757810065C8BC /* FeedViewController.swift */,
 				3CB77CE72A6783B10065C8BC /* SearchViewController.swift */,
 				3CC420D82A737D6400CB1B4E /* SearchAddViewController.swift */,
 				3CC420DA2A75AAA500CB1B4E /* CreatePostViewController.swift */,
 				3CC420DE2A7794F000CB1B4E /* PostTagsViewController.swift */,
-				3CB77CE32A6757810065C8BC /* FeedViewController.swift */,
-				3CC420D52A69F3C100CB1B4E /* dbDefinitions.swift */,
+				3CB77CE92A67AEA70065C8BC /* ProfileViewController.swift */,
+				3C85308F2A7B7A8200918188 /* EditProfileViewController.swift */,
 				3CC420E02A787A5900CB1B4E /* helperFuncs.swift */,
+				3CC420D52A69F3C100CB1B4E /* dbDefinitions.swift */,
 				3CB77CBB2A6666300065C8BC /* Assets.xcassets */,
 				3CB77CBD2A6666300065C8BC /* LaunchScreen.storyboard */,
 				3CB77CC02A6666300065C8BC /* Info.plist */,
@@ -435,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C8530902A7B7A8200918188 /* EditProfileViewController.swift in Sources */,
 				3CC420DF2A7794F000CB1B4E /* PostTagsViewController.swift in Sources */,
 				3CC420DB2A75AAA500CB1B4E /* CreatePostViewController.swift in Sources */,
 				3CC420D62A69F3C100CB1B4E /* dbDefinitions.swift in Sources */,
