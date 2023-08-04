@@ -1099,6 +1099,9 @@
                                                                 <color key="backgroundColor" red="0.94726217319999995" green="0.9460482429" blue="0.96725258140000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </backgroundConfiguration>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="groupButtonClick:" destination="2os-cn-GN3" eventType="touchUpInside" id="pzo-mV-6U9"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 following" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPh-cd-Awe">
                                                         <rect key="frame" x="300.66666666666669" y="0.0" width="82.666666666666686" height="34.333333333333336"/>
@@ -1126,6 +1129,9 @@
                                                                 <color key="backgroundColor" red="0.94726217319999995" green="0.9460482429" blue="0.96725258140000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </backgroundConfiguration>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="idolButtonClick:" destination="2os-cn-GN3" eventType="touchUpInside" id="MfA-hQ-Z0w"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 following" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGw-qL-V4a">
                                                         <rect key="frame" x="300.66666666666669" y="0.0" width="82.666666666666686" height="34.333333333333336"/>
@@ -1219,6 +1225,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="frx-2m-LUc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3277" y="687"/>
+        </scene>
+        <!--Following Tags View Controller-->
+        <scene sceneID="NdI-1f-Qlp">
+            <objects>
+                <viewController storyboardIdentifier="FollowingTagsViewController" id="7u1-ss-0OP" customClass="FollowingTagsViewController" customModule="rob_list" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Gd-CD-Oyz">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="cmp-7h-fmi"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <size key="freeformSize" width="393" height="852"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kCC-9B-T7c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3279" y="1373"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="aku-i7-MnX">

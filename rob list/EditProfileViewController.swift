@@ -213,6 +213,18 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         importPicture()
     }
     
+    @IBAction func groupButtonClick(_ sender: Any) {
+        let followingTagsPage = self.storyboard?.instantiateViewController(withIdentifier: "FollowingTagsViewController") as! FollowingTagsViewController
+        followingTagsPage.realm = realm!
+        self.present(followingTagsPage, animated: true, completion: nil)
+    }
+    
+    @IBAction func idolButtonClick(_ sender: Any) {
+        let followingTagsPage = self.storyboard?.instantiateViewController(withIdentifier: "FollowingTagsViewController") as! FollowingTagsViewController
+        followingTagsPage.realm = realm!
+        self.present(followingTagsPage, animated: true, completion: nil)
+    }
+    
     @IBAction func cancelClick(_ sender: Any) {
         let alert = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
         let messageAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17.0)]
