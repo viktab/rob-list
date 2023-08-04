@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,14 +30,16 @@ class EditProfileViewController: UIViewController {
         pfpTop.priority = .defaultHigh
         pfpTop.isActive = true
         let pfpWidth = profilePicView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.25)
-        pfpTop.priority = .defaultHigh
-        pfpTop.isActive = true
+        pfpWidth.priority = .defaultHigh
+        pfpWidth.isActive = true
         let pfpHeight = profilePicView.heightAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.25)
         pfpHeight.priority = .defaultHigh
         pfpHeight.isActive = true
         let pfpCenter = profilePicView.centerXAnchor.constraint(equalTo: mainView.centerXAnchor)
         pfpCenter.priority = .defaultHigh
         pfpCenter.isActive = true
+        profilePicView.layer.cornerRadius = 10
+        profilePicView.clipsToBounds = true
         
         let pfpButtonTop = editPfpButton.topAnchor.constraint(equalTo: profilePicView.bottomAnchor, constant: 8.0)
         pfpButtonTop.priority = .defaultHigh
@@ -57,6 +59,9 @@ class EditProfileViewController: UIViewController {
         let bioTextBoxLeft = bioTextBox.leftAnchor.constraint(equalTo: usernameTextBox.leftAnchor)
         bioTextBoxLeft.priority = .defaultHigh
         bioTextBoxLeft.isActive = true
+        let bioTextBoxHeight = bioTextBox.heightAnchor.constraint(equalToConstant: 80.0)
+        bioTextBoxHeight.priority = .defaultHigh
+        bioTextBoxHeight.isActive = true
         bioTextBox.backgroundColor = UIColor(named: "white")
         
         let vSpaceLabels = [vLabel1, vLabel2, vLabel3]
@@ -80,6 +85,12 @@ class EditProfileViewController: UIViewController {
             textBox!.layer.cornerRadius = 5
         }
         
+        let doneButtons = [usernameDoneButton, nameDoneButton, bioDoneButton]
+        for button in doneButtons {
+            button!.alpha = 0.0
+            button!.isEnabled = false
+        }
+        
         let spaceLabelHeight = tagsSpaceLabel.heightAnchor.constraint(equalToConstant: 32.0)
         spaceLabelHeight.priority = .defaultHigh
         spaceLabelHeight.isActive = true
@@ -90,7 +101,7 @@ class EditProfileViewController: UIViewController {
         tagsTitleLeft.priority = .defaultHigh
         tagsTitleLeft.isActive = true
         
-        let tagButtons = [groupButton, memberButton, eraButton]
+        let tagButtons = [groupButton, memberButton]
         for button in tagButtons {
             button!.layer.borderWidth = 2
             button!.layer.borderColor = CGColor(gray: 0.75, alpha: 1.0)
@@ -98,7 +109,7 @@ class EditProfileViewController: UIViewController {
             button!.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.6).isActive = true
         }
         
-        let tagLabels = [groupLabel, memberLabel, eraLabel]
+        let tagLabels = [groupLabel, memberLabel]
         for label in tagLabels {
             label!.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -24.0).isActive = true
             label!.textAlignment = .right
@@ -115,6 +126,9 @@ class EditProfileViewController: UIViewController {
         menuView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 1.0).isActive = true
     }
     var realm : Realm?
+    
+    var didChangeImage : Bool = false
+    var image : UIImage?
 
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -123,14 +137,26 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var editPfpButton: UIButton!
     @IBOutlet weak var usernameView: UIStackView!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var usernameTextBox: UITextField!
+    @IBOutlet weak var usernameTextBox: UITextField! {
+        didSet {
+            usernameTextBox.delegate = self
+        }
+    }
     @IBOutlet weak var usernameDoneButton: UIButton!
     @IBOutlet weak var nameView: UIStackView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var nameTextBox: UITextField!
+    @IBOutlet weak var nameTextBox: UITextField! {
+        didSet {
+            nameTextBox.delegate = self
+        }
+    }
     @IBOutlet weak var nameDoneButton: UIButton!
     @IBOutlet weak var bioLabel: UILabel!
-    @IBOutlet weak var bioTextBox: UITextView!
+    @IBOutlet weak var bioTextBox: UITextView! {
+        didSet {
+            bioTextBox.delegate = self
+        }
+    }
     @IBOutlet weak var bioDoneButton: UIButton!
     @IBOutlet weak var vLabel1: UILabel!
     @IBOutlet weak var vLabel2: UILabel!
@@ -144,14 +170,92 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var tagsSpaceLabel2: UILabel!
     @IBOutlet weak var groupButton: UIButton!
     @IBOutlet weak var memberButton: UIButton!
-    @IBOutlet weak var eraButton: UIButton!
     @IBOutlet weak var groupLabel: UILabel!
     @IBOutlet weak var memberLabel: UILabel!
-    @IBOutlet weak var eraLabel: UILabel!
     @IBOutlet weak var vTagsLabel1: UILabel!
     @IBOutlet weak var vTagsLabel2: UILabel!
     
     @IBOutlet weak var menuView: UIStackView!
+    @IBOutlet weak var cancelButton: UIButton!
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        bioDoneButton.alpha = 1.0
+        bioDoneButton.isEnabled = true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == usernameTextBox {
+            usernameDoneButton.alpha = 1.0
+            usernameDoneButton.isEnabled = true
+        } else if textField == nameTextBox {
+            nameDoneButton.alpha = 1.0
+            nameDoneButton.isEnabled = true
+        }
+    }
+    
+    @IBAction func usernameDoneClick(_ sender: Any) {
+        usernameDoneButton.alpha = 0.0
+        usernameDoneButton.isEnabled = false
+        view.endEditing(true)
+    }
+    @IBAction func nameDoneClick(_ sender: Any) {
+        nameDoneButton.alpha = 0.0
+        nameDoneButton.isEnabled = false
+        view.endEditing(true)
+    }
+    @IBAction func bioDoneClick(_ sender: Any) {
+        bioDoneButton.alpha = 0.0
+        bioDoneButton.isEnabled = false
+        view.endEditing(true)
+    }
+    
+    @IBAction func editPictureClick(_ sender: Any) {
+        importPicture()
+    }
+    
+    @IBAction func cancelClick(_ sender: Any) {
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
+        let messageAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17.0)]
+          let messageString = NSAttributedString(string: "Are you sure you want to cancel edits?", attributes: messageAttributes)
+        alert.setValue(messageString, forKey: "attributedMessage")
+        alert.addAction(UIAlertAction(title: "Continue editing", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel edits", style: UIAlertAction.Style.default, handler: {(action) -> Void in self.closePage()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    @IBAction func saveClick(_ sender: Any) {
+        closePage()
+    }
+    
+    func closePage() {
+        let profilePage = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        profilePage.realm = realm!
+        weak var pvc = self.presentingViewController
+        self.dismiss(animated: true, completion: {
+            pvc?.present(profilePage, animated: false, completion: nil)
+        })
+    }
+    
+    @objc func importPicture() {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let uploadedImage = info[.editedImage] as? UIImage else { return }
+        dismiss(animated: true)
+        profilePicView.image = uploadedImage
+        profilePicView.contentMode = .scaleAspectFit
+        profilePicView.layer.cornerRadius = 10
+        profilePicView.clipsToBounds = true
+        let pfpWidth = profilePicView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.25)
+        pfpWidth.priority = .defaultHigh
+        pfpWidth.isActive = true
+        didChangeImage = true
+        image = uploadedImage
+    }
     /*
     // MARK: - Navigation
 

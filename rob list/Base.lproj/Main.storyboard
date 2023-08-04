@@ -918,25 +918,45 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0fC-mG-JFC">
-                                <rect key="frame" x="141" y="326" width="383.33333333333326" height="770.33333333333348"/>
+                                <rect key="frame" x="141" y="326" width="383.33333333333326" height="754"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileicon" translatesAutoresizingMaskIntoConstraints="NO" id="LFi-VH-fgc">
-                                        <rect key="frame" x="0.0" y="0.0" width="383.33333333333331" height="32"/>
-                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flI-8i-DPC">
+                                        <rect key="frame" x="0.0" y="0.0" width="383.33333333333331" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qa7-qu-WVz">
+                                                <rect key="frame" x="0.0" y="0.0" width="301.33333333333331" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="profileicon" translatesAutoresizingMaskIntoConstraints="NO" id="LFi-VH-fgc">
+                                                <rect key="frame" x="301.33333333333331" y="0.0" width="32" height="50"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nh6-zX-geU">
+                                                <rect key="frame" x="333.33333333333331" y="0.0" width="50" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0S-rN-Sg6">
-                                        <rect key="frame" x="0.0" y="32" width="383.33333333333331" height="34.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="50" width="383.33333333333331" height="34.333333333333343"/>
                                         <color key="tintColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Edit Picture"/>
+                                        <connections>
+                                            <action selector="editPictureClick:" destination="2os-cn-GN3" eventType="touchUpInside" id="6c4-3z-b4u"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKV-Ie-iuH">
-                                        <rect key="frame" x="0.0" y="66.333333333333329" width="383.33333333333331" height="50"/>
+                                        <rect key="frame" x="0.0" y="84.333333333333329" width="383.33333333333331" height="49.999999999999986"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChC-GX-mb9">
-                                        <rect key="frame" x="0.0" y="116.33333333333331" width="383.33333333333331" height="50"/>
+                                        <rect key="frame" x="0.0" y="134.33333333333334" width="383.33333333333331" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eg-8g-oZK">
                                                 <rect key="frame" x="0.0" y="0.0" width="83" height="50"/>
@@ -962,17 +982,20 @@
                                                 <color key="tintColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Done"/>
+                                                <connections>
+                                                    <action selector="usernameDoneClick:" destination="2os-cn-GN3" eventType="touchUpInside" id="TAS-eK-6d5"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AwN-ro-H2c">
-                                        <rect key="frame" x="0.0" y="166.33333333333334" width="383.33333333333331" height="50"/>
+                                        <rect key="frame" x="0.0" y="184.33333333333334" width="383.33333333333331" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xw4-gT-dOL">
-                                        <rect key="frame" x="0.0" y="216.33333333333334" width="383.33333333333331" height="50.000000000000028"/>
+                                        <rect key="frame" x="0.0" y="234.33333333333337" width="383.33333333333331" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pln-B4-VZN">
                                                 <rect key="frame" x="0.0" y="0.0" width="49.666666666666664" height="50"/>
@@ -998,17 +1021,20 @@
                                                 <color key="tintColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Done"/>
+                                                <connections>
+                                                    <action selector="nameDoneClick:" destination="2os-cn-GN3" eventType="touchUpInside" id="8Dn-oI-Z5i"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofd-KV-k0X">
-                                        <rect key="frame" x="0.0" y="266.33333333333331" width="383.33333333333331" height="50"/>
+                                        <rect key="frame" x="0.0" y="284.33333333333331" width="383.33333333333331" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Str-4N-hT9">
-                                        <rect key="frame" x="0.0" y="316.33333333333331" width="383.33333333333331" height="128"/>
+                                        <rect key="frame" x="0.0" y="334.33333333333331" width="383.33333333333331" height="128"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ykF-hK-PaV">
                                                 <rect key="frame" x="0.0" y="0.0" width="29" height="128"/>
@@ -1034,29 +1060,32 @@
                                                 <color key="tintColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Done"/>
+                                                <connections>
+                                                    <action selector="bioDoneClick:" destination="2os-cn-GN3" eventType="touchUpInside" id="MLM-T3-87G"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRM-0z-63Q">
-                                        <rect key="frame" x="0.0" y="444.33333333333331" width="383.33333333333331" height="50"/>
+                                        <rect key="frame" x="0.0" y="462.33333333333331" width="383.33333333333331" height="49.999999999999943"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Followed Tags" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asn-gB-5Y7">
-                                        <rect key="frame" x="0.0" y="494.33333333333331" width="383.33333333333331" height="22.999999999999943"/>
+                                        <rect key="frame" x="0.0" y="512.33333333333337" width="383.33333333333331" height="23"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAp-3V-TDT">
-                                        <rect key="frame" x="0.0" y="517.33333333333337" width="383.33333333333331" height="50"/>
+                                        <rect key="frame" x="0.0" y="535.33333333333337" width="383.33333333333331" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Wtr-TR-Phv">
-                                        <rect key="frame" x="0.0" y="567.33333333333337" width="383.33333333333331" height="203"/>
+                                        <rect key="frame" x="0.0" y="585.33333333333337" width="383.33333333333331" height="168.66666666666663"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9eB-Vs-nTN">
                                                 <rect key="frame" x="0.0" y="0.0" width="383.33333333333331" height="34.333333333333336"/>
@@ -1065,7 +1094,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="300.66666666666669" height="34.333333333333336"/>
                                                         <color key="tintColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Group/soloist(s)">
+                                                        <buttonConfiguration key="configuration" style="plain" title="Group(s)">
                                                             <backgroundConfiguration key="background">
                                                                 <color key="backgroundColor" red="0.94726217319999995" green="0.9460482429" blue="0.96725258140000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </backgroundConfiguration>
@@ -1092,7 +1121,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="300.66666666666669" height="34.333333333333336"/>
                                                         <color key="tintColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Member(s)">
+                                                        <buttonConfiguration key="configuration" style="plain" title="Idol(s)">
                                                             <backgroundConfiguration key="background">
                                                                 <color key="backgroundColor" red="0.94726217319999995" green="0.9460482429" blue="0.96725258140000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </backgroundConfiguration>
@@ -1112,27 +1141,6 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSj-yl-fWq">
-                                                <rect key="frame" x="0.0" y="168.66666666666663" width="383.33333333333331" height="34.333333333333343"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFp-bZ-aXz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300.66666666666669" height="34.333333333333336"/>
-                                                        <color key="tintColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Era(s)">
-                                                            <backgroundConfiguration key="background">
-                                                                <color key="backgroundColor" red="0.94726217319999995" green="0.9460482429" blue="0.96725258140000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            </backgroundConfiguration>
-                                                        </buttonConfiguration>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 following" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9XL-ID-DSa">
-                                                        <rect key="frame" x="300.66666666666669" y="0.0" width="82.666666666666686" height="34.333333333333336"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -1145,6 +1153,9 @@
                                         <color key="tintColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelClick:" destination="2os-cn-GN3" eventType="touchUpInside" id="APm-aZ-OaT"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cu4-9F-eSN">
                                         <rect key="frame" x="84.666666666666657" y="67" width="76.666666666666657" height="34.333333333333343"/>
@@ -1157,6 +1168,9 @@
                                         <color key="tintColor" red="0.38756299020000001" green="0.65863102669999996" blue="0.66274958849999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Save"/>
+                                        <connections>
+                                            <action selector="saveClick:" destination="2os-cn-GN3" eventType="touchUpInside" id="sdQ-ax-oAo"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
@@ -1170,9 +1184,8 @@
                         <outlet property="bioDoneButton" destination="Cub-Mc-ZQz" id="iv5-cG-Nfz"/>
                         <outlet property="bioLabel" destination="ykF-hK-PaV" id="SnH-fI-wfM"/>
                         <outlet property="bioTextBox" destination="s2s-eg-Fyz" id="l6Q-jw-dSJ"/>
+                        <outlet property="cancelButton" destination="bPx-zk-Oa9" id="hR7-Sn-v9p"/>
                         <outlet property="editPfpButton" destination="H0S-rN-Sg6" id="BPL-fW-Nc0"/>
-                        <outlet property="eraButton" destination="qFp-bZ-aXz" id="NHF-T7-uMx"/>
-                        <outlet property="eraLabel" destination="9XL-ID-DSa" id="h14-IC-WQV"/>
                         <outlet property="groupButton" destination="mgN-cK-qkG" id="Gsr-3K-0g1"/>
                         <outlet property="groupLabel" destination="SPh-cd-Awe" id="B5B-Ok-z4u"/>
                         <outlet property="hLabel1" destination="IRA-M3-gZK" id="Rte-fc-Wr4"/>
